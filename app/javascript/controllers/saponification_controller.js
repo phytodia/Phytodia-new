@@ -6,6 +6,17 @@ export default class extends Controller {
   connect() {
     console.log("sapo")
   }
+  createTr(event){
+    let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number"></td>'
+    console.log(document.querySelectorAll('[data-ing]'))
+    let newTr = document.createElement('tr')
+    newTr.dataset.ing = event.currentTarget.value
+    newTr.innerHTML = newTd
+
+    this.ingredientTableTarget.appendChild(newTr)
+    this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = event.currentTarget.value
+
+  }
   getIngredient(event){
       let ingredient = event.currentTarget.value
       const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
@@ -20,14 +31,7 @@ export default class extends Controller {
     //console.log(this.ingredientTdTargets)
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
 
-      let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number"></td>'
-      console.log(document.querySelectorAll('[data-ing]'))
-      let newTr = document.createElement('tr')
-      newTr.dataset.ing = event.currentTarget.value
-      newTr.innerHTML = newTd
-
-      this.ingredientTableTarget.appendChild(newTr)
-      this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = event.currentTarget.value
+      this.createTr(event)
 
     }
     else if(this.ingredientTableTarget.querySelectorAll("tr").length !== 0) {
@@ -38,14 +42,9 @@ export default class extends Controller {
       })
       console.log(ingredientsList)
       if(!ingredientsList.includes(event.currentTarget.value)) {
-        let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number"></td>'
-        console.log(document.querySelectorAll('[data-ing]'))
-        let newTr = document.createElement('tr')
-        newTr.dataset.ing = event.currentTarget.value
-        newTr.innerHTML = newTd
 
-        this.ingredientTableTarget.appendChild(newTr)
-        this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = event.currentTarget.value
+        this.createTr(event)
+
       }
       else {
         alert("Déjà présent dans le tableau")
