@@ -2,12 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd"]
+  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids"]
   connect() {
     console.log("sapo")
   }
   createTr(event){
-    let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number"></td>'
+    let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value
@@ -51,6 +51,16 @@ export default class extends Controller {
       }
     }
 
+  }
+  changePoids(event){
+    let somme = 0
+    this.ingPoidsTargets.forEach((element)=>{
+      if(element.value !== '') {
+        somme = somme + parseFloat(element.value)
+      }
+    })
+    console.log(`somme : ${somme}`)
+    this.sommePoidsTarget.innerText = somme
   }
 
 }
