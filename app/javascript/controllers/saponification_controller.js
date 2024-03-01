@@ -51,37 +51,6 @@ export default class extends Controller {
       }
     }
 
-    //debugger;
-    //console.log(this.ingredientTdTargets)
-   //let ingSelect = event.currentTarget.value
-
-    //Array.from(document.querySelectorAll('[data-ing]')).forEach((element)=>{
-    //  if (element.dataset.ing == event.currentTarget.value) {
-    //    console.log("oui")
-    //    console.log(element.dataset.ing,event.currentTarget.value)
-    //  }
-    //  else {
-    //    console.log("non")
-    //  }
-    //})
-    //if (this.hasingredientTdTargets) {
-    //  console.log("oui")
-    //}
-    //else {
-    //  console.log("non")
-    //}
-    //this.ingredientTdTargets.forEach((element)=>{
-    //  if (ingSelect === element.value ) {
-    //    //alert("Déjà sélectionné")
-    //  }
-    //  else {}
-    //})
-
-    //let newtr = document.createElement(
-    //  "<tr><td><input type="text" data-saponification-target="ingredientTable"></td><td><input type="text"></td><td><input type="text"></td></tr>"
-    //)
-
-    //this.ingredientTableTarget.value = event.currentTarget.value
   }
 
 }
