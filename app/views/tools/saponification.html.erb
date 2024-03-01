@@ -4,12 +4,12 @@
 <h2>JSON</h2>
 <%= @json %>
 <div data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>">
-<h2>Propriétés</h2>
+  <h2>Propriétés</h2>
   <div id="caracteristiques">
     <div>
       <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
         <% @ingredients.keys.each do |ing|%>
-        <option value="<%= ing %>"><%= ing%></option>
+        <option value="<%= ing %>" data-action="click->saponification#doubleClick"><%= ing%></option>
         <% end %>
       </select>
     </div>
@@ -89,6 +89,21 @@
       <input type="number" name="Linolenic" value="0">
     </div>
   </div>
+  <!-- Tableau de la recette -->
+  <div id="tableau_ingredients_selectionnes">
+    <h2>Liste des ingrédients de la recette</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ingrédient</th>
+          <th>%</th>
+          <th>g</th>
+        </tr>
+      </thead>
+      <tbody data-saponification-target="ingredientTable">
 
-
+      </tbody>
+    </table>
+  </div>
+  <!-- Fin Tableau recette-->
 </div>
