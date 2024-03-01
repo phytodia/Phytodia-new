@@ -9,7 +9,7 @@
     <div>
       <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
         <% @ingredients.keys.each do |ing|%>
-        <option value="<%= ing %>" data-action="click->saponification#doubleClick"><%= ing%></option>
+        <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
         <% end %>
       </select>
     </div>
@@ -100,7 +100,7 @@
           <th>g</th>
         </tr>
       </thead>
-      <tbody data-saponification-target="ingredientTable">
+      <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
 
       </tbody>
     </table>
