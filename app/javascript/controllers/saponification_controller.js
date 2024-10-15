@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage"]
   connect() {
     console.log("sapo")
+    console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
   }
   createTr(event){
     let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
