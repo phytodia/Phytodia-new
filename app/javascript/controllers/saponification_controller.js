@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh"]
+  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage"]
   connect() {
     console.log("sapo")
   }
@@ -30,9 +30,7 @@ export default class extends Controller {
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
-
       this.createTr(event)
-
     }
     else if(this.ingredientTableTarget.querySelectorAll("tr").length !== 0) {
       let ingredientsList = new Array()
@@ -63,14 +61,32 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
   }
-  sommeNaoh(event){
-    let Naoh = 0
+
+  changeSurgraissage(event) {
+    let naohBase = this.getNaoh()
+    let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
+    this.sommeNaohTarget.value = newNaoh
+  }
+
+  getNaoh(){
+    let naoh = 0
     this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
       let ingredient = element.dataset.ing
       let qty = parseFloat(element.lastChild.querySelector("input").value)
-      Naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
+      naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
-    this.sommeNaohTarget.value = Naoh
+    return naoh;
+  }
+
+
+  sommeNaoh(event){
+    let naoh = 0
+    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+      let ingredient = element.dataset.ing
+      let qty = parseFloat(element.lastChild.querySelector("input").value)
+      naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
+    })
+    this.sommeNaohTarget.value = naoh
   }
 
 }
