@@ -5,89 +5,96 @@
 <%= @json %>
 <div data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>">
   <h2>Propriétés</h2>
-  <div id="caracteristiques">
+  <div>
     <div>
       <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
         <% @ingredients.keys.each do |ing|%>
         <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
         <% end %>
       </select>
-    </div>
 
-    <div>
-      <label for="Hardness">Hardness</label>
-      <input type="number" name="Hardness" value="0">
     </div>
+    <hr>
+    <div>
+      <h2>% d'eau dans l'huile</h2>
+    </div>
+    <hr>
+    <div id="caracteristiques">
+      <div>
+        <label for="Hardness">Hardness</label>
+        <input type="number" name="Hardness" value="0">
+      </div>
 
-    <div>
-      <label for="Cleansing">Cleansing</label>
-      <input type="number" name="Cleansing" value="0">
-    </div>
+      <div>
+        <label for="Cleansing">Cleansing</label>
+        <input type="number" name="Cleansing" value="0">
+      </div>
 
-    <div>
-      <label for="Condition">Condition</label>
-      <input type="number" name="Condition" value="0">
-    </div>
+      <div>
+        <label for="Condition">Condition</label>
+        <input type="number" name="Condition" value="0">
+      </div>
 
-    <div>
-      <label for="Bubbly">Bubbly</label>
-      <input type="number" name="Bubbly" value="0">
-    </div>
+      <div>
+        <label for="Bubbly">Bubbly</label>
+        <input type="number" name="Bubbly" value="0">
+      </div>
 
-    <div>
-      <label for="Creamy">Creamy</label>
-      <input type="number" name="Creamy" value="0">
-    </div>
+      <div>
+        <label for="Creamy">Creamy</label>
+        <input type="number" name="Creamy" value="0">
+      </div>
 
-    <div>
-      <label for="Iodine">Iodine</label>
-      <input type="number" name="Iodine" value="0">
-    </div>
+      <div>
+        <label for="Iodine">Iodine</label>
+        <input type="number" name="Iodine" value="0">
+      </div>
 
-    <div>
-      <label for="INS">INS</label>
-      <input type="number" name="INS" value="0">
-    </div>
+      <div>
+        <label for="INS">INS</label>
+        <input type="number" name="INS" value="0">
+      </div>
 
-    <div>
-      <label for="Lauric">Lauric</label>
-      <input type="number" name="Lauric" value="0">
-    </div>
+      <div>
+        <label for="Lauric">Lauric</label>
+        <input type="number" name="Lauric" value="0">
+      </div>
 
-    <div>
-      <label for="Myristic">Myristic</label>
-      <input type="number" name="Myristic" value="0">
-    </div>
+      <div>
+        <label for="Myristic">Myristic</label>
+        <input type="number" name="Myristic" value="0">
+      </div>
 
-    <div>
-      <label for="Palmitic">Palmitic</label>
-      <input type="number" name="Palmitic" value="0">
-    </div>
+      <div>
+        <label for="Palmitic">Palmitic</label>
+        <input type="number" name="Palmitic" value="0">
+      </div>
 
-    <div>
-      <label for="Stearic">Stearic</label>
-      <input type="number" name="Stearic" value="0">
-    </div>
+      <div>
+        <label for="Stearic">Stearic</label>
+        <input type="number" name="Stearic" value="0">
+      </div>
 
-    <div>
-      <label for="Ricinoleic">Ricinoleic</label>
-      <input type="number" name="Ricinoleic" value="0">
-    </div>
+      <div>
+        <label for="Ricinoleic">Ricinoleic</label>
+        <input type="number" name="Ricinoleic" value="0">
+      </div>
 
-    <div>
-      <label for="Oleic">Oleic</label>
-      <input type="number" name="Oleic" value="0">
-    </div>
+      <div>
+        <label for="Oleic">Oleic</label>
+        <input type="number" name="Oleic" value="0">
+      </div>
 
-    <div>
-      <label for="Linoeic">Linoeic</label>
-      <input type="number" name="Linoeic" value="0">
-    </div>
+      <div>
+        <label for="Linoeic">Linoeic</label>
+        <input type="number" name="Linoeic" value="0">
+      </div>
 
-    <div>
-      <label for="Linolenic">Linoleic</label>
-      <input type="number" name="Linolenic" value="0">
-    </div>
+      <div>
+        <label for="Linolenic">Linoleic</label>
+        <input type="number" name="Linolenic" value="0">
+      </div>
+    </div> <!-- Fin #caractéristiques -->
   </div>
   <!-- Tableau de la recette -->
   <div id="tableau_ingredients_selectionnes">
@@ -104,14 +111,26 @@
       </tbody>
       <div>
         <tr>
-          <td></td>
+          <td>Totaux</td>
           <td>0%</td>
           <td data-saponification-target="sommePoids">0</td>
         </tr>
       </div>
     </table>
   </div>
-  <p>Somme NAOH des ingrédients</p>
+
+  <div>
+    <label for="">% Surgraissage</label>
+    <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
+  </div>
+  <p>Somme NAOH des ingrédients (Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p>
   <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
   <!-- Fin Tableau recette-->
+  <hr>
+  <div>
+  <h2>Recherche de la qté de liquide de dissolution de la soude caustique</h2>
+  <p>Tuto: <a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/</a></p>
+  <p><a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/</a></p>
+
+  </div>
 </div>
