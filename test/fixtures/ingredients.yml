@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  french_name: MyString
+  latin_name: MyString
+  english_nale: MyString
+  INCI_name: MyString
+  IS: 1
+  durete: MyString
+  pouvoir_lavant: MyString
+  douceur: MyString
+  bulles: MyString
+  cremeux: MyString
+  iode: 1
+  INS: 1
+  lauric: 1
+  mystiric: 1
+  palmitic: 1
+  stearic: 1
+  ricinoleic: 1
+  oleic: 1
+  linoleic: 1
+  linolenic: 1
+
+two:
+  french_name: MyString
+  latin_name: MyString
+  english_nale: MyString
+  INCI_name: MyString
+  IS: 1
+  durete: MyString
+  pouvoir_lavant: MyString
+  douceur: MyString
+  bulles: MyString
+  cremeux: MyString
+  iode: 1
+  INS: 1
+  lauric: 1
+  mystiric: 1
+  palmitic: 1
+  stearic: 1
+  ricinoleic: 1
+  oleic: 1
+  linoleic: 1
+  linolenic: 1
