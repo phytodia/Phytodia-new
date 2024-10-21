@@ -3,7 +3,7 @@ import ApexCharts from "apexcharts"
 
 // Connects to data-controller="apexcharts"
 export default class extends Controller {
-  static targets = ["chart"]
+  static targets = ["chart","chartParent"]
   connect() {
     console.log("Hello apexcharts")
   }
@@ -28,7 +28,7 @@ export default class extends Controller {
       },
       series: [{
         name: this.labelsValue[0],
-        data: this.seriesValue,
+        data: this.seriesValue
         //debugger;
         //name: this.labelsValue[0]
         //data: [80, 50, 30, 40, 100, 20]
@@ -48,6 +48,17 @@ export default class extends Controller {
       //series: [44, 55, 13, 33],
       //labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
     }
+  }
+  update(){
+    this.seriesValue = [100, 100, 100, 100, 100, 100]
+    console.log(this.seriesValue)
+
+    this.chartTarget.children[0].remove()
+    //debugger;
+    //this.chartParentTarget
+    this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
+    this.chart.render();
+    //debugger;
   }
 }
 //https://www.colby.so/posts/interactive-charts-with-rails-and-stimulusreflex

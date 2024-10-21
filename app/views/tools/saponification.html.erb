@@ -138,8 +138,9 @@
 <!--
 Chart Apexchart
 -->
-<div data-controller="apexcharts" data-pie-chart-labels-value="<%= @labels %>" data-pie-chart-series-value="<%= @series %>">
+<div data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
   <div data-apexcharts-target="chart"></div>
+  <a data-action="apexcharts#update">BUTTON</a>
 <div>
 
 
