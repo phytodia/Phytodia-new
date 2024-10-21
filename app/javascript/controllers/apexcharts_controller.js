@@ -9,7 +9,7 @@ export default class extends Controller {
   }
   static values = {
     labels: ["Serie 1"],
-    values: [80, 50, 30, 40, 100, 20]
+    series: [80, 50, 30, 40, 100, 20]
   }
 
   initialize() {
@@ -27,8 +27,8 @@ export default class extends Controller {
         //width: '400px'
       },
       series: [{
-        name:this.labelsValue[0],
-        data: [80, 50, 30, 40, 100, 20]
+        name: this.labelsValue[0],
+        data: this.seriesValue,
         //debugger;
         //name: this.labelsValue[0]
         //data: [80, 50, 30, 40, 100, 20]
