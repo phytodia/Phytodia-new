@@ -91,26 +91,35 @@ export default class extends Controller {
     this.sommeNaohTarget.value = naoh
   }
   proprietesSavon(){
+    const savonProprietes = {
+      hardness:0,
+      cleansing:0,
+      condition:0,
+      bubbly:0,
+      creamy:0,
+      iodine:0,
+      ins:0,
+      lauric:0,
+      myristic:0,
+      palmitic:0,
+      stearic:0,
+      ricinoleic:0,
+      oleic:0,
+      linoeic:0,
+      inoleic:0
+    }
     debugger;
-    let tr = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
+    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
     let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+
     let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
-    hardness = "";
-    cleansing = "";
-    condition = "";
-    bubbly = "";
-    creamy = "";
-    iodine = "";
-    ins = "";
-    lauric = "";
-    myristic = "";
-    palmitic = "";
-    stearic = "";
-    ricinoleic = "";
-    oleic = "";
-    linoeic = "";
-    linoleic = "";
+    ingredientsSelected.forEach((element)=>{
+      element.lastElementChild.querySelector("input").value
+      debugger;
+    })
+
+    //debugger;
   }
 
 }
