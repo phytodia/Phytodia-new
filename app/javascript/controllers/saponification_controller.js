@@ -99,10 +99,9 @@ export default class extends Controller {
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
     ingredientsSelected.forEach((ingredient)=>{
-
       Object.keys(savonProps).forEach((element)=>{
         // manque poids de l'ingredients / totalPoids
-        savonProps[element] = (ingredientsData[ingredient.dataset.ing][element]) /totalPoids
+        savonProps[element] += (ingredientsData[ingredient.dataset.ing][element]) * (parseFloat(ingredientsSelected[0].lastElementChild.querySelector("input").value) / totalPoids)
       });
       //console.log(ingredientsData[element.dataset.ing])
       //savonProps['Hardness'] = (ingredientsData[element.dataset.ing]['Hardness'])/totalPoids
