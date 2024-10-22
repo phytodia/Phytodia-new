@@ -93,23 +93,17 @@ export default class extends Controller {
   proprietesSavon(){
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
-
+    //alert(totalPoids)
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes)
 
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
-    ingredientsSelected.forEach((ingredient)=>{
-      Object.keys(savonProps).forEach((element)=>{
-        // manque poids de l'ingredients / totalPoids
-        savonProps[element] += (ingredientsData[ingredient.dataset.ing][element]) * (parseFloat(ingredientsSelected[0].lastElementChild.querySelector("input").value) / totalPoids)
+    Object.keys(savonProps).forEach((element)=>{
+      ingredientsSelected.forEach((ingredient)=>{
+        savonProps[element] += (ingredientsData[ingredient.dataset.ing][element]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids)
       });
-      //console.log(ingredientsData[element.dataset.ing])
-      //savonProps['Hardness'] = (ingredientsData[element.dataset.ing]['Hardness'])/totalPoids
-        //propriete = (ingredientsData[element.dataset.ing][propriete])/totalPoids
-      //element.lastElementChild.querySelector("input").value
-    })
-    console.log(savonProps)
-
+    });
+    //alert(savonProps["Hardness"]);
   }
 
 }

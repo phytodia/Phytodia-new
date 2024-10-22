@@ -14,15 +14,7 @@ class ToolsController < ApplicationController
       Bubbly:0,
       Creamy:0,
       Iodine:0,
-      Ins:0,
-      Lauric:0,
-      Myristic:0,
-      Malmitic:0,
-      Stearic:0,
-      Ricinoleic:0,
-      Oleic:0,
-      Linoeic:0,
-      Inoleic:0
+      INS:0
     }
     @savon_proprietes = @savon_proprietes.to_json
   end
