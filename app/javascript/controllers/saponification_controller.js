@@ -104,7 +104,11 @@ export default class extends Controller {
       });
     });
     //alert(savonProps["Hardness"]);
+    for (const [key, value] of Object.entries(savonProps)) {
+      savonProps[key] = Math.floor(value)
+    }
     this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
+    return savonProps;
   }
 
 }
