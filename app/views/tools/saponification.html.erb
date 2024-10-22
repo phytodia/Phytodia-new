@@ -149,21 +149,91 @@
 
     </div>
     <!-- Fin des ingrédients de la recette -->
+    <div id="proprietes_savon">
+      <h2 class="titre_tool">Propriétés du savon</h2>
+      <div>
+        <label for="Hardness">Hardness</label>
+        <input type="number" name="Hardness" value="0">
+      </div>
 
+      <div>
+        <label for="Cleansing">Cleansing</label>
+        <input type="number" name="Cleansing" value="0">
+      </div>
+
+      <div>
+        <label for="Condition">Condition</label>
+        <input type="number" name="Condition" value="0">
+      </div>
+
+      <div>
+        <label for="Bubbly">Bubbly</label>
+        <input type="number" name="Bubbly" value="0">
+      </div>
+
+      <div>
+        <label for="Creamy">Creamy</label>
+        <input type="number" name="Creamy" value="0">
+      </div>
+
+      <div>
+        <label for="Iodine">Iodine</label>
+        <input type="number" name="Iodine" value="0">
+      </div>
+
+      <div>
+        <label for="INS">INS</label>
+        <input type="number" name="INS" value="0">
+      </div>
+
+      <div>
+        <label for="Lauric">Lauric</label>
+        <input type="number" name="Lauric" value="0">
+      </div>
+
+      <div>
+        <label for="Myristic">Myristic</label>
+        <input type="number" name="Myristic" value="0">
+      </div>
+
+      <div>
+        <label for="Palmitic">Palmitic</label>
+        <input type="number" name="Palmitic" value="0">
+      </div>
+
+      <div>
+        <label for="Stearic">Stearic</label>
+        <input type="number" name="Stearic" value="0">
+      </div>
+
+      <div>
+        <label for="Ricinoleic">Ricinoleic</label>
+        <input type="number" name="Ricinoleic" value="0">
+      </div>
+
+      <div>
+        <label for="Oleic">Oleic</label>
+        <input type="number" name="Oleic" value="0">
+      </div>
+
+      <div>
+        <label for="Linoeic">Linoeic</label>
+        <input type="number" name="Linoeic" value="0">
+      </div>
+
+      <div>
+        <label for="Linolenic">Linoleic</label>
+        <input type="number" name="Linolenic" value="0">
+      </div>
+    </div> <!-- Fin #caractéristiques -->
+    <!--
+    Chart Apexchart
+    -->
+    <div data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
+      <div data-apexcharts-target="chart"></div>
+      <a data-action="apexcharts#update">BUTTON</a>
+    <div>
 
   </div>
+  <!-- Fin tool_saponification_bas-->
 </div><!-- Fin controller saponification -->
-
-<!--
-Chart Apexchart
--->
-<div data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
-  <div data-apexcharts-target="chart"></div>
-  <a data-action="apexcharts#update">BUTTON</a>
-<div>
-
-
-static values = {
-    labels: ["Serie 1"],
-    series: [80, 50, 30, 40, 100, 20]
-  }

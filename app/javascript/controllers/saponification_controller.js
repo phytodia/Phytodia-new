@@ -61,6 +61,7 @@ export default class extends Controller {
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
+    this.proprietesSavon()
   }
 
   changeSurgraissage(event) {
@@ -88,6 +89,28 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
     this.sommeNaohTarget.value = naoh
+  }
+  proprietesSavon(){
+    debugger;
+    let tr = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
+    let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
+    let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
+    hardness = "";
+    cleansing = "";
+    condition = "";
+    bubbly = "";
+    creamy = "";
+    iodine = "";
+    ins = "";
+    lauric = "";
+    myristic = "";
+    palmitic = "";
+    stearic = "";
+    ricinoleic = "";
+    oleic = "";
+    linoeic = "";
+    linoleic = "";
   }
 
 }
