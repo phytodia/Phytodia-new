@@ -8,21 +8,21 @@ class ToolsController < ApplicationController
     #@labels = ["Test1","Test2"]
     #@series = [5,10]
     @savon_proprietes = {
-      hardness:0,
-      cleansing:0,
-      condition:0,
-      bubbly:0,
-      creamy:0,
-      iodine:0,
-      ins:0,
-      lauric:0,
-      myristic:0,
-      palmitic:0,
-      stearic:0,
-      ricinoleic:0,
-      oleic:0,
-      linoeic:0,
-      inoleic:0
+      Hardness:0,
+      Cleansing:0,
+      Condition:0,
+      Bubbly:0,
+      Creamy:0,
+      Iodine:0,
+      Ins:0,
+      Lauric:0,
+      Myristic:0,
+      Malmitic:0,
+      Stearic:0,
+      Ricinoleic:0,
+      Oleic:0,
+      Linoeic:0,
+      Inoleic:0
     }
     @savon_proprietes = @savon_proprietes.to_json
   end
