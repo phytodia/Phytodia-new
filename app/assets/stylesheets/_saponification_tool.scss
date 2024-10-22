@@ -1,0 +1,33 @@
+.tool_saponification_bas {
+  .titre_tool {font-size: 1rem;}
+  border: solid 1px;
+  display: flex;
+  gap: 10px;
+}
+#list_ingredients {
+  select {
+    display: flex;
+    width: 100%;
+  }
+}
+#caracteristiques {
+  div {
+    display: flex;
+    label {width: 80px;}
+    input {
+      width: 3em; text-align: center;padding: 0;padding-inline: 0;padding-block: 0;
+      cursor: not-allowed;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+#tableau_ingredients_selectionnes {
+  border: solid 1px;
+  width: 25%;
+}
+.table_ingredients_selectionnes {
+  border: solid 1px;
+  width: fit-content;
+}

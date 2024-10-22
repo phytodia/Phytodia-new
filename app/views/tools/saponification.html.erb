@@ -7,20 +7,38 @@
 <div id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>">
   <h2>Propriétés</h2>
   <div>
-    <div>
-      <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
-        <% @ingredients.keys.each do |ing|%>
-        <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
-        <% end %>
-      </select>
 
-    </div>
     <hr>
     <div>
       <h2>% d'eau dans l'huile</h2>
     </div>
     <hr>
+
+
+  </div>
+  <!-- Tableau de la recette -->
+
+  <!-- Fin Tableau recette-->
+  <hr>
+  <div>
+  <h2>Recherche de la qté de liquide de dissolution de la soude caustique</h2>
+  <p>Tuto: <a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/</a></p>
+  <p><a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/</a></p>
+
+  </div>
+
+  <div class="tool_saponification_bas">
+    <div id="list_ingredients">
+      <h2 class="titre_tool">Liste des ingrédients</h2>
+      <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
+        <% @ingredients.keys.each do |ing|%>
+        <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
+        <% end %>
+      </select>
+    </div>
+
     <div id="caracteristiques">
+      <h2 class="titre_tool">Propriétés de l'ingrédient</h2>
       <div>
         <label for="Hardness">Hardness</label>
         <input type="number" name="Hardness" value="0">
@@ -96,45 +114,45 @@
         <input type="number" name="Linolenic" value="0">
       </div>
     </div> <!-- Fin #caractéristiques -->
-  </div>
-  <!-- Tableau de la recette -->
-  <div id="tableau_ingredients_selectionnes">
-    <h2>Liste des ingrédients de la recette</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Ingrédient</th>
-          <th>%</th>
-          <th>g</th>
-        </tr>
-      </thead>
-      <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
-      </tbody>
-      <div>
-        <tr>
-          <td>Totaux</td>
-          <td>0%</td>
-          <td data-saponification-target="sommePoids">0</td>
-        </tr>
+    <!-- Ingredients sélectionnés dans la recette -->
+    <div id="tableau_ingredients_selectionnes">
+      <h2 class="titre_tool">Liste des ingrédients de la recette</h2>
+      <div class="table_ingredients_selectionnes">
+        <table>
+          <thead>
+            <tr>
+              <th>Ingrédient</th>
+              <th>%</th>
+              <th>g</th>
+            </tr>
+          </thead>
+          <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
+          </tbody>
+          <div>
+            <tr>
+              <td>Totaux</td>
+              <td>0%</td>
+              <td data-saponification-target="sommePoids">0</td>
+            </tr>
+          </div>
+        </table>
       </div>
-    </table>
-  </div>
 
-  <div>
-    <label for="">% Surgraissage</label>
-    <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
-  </div>
-  <p>Somme NAOH des ingrédients (Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p>
-  <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
-  <!-- Fin Tableau recette-->
-  <hr>
-  <div>
-  <h2>Recherche de la qté de liquide de dissolution de la soude caustique</h2>
-  <p>Tuto: <a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/</a></p>
-  <p><a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/</a></p>
+      <div>
+        <label for="">% Surgraissage</label>
+        <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
+      </div>
+      <div>
+      <p>Somme NAOH des ingrédients (Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p>
+      <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
+      </div>
+
+    </div>
+    <!-- Fin des ingrédients de la recette -->
+
 
   </div>
-</div>
+</div><!-- Fin controller saponification -->
 
 <!--
 Chart Apexchart
