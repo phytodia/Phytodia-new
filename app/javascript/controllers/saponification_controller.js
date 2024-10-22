@@ -97,13 +97,14 @@ export default class extends Controller {
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes)
 
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-    let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
+    //let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
     Object.keys(savonProps).forEach((element)=>{
       ingredientsSelected.forEach((ingredient)=>{
         savonProps[element] += (ingredientsData[ingredient.dataset.ing][element]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids)
       });
     });
     //alert(savonProps["Hardness"]);
+    this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
   }
 
 }
