@@ -135,3 +135,17 @@
 
   </div>
 </div>
+
+<!--
+Chart Apexchart
+-->
+<div data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
+  <div data-apexcharts-target="chart"></div>
+  <a data-action="apexcharts#update">BUTTON</a>
+<div>
+
+
+static values = {
+    labels: ["Serie 1"],
+    series: [80, 50, 30, 40, 100, 20]
+  }
