@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage"]
+  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
@@ -91,35 +91,18 @@ export default class extends Controller {
     this.sommeNaohTarget.value = naoh
   }
   proprietesSavon(){
-    const savonProprietes = {
-      hardness:0,
-      cleansing:0,
-      condition:0,
-      bubbly:0,
-      creamy:0,
-      iodine:0,
-      ins:0,
-      lauric:0,
-      myristic:0,
-      palmitic:0,
-      stearic:0,
-      ricinoleic:0,
-      oleic:0,
-      linoeic:0,
-      inoleic:0
-    }
-    debugger;
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
-    let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+
+    let savonProprietes = JSON.parse(this.savonProprietesTarget.dataset.proprietes)
+    const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    debugger;
 
     let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
     ingredientsSelected.forEach((element)=>{
       element.lastElementChild.querySelector("input").value
-      debugger;
     })
 
-    //debugger;
   }
 
 }
