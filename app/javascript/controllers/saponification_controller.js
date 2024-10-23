@@ -119,13 +119,11 @@ export default class extends Controller {
   insertProprietes(proprietesJson){
     //debugger;
     let proprietes = JSON.parse(proprietesJson);
-    debugger;
+
     let inputs = Array.from(this.savonProprietesTarget.querySelectorAll("input"));
     Object.keys(proprietes).forEach((prop)=>{
       this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = proprietes[prop]
     })
-
-    debugger;
     //debugger;
     //let valuesSavon = proprietes;
   }
