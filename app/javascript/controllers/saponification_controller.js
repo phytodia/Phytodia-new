@@ -109,6 +109,7 @@ export default class extends Controller {
     }
     this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
     return savonProps;
+    console.log(savonProps);
   }
 
 }
