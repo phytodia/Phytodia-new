@@ -90,8 +90,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     erubi (1.13.0)
-    ffi (1.17.0-x86_64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.16.3)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -269,6 +268,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  ffi (< 1.17.0)
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
