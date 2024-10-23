@@ -108,8 +108,26 @@ export default class extends Controller {
       savonProps[key] = Math.floor(value)
     }
     this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
-    return savonProps;
+    //this.insertProprietes()
+    //return savonProps;
     console.log(savonProps);
+    this.insertProprietes(JSON.stringify(savonProps))
+    //console.log(savonProps);
+    //this.insertProprietes()
+  }
+
+  insertProprietes(proprietesJson){
+    //debugger;
+    let proprietes = JSON.parse(proprietesJson);
+    debugger;
+    let inputs = Array.from(this.savonProprietesTarget.querySelectorAll("input"));
+    Object.keys(proprietes).forEach((prop)=>{
+      this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = proprietes[prop]
+    })
+
+    debugger;
+    //debugger;
+    //let valuesSavon = proprietes;
   }
 
 }
