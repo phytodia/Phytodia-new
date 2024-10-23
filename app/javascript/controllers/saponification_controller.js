@@ -91,29 +91,29 @@ export default class extends Controller {
     this.sommeNaohTarget.value = naoh
   }
   proprietesSavon(){
-    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
-    let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
-    //alert(totalPoids)
-    let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes)
+    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
+    let totalPoids = parseFloat(this.sommePoidsTarget.innerText) // Poids total de la recette.
 
-    const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-    //let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
+    let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes) //Propriétés du savon final
+
+    const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients) // Liste des ingrédients possible à ajouter dans la recette
+
+    // Pour chaque propriété finale du savon, on itère et récupère les données des ingrédients sélectionnés au prorata de leur poids dans la recette.
     Object.keys(savonProps).forEach((prop)=>{
+      savonProps[prop] = 0;
       ingredientsSelected.forEach((ingredient)=>{
-        savonProps[prop] += (ingredientsData[ingredient.dataset.ing][prop]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids)
+        savonProps[prop] += ((ingredientsData[ingredient.dataset.ing][prop]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids))
       });
     });
-    //alert(savonProps["Hardness"]);
+    // On arrondi les "propriétés du savon" à l'arrondi inférieur.
     for (const [key, value] of Object.entries(savonProps)) {
       savonProps[key] = Math.floor(value)
     }
     this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
-    //this.insertProprietes()
-    //return savonProps;
+
     console.log(savonProps);
-    this.insertProprietes(JSON.stringify(savonProps))
-    //console.log(savonProps);
-    //this.insertProprietes()
+    this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
+
   }
 
   insertProprietes(proprietesJson){
