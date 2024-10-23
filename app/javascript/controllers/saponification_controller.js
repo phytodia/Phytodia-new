@@ -100,7 +100,7 @@ export default class extends Controller {
 
     // Pour chaque propriété finale du savon, on itère et récupère les données des ingrédients sélectionnés au prorata de leur poids dans la recette.
     Object.keys(savonProps).forEach((prop)=>{
-      savonProps[prop] = 0;
+      savonProps[prop] = 0; // On remet à 0 la propriété du savon final.
       ingredientsSelected.forEach((ingredient)=>{
         savonProps[prop] += ((ingredientsData[ingredient.dataset.ing][prop]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids))
       });
