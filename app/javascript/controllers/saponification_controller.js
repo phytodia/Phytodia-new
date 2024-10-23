@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage"]
+  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
@@ -61,6 +61,7 @@ export default class extends Controller {
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
+    this.proprietesSavon()
   }
 
   changeSurgraissage(event) {
@@ -88,6 +89,26 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
     this.sommeNaohTarget.value = naoh
+  }
+  proprietesSavon(){
+    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr"))
+    let totalPoids = parseFloat(this.sommePoidsTarget.innerText)
+    //alert(totalPoids)
+    let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes)
+
+    const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    //let inputsProprietesSavon = Array.from(document.querySelector("#proprietes_savon").querySelectorAll("input"))
+    Object.keys(savonProps).forEach((element)=>{
+      ingredientsSelected.forEach((ingredient)=>{
+        savonProps[element] += (ingredientsData[ingredient.dataset.ing][element]) * (parseFloat(ingredient.lastElementChild.querySelector("input").value)/totalPoids)
+      });
+    });
+    //alert(savonProps["Hardness"]);
+    for (const [key, value] of Object.entries(savonProps)) {
+      savonProps[key] = Math.floor(value)
+    }
+    this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
+    return savonProps;
   }
 
 }

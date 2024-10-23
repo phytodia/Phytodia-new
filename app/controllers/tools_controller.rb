@@ -7,5 +7,15 @@ class ToolsController < ApplicationController
     #data = Applicant.includes(:job).group('status').count
     #@labels = ["Test1","Test2"]
     #@series = [5,10]
+    @savon_proprietes = {
+      Hardness:0,
+      Cleansing:0,
+      Condition:0,
+      Bubbly:0,
+      Creamy:0,
+      Iodine:0,
+      INS:0
+    }
+    @savon_proprietes = @savon_proprietes.to_json
   end
 end
