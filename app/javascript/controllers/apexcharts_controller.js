@@ -41,7 +41,8 @@ export default class extends Controller {
       },
       xaxis: {
         categories: ['Hardness', 'Cleansing', 'Condition', 'Bubbly', 'Creamy', 'Iodine']
-      }
+      },
+      colors:["#008000"]
       //series: this.seriesValue,
       //labels: this.labelsValue,
 
