@@ -59,7 +59,7 @@ export default class extends Controller {
     //this.chart.render();
 
     this.chart.updateSeries([{
-      data: [100, 100, 100, 100, 100,100]
+      data: [20, 45, 10, 100, 70, 0]
     }])
 
   }
