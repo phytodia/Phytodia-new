@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
   static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
+  static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
@@ -113,7 +114,6 @@ export default class extends Controller {
 
     console.log(savonProps);
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
-
   }
 
   insertProprietes(proprietesJson){
@@ -126,6 +126,19 @@ export default class extends Controller {
     })
     //debugger;
     //let valuesSavon = proprietes;
+    // changer les propriétés au format JSON au format Array []
+
+    const eltsSearched = ["Hardness","Cleansing","Condition","Bubbly","Creamy","Iodine"]
+
+    let chartProps = JSON.parse(proprietesJson)
+    delete chartProps.INS
+
+    let newchartProps = Object.values(chartProps)
+    //debugger;
+    //this.apexchartsOutlets.update(newchartProps) //insert
+    this.apexchartsOutlets[0].chart.updateSeries([{
+      data: newchartProps
+    }])
   }
 
 }

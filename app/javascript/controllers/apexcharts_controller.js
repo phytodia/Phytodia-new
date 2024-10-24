@@ -49,16 +49,20 @@ export default class extends Controller {
       //labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
     }
   }
-  update(){
-    this.seriesValue = [100, 100, 100, 100, 100, 100]
-    console.log(this.seriesValue)
+  update(newData){
+    //this.seriesValue = [100, 100, 100, 100, 100, 100]
+    //console.log(this.seriesValue)
 
-    this.chartTarget.children[0].remove()
-    //debugger;
-    //this.chartParentTarget
-    this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
-    this.chart.render();
-    //debugger;
+    //this.chartTarget.children[0].remove()
+
+    //this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
+    //this.chart.render();
+
+    let datas = [20, 45, 10, 100, 70, 0];
+    this.chart.updateSeries([{
+      data: datas
+    }])
+
   }
 }
 //https://www.colby.so/posts/interactive-charts-with-rails-and-stimulusreflex
