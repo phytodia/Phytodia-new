@@ -4,7 +4,7 @@
 <%= @ingredients %>
 <h2>JSON</h2>
 <%= @json %>
-<div id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>">
+<div id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart">
   <h2>Propriétés</h2>
   <div>
 
@@ -229,7 +229,7 @@
     <!--
     Chart Apexchart
     -->
-    <div data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
+    <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
       <div data-apexcharts-target="chart"></div>
       <a data-action="apexcharts#update">BUTTON</a>
     <div>

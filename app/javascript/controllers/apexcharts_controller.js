@@ -49,7 +49,7 @@ export default class extends Controller {
       //labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
     }
   }
-  update(){
+  update(newData){
     //this.seriesValue = [100, 100, 100, 100, 100, 100]
     //console.log(this.seriesValue)
 
@@ -58,8 +58,9 @@ export default class extends Controller {
     //this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
     //this.chart.render();
 
+    let datas = [20, 45, 10, 100, 70, 0];
     this.chart.updateSeries([{
-      data: [20, 45, 10, 100, 70, 0]
+      data: datas
     }])
 
   }
