@@ -50,15 +50,18 @@ export default class extends Controller {
     }
   }
   update(){
-    this.seriesValue = [100, 100, 100, 100, 100, 100]
-    console.log(this.seriesValue)
+    //this.seriesValue = [100, 100, 100, 100, 100, 100]
+    //console.log(this.seriesValue)
 
-    this.chartTarget.children[0].remove()
-    //debugger;
-    //this.chartParentTarget
-    this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
-    this.chart.render();
-    //debugger;
+    //this.chartTarget.children[0].remove()
+
+    //this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
+    //this.chart.render();
+
+    this.chart.updateSeries([{
+      data: [100, 100, 100, 100, 100,100]
+    }])
+
   }
 }
 //https://www.colby.so/posts/interactive-charts-with-rails-and-stimulusreflex

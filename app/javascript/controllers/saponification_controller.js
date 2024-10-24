@@ -113,7 +113,6 @@ export default class extends Controller {
 
     console.log(savonProps);
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
-
   }
 
   insertProprietes(proprietesJson){
