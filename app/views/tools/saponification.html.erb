@@ -26,7 +26,19 @@
   <p><a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/</a></p>
 
   </div>
-
+  <div class="tabs_list">
+    <div class="tab active" data-action="click->saponification#tabSelect" data-saponification-target="tabRecipe"><span>Recette #1</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->saponification#removeRecipe"></i></div>
+    <div class="tab" data-action="click->saponification#tabSelect" data-saponification-target="tabRecipe"><span>Recette #2</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->saponification#removeRecipe"></i></div>
+    <div class="tab new" data-action="click->saponification#newRecipe" data-saponification-target="newRecipe"><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>
+  </div>
+  <div class="tab_contents">
+    <div class="tab_content active" data-saponification-target="recipeContent">
+      TAB CONTENT 1
+    </div>
+    <div class="tab_content" data-saponification-target="recipeContent">
+      TAB CONTENT 2
+    </div>
+  </div>
   <div class="tool_saponification_bas">
     <div id="list_ingredients">
       <h2 class="titre_tool">Liste des ingrédients</h2>

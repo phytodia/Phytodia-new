@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
+  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","tabRecipe","newRecipe","recipeContent"]
   static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
@@ -139,6 +139,38 @@ export default class extends Controller {
     this.apexchartsOutlets[0].chart.updateSeries([{
       data: newchartProps
     }])
+  }
+
+  tabSelect(event){
+    let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget);
+    let tabSelected = this.tabRecipeTargets[indexTab];
+    this.recipeContentTargets.forEach((element)=>{
+      element.classList.remove("active")
+    })
+    this.tabRecipeTargets.forEach((element)=>{
+      element.classList.remove("active")
+    })
+    let contentSelected = this.recipeContentTargets[indexTab];
+    contentSelected.classList.add("active")
+    tabSelected.classList.add("active")
+  }
+  newRecipe(){
+
+  }
+  removeRecipe(event){
+    let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
+    let recipetoRemove = this.recipeContentTargets[indexTab]
+    let tabtoRemove = this.tabRecipeTargets[indexTab]
+    recipetoRemove.remove()
+    tabtoRemove.remove()
+    this.recipeContentTargets.forEach((element)=>{
+      element.classList.remove("active")
+    })
+    this.tabRecipeTargets.forEach((element)=>{
+      element.classList.remove("active")
+    })
+    this.tabRecipeTargets[0].classList.add("active")
+    this.recipeContentTargets[0].classList.add("active")
   }
 
 }

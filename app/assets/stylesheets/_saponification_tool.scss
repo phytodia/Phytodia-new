@@ -47,3 +47,43 @@
     }
   }
 }
+.tabs_list {
+  border-bottom: 1px;
+  display: flex;
+  font-family: "Rubik", sans-serif;
+  gap: 2px;
+  .tab {
+    border: solid 1px;
+    min-width: 20px;
+    width: auto;
+    padding: 5px 10px;
+    //background-color: #007A7A;
+    background-color: #358E8E;
+    border: solid #358E8E;
+    color: white;
+    &:hover {opacity: 0.9;
+    }
+    i {margin-left: 5px
+    }
+  }
+}
+.tab_contents {
+  border: solid 3px blue;
+  height: auto;
+  width: 100%;
+  position: relative;
+  height: 50px;
+  .tab_content {
+    width: 100%;
+    border: solid 1px red;
+    height: 100%;
+    position: absolute;
+    z-index: -5;
+    visibility: hidden;
+    &.active {
+      z-index: 1;
+      //height: 50px;
+      visibility: visible;
+    }
+  }
+}
