@@ -30,4 +30,16 @@
 .table_ingredients_selectionnes {
   border: solid 1px;
   width: fit-content;
+  table {
+    tbody {
+      tr {
+        td{
+          input {width: 2.5rem; text-align: center;}
+        }
+        td:first-child {
+          input{width: auto; text-align: left;}
+        }
+      }
+    }
+  }
 }
