@@ -31,13 +31,17 @@
   border: solid 1px;
   width: fit-content;
   table {
+    thead {
+      th {width: 2.5rem; text-align: center;}
+      th:first-child {width: 7rem;}
+    }
     tbody {
       tr {
         td{
           input {width: 2.5rem; text-align: center;}
         }
         td:first-child {
-          input{width: auto; text-align: left;}
+          input{width: 7rem; text-align: left;}
         }
       }
     }
