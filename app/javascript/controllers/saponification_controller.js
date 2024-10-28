@@ -137,7 +137,10 @@ export default class extends Controller {
     let newchartProps = Object.values(chartProps)
     //debugger;
     //this.apexchartsOutlets.update(newchartProps) //insert
-    this.apexchartsOutlets[0].chart.updateSeries([{
+
+    let indexTab = parseInt(document.querySelector(".tabs_list").dataset.index);
+    //debugger;
+    this.apexchartsOutlets[indexTab].chart.updateSeries([{
       data: newchartProps
     }])
   }

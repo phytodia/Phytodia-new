@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
-  static targets = ["tabRecipe","newRecipe","recipeContent"]
+  static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex"]
   connect() {
 
   }
@@ -19,6 +19,7 @@ export default class extends Controller {
     //debugger;
     this.recipeContentTargets[indexTab].classList.add("active");
     this.tabRecipeTargets[indexTab].classList.add("active");
+    this.tabIndexTarget.dataset.index = indexTab.toString();
 
   }
   newRecipe(){
