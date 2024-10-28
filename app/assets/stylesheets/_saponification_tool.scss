@@ -84,11 +84,15 @@
     visibility: hidden;
     &.active {
       z-index: 1;
+      top: 0;
       //height: 50px;
       visibility: visible;
       height: 100vh;
-      background-color: wheat;
       h2 {border: solid 3px green;}
     }
   }
+  .tab_content:first-of-type {
+    background-color: wheat;
+  }
+
 }
