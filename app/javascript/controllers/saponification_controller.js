@@ -128,17 +128,23 @@ export default class extends Controller {
     //debugger;
     //let valuesSavon = proprietes;
     // changer les propriétés au format JSON au format Array []
-
+    let indexTab = parseInt(document.querySelector(".tabs_list").dataset.index);
     const eltsSearched = ["Hardness","Cleansing","Condition","Bubbly","Creamy","Iodine"]
 
     let chartProps = JSON.parse(proprietesJson)
     delete chartProps.INS
 
-    let newchartProps = Object.values(chartProps)
-    //debugger;
-    //this.apexchartsOutlets.update(newchartProps) //insert
+    let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
 
-    let indexTab = parseInt(document.querySelector(".tabs_list").dataset.index);
+    let newchartProps = Object.values(chartProps)
+
+    seriesArray[indexTab] = newchartProps
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    //debugger;
+
+    //this.apexchartsOutlets.update(newchartProps) //insert
+    //debugger;
+
     //debugger;
     this.apexchartsOutlets[indexTab].chart.updateSeries([{
       data: newchartProps

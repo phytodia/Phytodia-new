@@ -3,7 +3,7 @@ class ToolsController < ApplicationController
     @ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
     @json = @ingredients.to_json
     @labels = [""]
-    @series = [50, 50, 50, 50, 50, 20]
+    @series = [20, 50, 60, 50, 10, 50]
     #data = Applicant.includes(:job).group('status').count
     #@labels = ["Test1","Test2"]
     #@series = [5,10]
