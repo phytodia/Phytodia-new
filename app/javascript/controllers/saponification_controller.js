@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","tabRecipe","newRecipe","recipeContent"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
   static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
@@ -20,17 +20,18 @@ export default class extends Controller {
 
   }
   getIngredient(event){
-      let ingredient = event.currentTarget.value
-      const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-      //console.log(ingredients["Abyssinian Oil"])
-      let inputs = Array.from(document.querySelector("#caracteristiques").querySelectorAll("input"))
-      inputs.forEach((element) => {
-        element.value = ingredients[ingredient][element.name]
-      })
+    let ingredient = event.currentTarget.value
+    const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    //console.log(ingredients["Abyssinian Oil"])
+    let inputs = Array.from(this.caracteristiquesIngredientTarget.querySelectorAll("input"))
+    inputs.forEach((element) => {
+      element.value = ingredients[ingredient][element.name]
+    })
   }
   doubleClick(event){
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
+    //debugger;
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
       this.createTr(event)
     }
@@ -141,36 +142,5 @@ export default class extends Controller {
     }])
   }
 
-  tabSelect(event){
-    let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget);
-    let tabSelected = this.tabRecipeTargets[indexTab];
-    this.recipeContentTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    let contentSelected = this.recipeContentTargets[indexTab];
-    contentSelected.classList.add("active")
-    tabSelected.classList.add("active")
-  }
-  newRecipe(){
-
-  }
-  removeRecipe(event){
-    let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
-    let recipetoRemove = this.recipeContentTargets[indexTab]
-    let tabtoRemove = this.tabRecipeTargets[indexTab]
-    recipetoRemove.remove()
-    tabtoRemove.remove()
-    this.recipeContentTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets[0].classList.add("active")
-    this.recipeContentTargets[0].classList.add("active")
-  }
 
 }
