@@ -63,6 +63,8 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
     this.proprietesSavon()
+    //
+    this.sommeKoh()
   }
 
   changeSurgraissage(event) {
@@ -139,6 +141,10 @@ export default class extends Controller {
     this.apexchartsOutlets[0].chart.updateSeries([{
       data: newchartProps
     }])
+  }
+
+  sommeKoh() {
+    debugger;
   }
 
 }
