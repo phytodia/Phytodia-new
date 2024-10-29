@@ -135,20 +135,39 @@ export default class extends Controller {
     delete chartProps.INS
 
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
+    let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels);
 
     let newchartProps = Object.values(chartProps)
 
     seriesArray[indexTab] = newchartProps
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
-    //debugger;
+
+    let arrayDatas = [];
+    let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
+
+    result.forEach((arr)=>{
+      arrayDatas.push({name: arr[0],data:arr[1]})
+    })
+
 
     //this.apexchartsOutlets.update(newchartProps) //insert
     //debugger;
 
     //debugger;
-    this.apexchartsOutlets[indexTab].chart.updateSeries([{
-      data: newchartProps
-    }])
+    //let x = Array.from(this.labelsValue)
+    //let y = Array.from(this.seriesValue)
+    //let result = x.map((item, index) => [item, y[index]]);
+    //let arrayDatas = [];
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+    //debugger;
+    this.apexchartsOutlets[indexTab].chart.updateOptions({
+      series: arrayDatas
+    })
+    //this.apexchartsOutlets[indexTab].chart.updateSeries([{
+    //  data: newchartProps
+    //}])
   }
 
 

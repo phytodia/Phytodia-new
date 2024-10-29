@@ -2,8 +2,8 @@ class ToolsController < ApplicationController
   def saponification
     @ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
     @json = @ingredients.to_json
-    @labels = [""]
-    @series = [20, 50, 60, 50, 10, 50]
+    @labels = ["Recette 1","Recette 2"]
+    @series = [[20, 50, 60, 50, 10, 50],[20, 40, 40, 100, 70, 10]]
     #data = Applicant.includes(:job).group('status').count
     #@labels = ["Test1","Test2"]
     #@series = [5,10]
@@ -17,5 +17,10 @@ class ToolsController < ApplicationController
       INS:0
     }
     @savon_proprietes = @savon_proprietes.to_json
+
+    @datas = []
+    @series.each do |serie|
+      @datas << {name: "Recette #{(@series.index serie)+1}",data:serie}
+    end
   end
 end

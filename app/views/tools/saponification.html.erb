@@ -28,7 +28,7 @@
   </div>
 
   <div data-controller="tabs-saponification">
-    <div class="tabs_list" data-tabs-saponification-target="tabIndex" data-index="0" data-series='[[20,20,20,20,20,20],[40,40,40,40,40,40]]'>
+    <div class="tabs_list" data-tabs-saponification-target="tabIndex" data-index="0" data-series='[[20,20,20,20,20,20],[40,40,40,40,40,40]]' data-labels='["Recette 1","Recette 2"]'>
       <div class="tab active" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #1</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
       <div class="tab" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #2</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
       <div class="tab new" data-action="click->tabs-saponification#newRecipe" data-tabs-saponification-target="newRecipe"><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>

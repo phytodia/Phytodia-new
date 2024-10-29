@@ -19,6 +19,16 @@ export default class extends Controller {
   }
 
   get chartOptions() {
+
+    let x = Array.from(this.labelsValue)
+    let y = Array.from(this.seriesValue)
+    let result = x.map((item, index) => [item, y[index]]);
+    let arrayDatas = [];
+    result.forEach((arr)=>{
+      arrayDatas.push({name: arr[0],data:arr[1]})
+    })
+    console.log(result);
+    //debugger;
     //debugger;
     return {
       chart: {
@@ -26,13 +36,7 @@ export default class extends Controller {
         height: '400px',
         //width: '400px'
       },
-      series: [{
-        name: this.labelsValue[0],
-        data: this.seriesValue
-        //debugger;
-        //name: this.labelsValue[0]
-        //data: [80, 50, 30, 40, 100, 20]
-      }],
+      series: arrayDatas,
       title: {
         text: 'Radar saponification basic'
       },
@@ -42,7 +46,7 @@ export default class extends Controller {
       xaxis: {
         categories: ['Hardness', 'Cleansing', 'Condition', 'Bubbly', 'Creamy', 'Iodine']
       },
-      colors:["#008000"]
+      //colors:["#008000"]
       //series: this.seriesValue,
       //labels: this.labelsValue,
 
@@ -51,6 +55,7 @@ export default class extends Controller {
     }
   }
   update(newData){
+    // button to test update
     //this.seriesValue = [100, 100, 100, 100, 100, 100]
     //console.log(this.seriesValue)
 
