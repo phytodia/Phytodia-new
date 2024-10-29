@@ -162,9 +162,15 @@ export default class extends Controller {
     //  arrayDatas.push({name: arr[0],data:arr[1]})
     //})
     //debugger;
-    this.apexchartsOutlets[indexTab].chart.updateOptions({
-      series: arrayDatas
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayDatas
+      })
     })
+    //this.apexchartsOutlets[indexTab].chart.updateOptions({
+    //  series: arrayDatas
+    //})
     //this.apexchartsOutlets[indexTab].chart.updateSeries([{
     //  data: newchartProps
     //}])
