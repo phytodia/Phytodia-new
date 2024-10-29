@@ -23,7 +23,9 @@ export default class extends Controller {
 
   }
   newRecipe(){
+    let tabs = document.querySelector(".tab_contents")
     debugger;
+
   }
 
   removeRecipe(event){
