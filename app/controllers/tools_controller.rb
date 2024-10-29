@@ -23,4 +23,7 @@ class ToolsController < ApplicationController
       @datas << {name: "Recette #{(@series.index serie)+1}",data:serie}
     end
   end
+
+  def full_list
+  end
 end

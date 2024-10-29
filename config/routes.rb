@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get 'tools/saponification'
+  post 'full_list', to: "tools#full_list"
   get 'pages/home'
   get 'pages/contact'
   get 'pages/about'

@@ -16,6 +16,16 @@
 
 
   </div>
+
+  <turbo-frame id="view_more">
+  <%= button_to "View all", full_list_path %>
+</turbo-frame>
+<hr>
+  <turbo-frame id="view_more_2">
+  <%= button_to "View all", full_list_path %>
+</turbo-frame>
+   <hr>
+
   <!-- Tableau de la recette -->
 
   <!-- Fin Tableau recette-->
@@ -32,6 +42,9 @@
       <div class="tab active" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #1</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
       <div class="tab" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #2</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
       <div class="tab new" data-action="click->tabs-saponification#newRecipe" data-tabs-saponification-target="newRecipe"><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>
+       <turbo-frame id="add_tab">
+          <div class="tab new" data-action="" data-tabs-saponification-target=""><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>
+      </turbo-frame>
     </div>
     <div class="tab_contents">
       <div class="tab_content active" data-tabs-saponification-target="recipeContent">
