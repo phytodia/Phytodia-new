@@ -23,11 +23,6 @@ export default class extends Controller {
 
   }
   newRecipe(){
-    let tabs = document.querySelector(".tab_contents")
-    //let newTab = '<div class="tab_content" data-tabs-saponification-target="recipeContent"><div class=""><%= render partial:"recette2" %></div></div>'
-    //tabs.insertAdjacentHTML("beforeend",newTab)
-    const parser = new DOMParser();
-
     //fetch('tools/new_recipe_partial')
     //  .then(response => response.text())
     //  .then(html => this.element.innerHTML = html
@@ -36,13 +31,21 @@ export default class extends Controller {
     //  tabs.insertAdjacentHTML("beforeend", newTab);
     //)
 
+    let tabsRecipes = document.querySelector(".tab_contents")
+    let tabsList = document.querySelector(".tabs_list")
+
+    let newTab = '<div class="tab" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>';
+
+    tabsList.insertAdjacentHTML("beforeend", newTab);
+
+    const parser = new DOMParser();
     fetch('/new_recipe_partial')
     .then(response => response.text())
     .then(html => {
       let document = parser.parseFromString(html, "text/html");
       html = document.body.querySelector("#recipe")
-      let newTab = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
-      tabs.insertAdjacentHTML("beforeend", newTab);
+      let newRecipe = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
+      tabsRecipes.insertAdjacentHTML("beforeend", newRecipe);
     })
     .catch(error => console.error('Error fetching new recipe partial:', error));
 

@@ -47,11 +47,12 @@
     }
   }
 }
-.tabs_list {
+.tabs_all_list {
   border-bottom: 1px;
   display: flex;
   font-family: "Rubik", sans-serif;
   gap: 2px;
+  .tabs_list {display: flex; gap: 2px;}
   .tab {
     border: solid 1px;
     min-width: 20px;
