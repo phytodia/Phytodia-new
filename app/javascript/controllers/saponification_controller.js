@@ -65,8 +65,7 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
     this.proprietesSavon()
-    //
-    this.sommeKoh()
+    //this.sommeKoh()
   }
 
   changeSurgraissage(event) {
@@ -182,6 +181,7 @@ export default class extends Controller {
 
 
   sommeKoh() {
+    debugger;
     //debugger;
     //console.log("Coucou");
       let KOH = 0
@@ -197,11 +197,10 @@ export default class extends Controller {
   }
     ///
     insertKoh(eleonore) {
-
       //debuger;
       //console.log("Hello")
       let KOH = eleonore;
-      //this.sommeKohTarget.value = KOH;
+      this.sommeKohTarget.value = KOH;
     }
 
 
