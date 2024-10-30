@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes"]
+
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
   static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
@@ -64,6 +65,8 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
     this.proprietesSavon()
+    //
+    this.sommeKoh()
   }
 
   changeSurgraissage(event) {
@@ -178,4 +181,36 @@ export default class extends Controller {
   }
 
 
+  sommeKoh() {
+    //debugger;
+    //console.log("Coucou");
+      let KOH = 0
+      this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+        let ingredient = element.dataset.ing
+        let qty = parseFloat(element.lastChild.querySelector("input").value)
+        KOH += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
+      })
+      //debugger;
+      //return KOH;
+      console.log(`KOH: ${KOH}`)
+      this.insertKoh(KOH);
+  }
+    ///
+    insertKoh(eleonore) {
+      //debugger;
+      //debuger;
+      //console.log("Hello")
+      let KOH = eleonore;
+      document.querySelector(".result_koh").value = KOH;
+    }
+
+
+
+
+
+
+
+
 }
+  //debugger;
+  //console.log(`KOH: ${KOH}`)
