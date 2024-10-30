@@ -197,11 +197,11 @@ export default class extends Controller {
   }
     ///
     insertKoh(eleonore) {
-      //debugger;
+
       //debuger;
       //console.log("Hello")
       let KOH = eleonore;
-      document.querySelector(".result_koh").value = KOH;
+      this.sommeKohTarget.value = KOH;
     }
 
 
