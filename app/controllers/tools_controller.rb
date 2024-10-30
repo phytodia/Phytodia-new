@@ -2,9 +2,6 @@ class ToolsController < ApplicationController
   before_action :set_params_savon
 
   def saponification
-    @labels = ["Recette 1","Recette 2"]
-    @series = [[0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0]]
-
     @datas = []
     @series.each do |serie|
       @datas << {name: "Recette #{(@series.index serie)+1}",data:serie}
@@ -32,5 +29,7 @@ class ToolsController < ApplicationController
       INS:0
     }
     @savon_proprietes = @savon_proprietes.to_json
+    @labels = ["Recette 1"]
+    @series = [[0, 0, 0, 0, 0, 0]]
   end
 end
