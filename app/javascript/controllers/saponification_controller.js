@@ -93,13 +93,14 @@ export default class extends Controller {
     this.sommeNaohTarget.value = naoh
   }
   proprietesSavon(){
+    //debugger;
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText) // Poids total de la recette.
-
+    //debugger;
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes) //Propriétés du savon final
-
+    //debugger;
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients) // Liste des ingrédients possible à ajouter dans la recette
-
+    //debugger;
     // Pour chaque propriété finale du savon, on itère et récupère les données des ingrédients sélectionnés au prorata de leur poids dans la recette.
     Object.keys(savonProps).forEach((prop)=>{
       savonProps[prop] = 0; // On remet à 0 la propriété du savon final.

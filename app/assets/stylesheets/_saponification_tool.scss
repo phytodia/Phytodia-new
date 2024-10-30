@@ -1,6 +1,6 @@
 .tool_saponification_bas {
   .titre_tool {font-size: 1rem;}
-  border: solid 1px;
+  //border: solid 1px;
   display: flex;
   gap: 10px;
 }
@@ -23,12 +23,13 @@
     }
   }
 }
+#caracteristiques {padding-right: 15px;}
 #tableau_ingredients_selectionnes {
-  border: solid 1px;
+  //border-right: solid 1px;
   width: 25%;
 }
 .table_ingredients_selectionnes {
-  border: solid 1px;
+  //border-right: solid 1px;
   width: fit-content;
   table {
     thead {
@@ -47,28 +48,39 @@
     }
   }
 }
-.tabs_list {
-  border-bottom: 1px;
+#caracteristiques, #tableau_ingredients_selectionnes {
+  border-right: 1px solid black;
+}
+.tabs_all_list {
+  border-bottom: 1px lightgrey solid;
   display: flex;
   font-family: "Rubik", sans-serif;
   gap: 2px;
+  .tabs_list {display: flex; gap: 2px;}
   .tab {
     border: solid 1px;
     min-width: 20px;
     width: auto;
     padding: 5px 10px;
+    display: flex;
+    align-items: center;
     //background-color: #007A7A;
-    background-color: #358E8E;
-    border: solid #358E8E;
-    color: white;
+    //background-color: #358E8E;
+    border: solid black 1px;
+    color: black;
     &:hover {opacity: 0.9;
     }
     i {margin-left: 5px
     }
+    &.active {
+      background-color: #358E8E;
+      border: solid #358E8E;
+    color: white;
+    }
   }
 }
 .tab_contents {
-  border: solid 3px blue;
+  //border: solid 3px blue;
   height: auto;
   width: 100%;
   position: relative;
@@ -77,7 +89,7 @@
   height: 100vh;
   .tab_content {
     width: 100%;
-    border: solid 1px red;
+    //border: solid 1px red;
     height: 100%;
     position: absolute;
     z-index: -5;
@@ -88,11 +100,11 @@
       //height: 50px;
       visibility: visible;
       height: 100vh;
-      h2 {border: solid 3px green;}
+      h2 {}
     }
   }
   .tab_content:first-of-type {
-    background-color: wheat;
+    //background-color: wheat;
   }
 
 }
