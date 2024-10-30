@@ -64,8 +64,8 @@ export default class extends Controller {
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
+    this.sommeKoh()
     this.proprietesSavon()
-    //this.sommeKoh()
   }
 
   changeSurgraissage(event) {
@@ -93,6 +93,24 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
     this.sommeNaohTarget.value = naoh
+  }
+
+  sommeKoh() {
+    let Koh = 0;
+    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+      let ingredient = element.dataset.ing
+      let qty = parseFloat(element.lastChild.querySelector("input").value)
+      Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
+    })
+    console.log(`KOH: ${Koh}`)
+    this.insertKoh(Koh);
+  }
+
+  insertKoh(eleonore) {
+    //debuger;
+    console.log("Hello")
+    let Koh = eleonore;
+    this.sommeKohTarget.value = Koh;
   }
   proprietesSavon(){
     //debugger;
@@ -180,30 +198,6 @@ export default class extends Controller {
   }
 
 
-  sommeKoh() {
-    debugger;
-    //debugger;
-    //console.log("Coucou");
-      let KOH = 0
-      this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
-        let ingredient = element.dataset.ing
-        let qty = parseFloat(element.lastChild.querySelector("input").value)
-        KOH += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
-      })
-      //debugger;
-      //return KOH;
-      console.log(`KOH: ${KOH}`)
-      this.insertKoh(KOH);
-  }
-    ///
-    insertKoh(eleonore) {
-      //debuger;
-      //console.log("Hello")
-      let KOH = eleonore;
-      this.sommeKohTarget.value = KOH;
-    }
-
-
 
 
 
@@ -211,5 +205,3 @@ export default class extends Controller {
 
 
 }
-  //debugger;
-  //console.log(`KOH: ${KOH}`)
