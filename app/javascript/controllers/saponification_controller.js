@@ -201,7 +201,7 @@ export default class extends Controller {
       //debuger;
       //console.log("Hello")
       let KOH = eleonore;
-      this.sommeKohTarget.value = KOH;
+      //this.sommeKohTarget.value = KOH;
     }
 
 
