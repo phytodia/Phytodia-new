@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="saponification"
 export default class extends Controller {
-  static targets = ["ingredient","ingredientsJson","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
+
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
   static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
@@ -20,17 +21,18 @@ export default class extends Controller {
 
   }
   getIngredient(event){
-      let ingredient = event.currentTarget.value
-      const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-      //console.log(ingredients["Abyssinian Oil"])
-      let inputs = Array.from(document.querySelector("#caracteristiques").querySelectorAll("input"))
-      inputs.forEach((element) => {
-        element.value = ingredients[ingredient][element.name]
-      })
+    let ingredient = event.currentTarget.value
+    const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    //console.log(ingredients["Abyssinian Oil"])
+    let inputs = Array.from(this.caracteristiquesIngredientTarget.querySelectorAll("input"))
+    inputs.forEach((element) => {
+      element.value = ingredients[ingredient][element.name]
+    })
   }
   doubleClick(event){
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
+    //debugger;
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
       this.createTr(event)
     }
@@ -94,13 +96,14 @@ export default class extends Controller {
     this.sommeNaohTarget.value = naoh
   }
   proprietesSavon(){
+    //debugger;
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText) // Poids total de la recette.
-
+    //debugger;
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes) //Propriétés du savon final
-
+    //debugger;
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients) // Liste des ingrédients possible à ajouter dans la recette
-
+    //debugger;
     // Pour chaque propriété finale du savon, on itère et récupère les données des ingrédients sélectionnés au prorata de leur poids dans la recette.
     Object.keys(savonProps).forEach((prop)=>{
       savonProps[prop] = 0; // On remet à 0 la propriété du savon final.
@@ -129,19 +132,54 @@ export default class extends Controller {
     //debugger;
     //let valuesSavon = proprietes;
     // changer les propriétés au format JSON au format Array []
-
+    let indexTab = parseInt(document.querySelector(".tabs_list").dataset.index);
     const eltsSearched = ["Hardness","Cleansing","Condition","Bubbly","Creamy","Iodine"]
 
     let chartProps = JSON.parse(proprietesJson)
     delete chartProps.INS
 
+    let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
+    let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels);
+
     let newchartProps = Object.values(chartProps)
-    //debugger;
+
+    seriesArray[indexTab] = newchartProps
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+
+    let arrayDatas = [];
+    let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
+
+    result.forEach((arr)=>{
+      arrayDatas.push({name: arr[0],data:arr[1]})
+    })
+
+
     //this.apexchartsOutlets.update(newchartProps) //insert
-    this.apexchartsOutlets[0].chart.updateSeries([{
-      data: newchartProps
-    }])
+    //debugger;
+
+    //debugger;
+    //let x = Array.from(this.labelsValue)
+    //let y = Array.from(this.seriesValue)
+    //let result = x.map((item, index) => [item, y[index]]);
+    //let arrayDatas = [];
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+    //debugger;
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayDatas
+      })
+    })
+    //this.apexchartsOutlets[indexTab].chart.updateOptions({
+    //  series: arrayDatas
+    //})
+    //this.apexchartsOutlets[indexTab].chart.updateSeries([{
+    //  data: newchartProps
+    //}])
   }
+
 
   sommeKoh() {
     //debugger;

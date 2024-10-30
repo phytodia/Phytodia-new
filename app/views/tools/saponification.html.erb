@@ -4,7 +4,7 @@
 <%= @ingredients %>
 <h2>JSON</h2>
 <%= @json %>
-<div id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart">
+<div>
   <h2>Propriétés</h2>
   <div>
 
@@ -16,6 +16,16 @@
 
 
   </div>
+
+  <turbo-frame id="view_more">
+  <%= button_to "View all", full_list_path %>
+</turbo-frame>
+<hr>
+  <turbo-frame id="view_more_2">
+  <%= button_to "View all", full_list_path %>
+</turbo-frame>
+   <hr>
+
   <!-- Tableau de la recette -->
 
   <!-- Fin Tableau recette-->
@@ -27,215 +37,31 @@
 
   </div>
 
-  <div class="tool_saponification_bas">
-    <div id="list_ingredients">
-      <h2 class="titre_tool">Liste des ingrédients</h2>
-      <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
-        <% @ingredients.keys.each do |ing|%>
-        <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
-        <% end %>
-      </select>
+  <div data-controller="tabs-saponification">
+    <div class="tabs_all_list">
+      <div class="tabs_list" data-tabs-saponification-target="tabIndex" data-index="0" data-series='<%= @series %>' data-labels='<%= @labels %>'>
+        <div class="tab active" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #1</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
+        <div class="tab" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette #2</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
+      </div>
+
+      <div class="tab new" data-action="click->tabs-saponification#newRecipe" data-tabs-saponification-target="newRecipe"><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>
+    </div>
+    <div class="tab_contents">
+      <div class="tab_content active" data-tabs-saponification-target="recipeContent">
+        <div class="">
+          <%= render "recipe"%>
+        </div>
+      </div><!--  Fin Tab Content -->
+      <div class="tab_content" data-tabs-saponification-target="recipeContent">
+        <div class="">
+          <%= render "recipe"%>
+        </div>
+      </div><!--  Tab Content -->
+
     </div>
 
-    <div id="caracteristiques">
-      <h2 class="titre_tool">Propriétés de l'ingrédient</h2>
-      <div>
-        <label for="Hardness">Hardness</label>
-        <input type="number" name="Hardness" value="0">
-      </div>
+  </div> <!-- Fin tabs stimulus constroller -->
 
-      <div>
-        <label for="Cleansing">Cleansing</label>
-        <input type="number" name="Cleansing" value="0">
-      </div>
 
-      <div>
-        <label for="Condition">Condition</label>
-        <input type="number" name="Condition" value="0">
-      </div>
-
-      <div>
-        <label for="Bubbly">Bubbly</label>
-        <input type="number" name="Bubbly" value="0">
-      </div>
-
-      <div>
-        <label for="Creamy">Creamy</label>
-        <input type="number" name="Creamy" value="0">
-      </div>
-
-      <div>
-        <label for="Iodine">Iodine</label>
-        <input type="number" name="Iodine" value="0">
-      </div>
-      <hr>
-      <div>
-        <label for="INS">INS</label>
-        <input type="number" name="INS" value="0">
-      </div>
-      <hr>
-      <div>
-        <label for="Lauric">Lauric</label>
-        <input type="number" name="Lauric" value="0">
-      </div>
-
-      <div>
-        <label for="Myristic">Myristic</label>
-        <input type="number" name="Myristic" value="0">
-      </div>
-
-      <div>
-        <label for="Palmitic">Palmitic</label>
-        <input type="number" name="Palmitic" value="0">
-      </div>
-
-      <div>
-        <label for="Stearic">Stearic</label>
-        <input type="number" name="Stearic" value="0">
-      </div>
-
-      <div>
-        <label for="Ricinoleic">Ricinoleic</label>
-        <input type="number" name="Ricinoleic" value="0">
-      </div>
-
-      <div>
-        <label for="Oleic">Oleic</label>
-        <input type="number" name="Oleic" value="0">
-      </div>
-
-      <div>
-        <label for="Linoeic">Linoeic</label>
-        <input type="number" name="Linoeic" value="0">
-      </div>
-
-      <div>
-        <label for="Linolenic">Linoleic</label>
-        <input type="number" name="Linolenic" value="0">
-      </div>
-    </div> <!-- Fin #caractéristiques -->
-    <!-- Ingredients sélectionnés dans la recette -->
-    <div id="tableau_ingredients_selectionnes">
-      <h2 class="titre_tool">Liste des ingrédients de la recette</h2>
-      <div class="table_ingredients_selectionnes">
-        <table>
-          <thead>
-            <tr>
-              <th>Ingrédient</th>
-              <th>%</th>
-              <th>g</th>
-            </tr>
-          </thead>
-          <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
-          </tbody>
-          <div>
-            <tr>
-              <td>Totaux</td>
-              <td>0%</td>
-              <td data-saponification-target="sommePoids">0</td>
-            </tr>
-          </div>
-        </table>
-      </div>
-
-      <div>
-        <label for="">% Surgraissage</label>
-        <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
-      </div>
-      <div>
-      <p>Somme NAOH des ingrédients (Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p>
-      <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
-      <p>Somme KOH :</p>
-      <input type="number" name="somme" value="0" data-saponification-target="sommeKoh" class="result_koh">
-      </div>
-
-    </div>
-    <!-- Fin des ingrédients de la recette -->
-    <div id="proprietes_savon" data-saponification-target="savonProprietes" data-proprietes="<%= @savon_proprietes%>">
-      <h2 class="titre_tool">Propriétés du savon</h2>
-      <div>
-        <label for="Hardness">Hardness</label>
-        <input type="number" name="Hardness" value="0">
-      </div>
-
-      <div>
-        <label for="Cleansing">Cleansing</label>
-        <input type="number" name="Cleansing" value="0">
-      </div>
-
-      <div>
-        <label for="Condition">Condition</label>
-        <input type="number" name="Condition" value="0">
-      </div>
-
-      <div>
-        <label for="Bubbly">Bubbly</label>
-        <input type="number" name="Bubbly" value="0">
-      </div>
-
-      <div>
-        <label for="Creamy">Creamy</label>
-        <input type="number" name="Creamy" value="0">
-      </div>
-
-      <div>
-        <label for="Iodine">Iodine</label>
-        <input type="number" name="Iodine" value="0">
-      </div>
-      <hr>
-      <div>
-        <label for="INS">INS</label>
-        <input type="number" name="INS" value="0">
-      </div>
-      <hr>
-      <div>
-        <label for="Lauric">Lauric</label>
-        <input type="number" name="Lauric" value="0">
-      </div>
-
-      <div>
-        <label for="Myristic">Myristic</label>
-        <input type="number" name="Myristic" value="0">
-      </div>
-
-      <div>
-        <label for="Palmitic">Palmitic</label>
-        <input type="number" name="Palmitic" value="0">
-      </div>
-
-      <div>
-        <label for="Stearic">Stearic</label>
-        <input type="number" name="Stearic" value="0">
-      </div>
-
-      <div>
-        <label for="Ricinoleic">Ricinoleic</label>
-        <input type="number" name="Ricinoleic" value="0">
-      </div>
-
-      <div>
-        <label for="Oleic">Oleic</label>
-        <input type="number" name="Oleic" value="0">
-      </div>
-
-      <div>
-        <label for="Linoeic">Linoeic</label>
-        <input type="number" name="Linoeic" value="0">
-      </div>
-
-      <div>
-        <label for="Linolenic">Linoleic</label>
-        <input type="number" name="Linolenic" value="0">
-      </div>
-    </div> <!-- Fin #caractéristiques -->
-    <!--
-    Chart Apexchart
-    -->
-    <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
-      <div data-apexcharts-target="chart"></div>
-      <a data-action="apexcharts#update">BUTTON</a>
-    <div>
-
-  </div>
   <!-- Fin tool_saponification_bas-->
 </div><!-- Fin controller saponification -->
