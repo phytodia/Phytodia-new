@@ -82,6 +82,13 @@ export default class extends Controller {
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
+
+    //let rmSerie = Array.from(JSON.parse(this.tabIndexTarget.dataset.series)).splice(indexTab,1)
+    //let rmLabel = Array.from(JSON.parse(this.tabIndexTarget.dataset.labels)).splice(indexTab,1)
+
+    //this.tabIndexTarget.dataset.series = JSON.stringify(rmSerie)
+    //this.tabIndexTarget.dataset.labels = JSON.stringify(rmLabel)
+
     recipetoRemove.remove()
     tabtoRemove.remove()
     this.recipeContentTargets.forEach((element)=>{
@@ -92,5 +99,11 @@ export default class extends Controller {
     })
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayDatas
+      })
+    })
   }
 }
