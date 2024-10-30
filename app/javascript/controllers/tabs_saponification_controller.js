@@ -24,7 +24,27 @@ export default class extends Controller {
   }
   newRecipe(){
     let tabs = document.querySelector(".tab_contents")
-    debugger;
+    //let newTab = '<div class="tab_content" data-tabs-saponification-target="recipeContent"><div class=""><%= render partial:"recette2" %></div></div>'
+    //tabs.insertAdjacentHTML("beforeend",newTab)
+    const parser = new DOMParser();
+
+    //fetch('tools/new_recipe_partial')
+    //  .then(response => response.text())
+    //  .then(html => this.element.innerHTML = html
+    //    debugger;
+    //  let newTab = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html}</div>`;
+    //  tabs.insertAdjacentHTML("beforeend", newTab);
+    //)
+
+    fetch('/new_recipe_partial')
+    .then(response => response.text())
+    .then(html => {
+      let document = parser.parseFromString(html, "text/html");
+      html = document.body.querySelector("#recipe")
+      let newTab = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
+      tabs.insertAdjacentHTML("beforeend", newTab);
+    })
+    .catch(error => console.error('Error fetching new recipe partial:', error));
 
   }
 

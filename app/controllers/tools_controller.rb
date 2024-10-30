@@ -24,6 +24,12 @@ class ToolsController < ApplicationController
     end
   end
 
+  def new_recipe_partial
+    #@ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
+    @ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
+    render partial: "recipe"
+  end
+
   def full_list
   end
 end

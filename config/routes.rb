@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'tools/saponification'
   post 'full_list', to: "tools#full_list"
+  get '/new_recipe_partial', to: "tools#new_recipe_partial"
   get 'pages/home'
   get 'pages/contact'
   get 'pages/about'
