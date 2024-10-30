@@ -49,6 +49,13 @@ export default class extends Controller {
     })
     .catch(error => console.error('Error fetching new recipe partial:', error));
 
+    let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
+    seriesArray.push([0,0,0,0,0,0])
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+
+    let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
+    labelsArray.push("Recette")
+    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
   }
 
   removeRecipe(event){
