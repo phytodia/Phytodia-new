@@ -83,6 +83,18 @@ export default class extends Controller {
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
 
+    // BUG
+    //let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
+    //let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
+    //let arrayDatas = [];
+    //let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
+
+    // BUG
+
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+
     //let rmSerie = Array.from(JSON.parse(this.tabIndexTarget.dataset.series)).splice(indexTab,1)
     //let rmLabel = Array.from(JSON.parse(this.tabIndexTarget.dataset.labels)).splice(indexTab,1)
 
@@ -100,6 +112,8 @@ export default class extends Controller {
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
 
+
+    //bug
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
         series: arrayDatas

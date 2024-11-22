@@ -58,6 +58,7 @@
   gap: 2px;
   .tabs_list {display: flex; gap: 2px;}
   .tab {
+    cursor: pointer;
     border: solid 1px;
     min-width: 20px;
     width: auto;
