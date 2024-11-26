@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
-  //static outlets = [ "apexcharts" ]
+  static outlets = ["apexcharts"]
   connect() {
   }
 
@@ -127,8 +127,10 @@ export default class extends Controller {
 
 
     //bug
+    let chartsgraph = Array.from(document.querySelectorAll(".chartpraph"))
     //debugger;
     this.apexchartsOutlets.forEach((element)=>{
+      debugger;
       element.chart.updateOptions({
         series: arrayDatas
       })
