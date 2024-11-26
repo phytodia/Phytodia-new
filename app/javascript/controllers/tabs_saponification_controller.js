@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
-  static outlets = [ "apexcharts" ]
+  //static outlets = [ "apexcharts" ]
   connect() {
   }
 
@@ -84,8 +84,21 @@ export default class extends Controller {
     let tabtoRemove = this.tabRecipeTargets[indexTab]
 
     // BUG
-    //let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
-    //let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
+    let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
+    let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
+    //debugger;
+    seriesArray.splice(indexTab, 1)
+    labelsArray.splice(indexTab, 1)
+
+    //delete seriesArray[indexTab] // remove index du JSON
+    //delete labelsArray[indexTab]
+    //debugger;
+    //seriesArray = Object.entries(seriesArray).reduce((acc, [k, v]) => v ? {...acc, [k]:v} : acc , {})
+    //labelsArray = Object.entries(labelsArray).reduce((acc, [k, v]) => v ? {...acc, [k]:v} : acc , {})
+
+    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    //debugger;
     //let arrayDatas = [];
     //let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
 
@@ -114,6 +127,7 @@ export default class extends Controller {
 
 
     //bug
+    //debugger;
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
         series: arrayDatas
