@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = ["apexcharts"]
   connect() {
+    this.apexchartsOutlets.method();
   }
 
   tabSelect(event){
@@ -128,7 +129,7 @@ export default class extends Controller {
 
     //bug
     let chartsgraph = Array.from(document.querySelectorAll(".chartpraph"))
-    //debugger;
+    debugger;
     this.apexchartsOutlets.forEach((element)=>{
       debugger;
       element.chart.updateOptions({
