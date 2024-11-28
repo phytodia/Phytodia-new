@@ -170,18 +170,6 @@ export default class extends Controller {
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
 
-
-    //this.apexchartsOutlets.update(newchartProps) //insert
-    //debugger;
-
-    //debugger;
-    //let x = Array.from(this.labelsValue)
-    //let y = Array.from(this.seriesValue)
-    //let result = x.map((item, index) => [item, y[index]]);
-    //let arrayDatas = [];
-    //result.forEach((arr)=>{
-    //  arrayDatas.push({name: arr[0],data:arr[1]})
-    //})
     //debugger;
 
     this.apexchartsOutlets.forEach((element)=>{
