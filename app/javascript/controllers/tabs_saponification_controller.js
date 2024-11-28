@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = ["apexcharts"]
   connect() {
-    this.apexchartsOutlets.method();
+    //this.apexchartsOutlets.method();
   }
 
   tabSelect(event){
@@ -45,7 +45,7 @@ export default class extends Controller {
     .then(response => response.text())
     .then(html => {
       let document = parser.parseFromString(html, "text/html");
-      html = document.body.querySelector("#recipe")
+      html = document.body.querySelector(".recipe")
       let newRecipe = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
       tabsRecipes.insertAdjacentHTML("beforeend", newRecipe);
     })
@@ -80,6 +80,7 @@ export default class extends Controller {
   }
 
   removeRecipe(event){
+    debugger;
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -104,7 +105,6 @@ export default class extends Controller {
     //let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
 
     // BUG
-
     //result.forEach((arr)=>{
     //  arrayDatas.push({name: arr[0],data:arr[1]})
     //})
@@ -126,7 +126,7 @@ export default class extends Controller {
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
 
-
+    debugger;
     //bug
     let chartsgraph = Array.from(document.querySelectorAll(".chartpraph"))
     debugger;

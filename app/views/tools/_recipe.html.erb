@@ -1,4 +1,4 @@
-<div id="recipe">
+<div class="recipe">
 <h2 class="titre_test">Recette</h2>
 <div class="tool_saponification_bas" id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart">
 
@@ -215,8 +215,8 @@
     </div>
   </div> <!-- Fin #caractéristiques -->
 
-  <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent" data-tabs-saponification-apexcharts-outlet=".chartpraph">
-    <div data-apexcharts-target="chart" class="chartpraph"></div>
+  <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
+    <div data-apexcharts-target="chart"></div>
     <a data-action="apexcharts#update">BUTTON</a>
   </div>
 </div> <!-- Fin controller JS -->
