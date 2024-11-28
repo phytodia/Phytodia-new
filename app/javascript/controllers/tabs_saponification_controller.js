@@ -44,7 +44,7 @@ export default class extends Controller {
     .then(response => response.text())
     .then(html => {
       let document = parser.parseFromString(html, "text/html");
-      html = document.body.querySelector("#recipe")
+      html = document.body.querySelector(".recipe")
       let newRecipe = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
       tabsRecipes.insertAdjacentHTML("beforeend", newRecipe);
     })
