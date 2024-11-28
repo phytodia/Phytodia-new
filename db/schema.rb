@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_16_071440) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_28_154552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
     t.string "french_name"
     t.string "latin_name"
-    t.string "english_nale"
+    t.string "english_name"
     t.string "INCI_name"
     t.integer "IS"
-    t.string "durete"
-    t.string "pouvoir_lavant"
-    t.string "douceur"
-    t.string "bulles"
-    t.string "cremeux"
-    t.integer "iode"
+    t.string "hardness"
+    t.string "cleansing"
+    t.string "condition"
+    t.string "bubbly"
+    t.string "creamy"
+    t.integer "iodine"
     t.integer "INS"
     t.integer "lauric"
-    t.integer "mystiric"
+    t.integer "myristic"
     t.integer "palmitic"
     t.integer "stearic"
     t.integer "ricinoleic"
@@ -37,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_16_071440) do
     t.integer "linolenic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "NaOH_SAP"
+    t.float "KOH_SAP"
   end
 
 end

@@ -17,6 +17,9 @@ class ToolsController < ApplicationController
 
   def set_params_savon
     @ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
+    h3 = {Ingredient.last.attributes["english_name"].capitalize => Ingredient.last.attributes }
+    # mettre en majuscule chaque clé et retirer l'id du hash.
+    fail
     @json = @ingredients.to_json
 
     @savon_proprietes = {
