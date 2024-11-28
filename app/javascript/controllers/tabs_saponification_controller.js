@@ -44,7 +44,7 @@ export default class extends Controller {
     .then(response => response.text())
     .then(html => {
       let document = parser.parseFromString(html, "text/html");
-      html = document.body.querySelector("#recipe")
+      html = document.body.querySelector(".recipe")
       let newRecipe = `<div class="tab_content" data-tabs-saponification-target="recipeContent">${html.innerHTML}</div>`;
       tabsRecipes.insertAdjacentHTML("beforeend", newRecipe);
     })
@@ -82,6 +82,17 @@ export default class extends Controller {
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
+
+    let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
+    let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
+
+    seriesArray.splice(indexTab, 1)
+    labelsArray.splice(indexTab, 1)
+
+
+    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+
     recipetoRemove.remove()
     tabtoRemove.remove()
     this.recipeContentTargets.forEach((element)=>{
@@ -92,5 +103,6 @@ export default class extends Controller {
     })
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
+
   }
 }
