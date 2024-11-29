@@ -13,6 +13,5 @@ class ChangeIngredientInteger < ActiveRecord::Migration[7.0]
     add_column :ingredients, :myristic, :integer
     add_column :ingredients, :cleansing, :integer
     add_column :ingredients, :condition, :integer
-    add_column :ingredients, :condition, :integer
   end
 end
