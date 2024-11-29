@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_28_154552) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_29_082943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,14 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_28_154552) do
     t.string "INCI_name"
     t.integer "IS"
     t.string "hardness"
-    t.string "cleansing"
-    t.string "condition"
-    t.string "bubbly"
-    t.string "creamy"
-    t.integer "iodine"
     t.integer "INS"
     t.integer "lauric"
-    t.integer "myristic"
     t.integer "palmitic"
     t.integer "stearic"
     t.integer "ricinoleic"
@@ -39,6 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_28_154552) do
     t.datetime "updated_at", null: false
     t.float "NaOH_SAP"
     t.float "KOH_SAP"
+    t.integer "bubbly"
+    t.integer "creamy"
+    t.integer "iodine"
+    t.integer "myristic"
+    t.integer "cleansing"
+    t.integer "condition"
   end
 
 end

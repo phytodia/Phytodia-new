@@ -16,10 +16,14 @@ class ToolsController < ApplicationController
   end
 
   def set_params_savon
-    @ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
-    h3 = {Ingredient.last.attributes["english_name"].capitalize => Ingredient.last.attributes }
+    #@ingredients = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
+    @hash_ingredients = {}
+    Ingredient.all.each do |ingredient|
+      x = {ingredient.attributes["english_name"].capitalize => ingredient.attributes}
+      @hash_ingredients.merge!(x)
+    end
     # mettre en majuscule chaque clé et retirer l'id du hash.
-    fail
+    @ingredients = @hash_ingredients
     @json = @ingredients.to_json
 
     @savon_proprietes = {
