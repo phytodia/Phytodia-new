@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = [ "apexcharts" ]
   connect() {
+    console.log(this.apexchartsOutlets)
   }
 
   tabSelect(event){
@@ -76,6 +77,8 @@ export default class extends Controller {
      //this.tabRecipeTargets[indexTab].classList.add("active")
      // fin tab + recipe => actif
      //debugger;
+     //debugger;
+     alert(JSON.stringify(seriesArray))
   }
 
   removeRecipe(event){
@@ -88,7 +91,6 @@ export default class extends Controller {
 
     seriesArray.splice(indexTab, 1)
     labelsArray.splice(indexTab, 1)
-
 
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
@@ -103,6 +105,7 @@ export default class extends Controller {
     })
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
-
+    //debugger;
+    alert(JSON.stringify(seriesArray))
   }
 }

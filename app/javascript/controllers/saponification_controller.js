@@ -8,6 +8,7 @@ export default class extends Controller {
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
+    console.log(this.apexchartsOutlets)
   }
   createTr(event){
     let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
@@ -171,12 +172,13 @@ export default class extends Controller {
     })
 
     //debugger;
-
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
         series: arrayDatas
       })
     })
+
+    alert(JSON.stringify(seriesArray))
     //this.apexchartsOutlets[indexTab].chart.updateOptions({
     //  series: arrayDatas
     //})
