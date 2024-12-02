@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
-  static outlets = [ "apexcharts" ]
+  static outlets = [ "apexcharts","saponification" ]
   connect() {
     console.log(this.apexchartsOutlets)
   }
@@ -78,7 +78,9 @@ export default class extends Controller {
      // fin tab + recipe => actif
      //debugger;
      //debugger;
-     alert(JSON.stringify(seriesArray))
+     this.saponificationOutletElement.dataset.recipeSeries = "[0,0,0,0,0,0]"
+    debugger;
+     //alert(JSON.stringify(seriesArray))
   }
 
   removeRecipe(event){
