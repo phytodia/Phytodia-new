@@ -8,6 +8,7 @@ export default class extends Controller {
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
+    console.log(this.apexchartsOutlets)
   }
   createTr(event){
     let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
@@ -136,6 +137,8 @@ export default class extends Controller {
 
     console.log(savonProps);
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
+    //alert("Propriete savon")
+    //alert(document.querySelector(".tabs_list").dataset.series)
   }
 
   insertProprietes(proprietesJson){
@@ -154,14 +157,14 @@ export default class extends Controller {
 
     let chartProps = JSON.parse(proprietesJson)
     delete chartProps.INS
-
+    //debugger;
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels);
 
     let newchartProps = Object.values(chartProps)
-
+    //debugger;
     seriesArray[indexTab] = newchartProps
-    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    //document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     let arrayDatas = [];
     let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
@@ -169,21 +172,65 @@ export default class extends Controller {
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
+    //this.ingredientsJsonTarget.dataset.series = JSON.stringify(Object.values(chartProps))
+    //console.log(this.ingredientsJsonTarget.dataset.series)
 
-    //debugger;
+    //alert("insert Proprietes")
+    //alert(document.querySelector(".tabs_list").dataset.series)
 
-    this.apexchartsOutlets.forEach((element)=>{
-      element.chart.updateOptions({
-        series: arrayDatas
-      })
-    })
+    //this.apexchartsOutlets.forEach((element)=>{
+    //  element.chart.updateOptions({
+    //    series: arrayDatas
+    //  })
+    //})
+
     //this.apexchartsOutlets[indexTab].chart.updateOptions({
     //  series: arrayDatas
     //})
     //this.apexchartsOutlets[indexTab].chart.updateSeries([{
     //  data: newchartProps
     //}])
+    this.updateSeries(indexTab,JSON.stringify(Object.values(chartProps)))
   }
+
+  updateSeries(index,serie){
+    let indexTab = index;
+    let newSerie = JSON.parse(serie)
+    if(newSerie[0] === null){
+      newSerie = [0,0,0,0,0,0]
+    }
+    //update serie
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series))
+    seriesArray[indexTab] = newSerie
+    //update html with new serie
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    //alert(document.querySelector(".tabs_list").dataset.series)
+    this.updateAllcharts()
+  }
+  updateAllcharts(){
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+    //debugger;
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+    //alert(arrayUpdate)
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayUpdate
+      })
+    })
+     //series: [{data: [
+  //  {x: "02-02-2002",y: 44}, {x: "12-02-2002",y: 51}]
+  //}]
+  }
+
+
 
 
 

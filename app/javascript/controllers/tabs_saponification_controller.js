@@ -3,8 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
-  static outlets = [ "apexcharts" ]
+  static outlets = [ "apexcharts","saponification" ]
   connect() {
+    console.log(this.apexchartsOutlets)
   }
 
   tabSelect(event){
@@ -23,6 +24,7 @@ export default class extends Controller {
 
   }
   newRecipe(event){
+    const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
     //fetch('tools/new_recipe_partial')
     //  .then(response => response.text())
     //  .then(html => this.element.innerHTML = html
@@ -55,9 +57,18 @@ export default class extends Controller {
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
-    labelsArray.push("Recette")
-    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+
+    let letter = `Recette ${alphabet[Math.floor(Math.random()*alphabet.length)]}`
+    while(labelsArray.includes(letter)){
+      letter = `Recette ${alphabet[Math.floor(Math.random()*alphabet.length)]}`
+    }
+    labelsArray.push(letter)
+
     //debugger;
+    //labelsArray.push("Recette")
+    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+
+    this.tabRecipeTargets.slice(-1)[0].querySelector("span").innerText = letter
     //this.apexchartsOutlets.forEach((element)=>{
     //  element.chart.updateOptions({
     //    series: arrayDatas
@@ -76,9 +87,15 @@ export default class extends Controller {
      //this.tabRecipeTargets[indexTab].classList.add("active")
      // fin tab + recipe => actif
      //debugger;
+     //debugger;
+     this.saponificationOutletElement.dataset.recipeSeries = "[0,0,0,0,0,0]"
+     //debugger;
+     //debugger;
+     //alert(JSON.stringify(seriesArray))
   }
 
   removeRecipe(event){
+
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -86,9 +103,9 @@ export default class extends Controller {
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
 
-    seriesArray.splice(indexTab, 1)
-    labelsArray.splice(indexTab, 1)
 
+    labelsArray.splice(indexTab, 1)
+    seriesArray.splice(indexTab, 1)
 
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
@@ -103,6 +120,32 @@ export default class extends Controller {
     })
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
-
+    //debugger;
+    //alert(JSON.stringify(seriesArray))
+    this.updateAllcharts()
   }
+
+  updateAllcharts(){
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+    //debugger;
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+    //alert(arrayUpdate)
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayUpdate
+      })
+    })
+     //series: [{data: [
+  //  {x: "02-02-2002",y: 44}, {x: "12-02-2002",y: 51}]
+  //}]
+  }
+
 }
