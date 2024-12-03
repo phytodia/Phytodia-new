@@ -137,6 +137,8 @@ export default class extends Controller {
 
     console.log(savonProps);
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
+    //alert("Propriete savon")
+    //alert(document.querySelector(".tabs_list").dataset.series)
   }
 
   insertProprietes(proprietesJson){
@@ -155,14 +157,14 @@ export default class extends Controller {
 
     let chartProps = JSON.parse(proprietesJson)
     delete chartProps.INS
-
+    //debugger;
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels);
 
     let newchartProps = Object.values(chartProps)
-
+    //debugger;
     seriesArray[indexTab] = newchartProps
-    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    //document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     let arrayDatas = [];
     let result = labelsArray.map((item, index) => [item, seriesArray[index]]);
@@ -170,21 +172,43 @@ export default class extends Controller {
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
+    //this.ingredientsJsonTarget.dataset.series = JSON.stringify(Object.values(chartProps))
+    //console.log(this.ingredientsJsonTarget.dataset.series)
 
-    //debugger;
-    this.apexchartsOutlets.forEach((element)=>{
-      element.chart.updateOptions({
-        series: arrayDatas
-      })
-    })
+    //alert("insert Proprietes")
+    //alert(document.querySelector(".tabs_list").dataset.series)
 
-    alert(JSON.stringify(seriesArray))
+    //this.apexchartsOutlets.forEach((element)=>{
+    //  element.chart.updateOptions({
+    //    series: arrayDatas
+    //  })
+    //})
+
     //this.apexchartsOutlets[indexTab].chart.updateOptions({
     //  series: arrayDatas
     //})
     //this.apexchartsOutlets[indexTab].chart.updateSeries([{
     //  data: newchartProps
     //}])
+    this.updateSeries(indexTab,JSON.stringify(Object.values(chartProps)))
+  }
+
+  updateSeries(index,serie){
+    let indexTab = index;
+    let newSerie = JSON.parse(serie)
+    //update serie
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series))
+    seriesArray[indexTab] = newSerie
+    //update html with new serie
+    document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
+    alert(document.querySelector(".tabs_list").dataset.series)
+  }
+  updateAllcharts(newSerie){
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayDatas
+      })
+    })
   }
 
 

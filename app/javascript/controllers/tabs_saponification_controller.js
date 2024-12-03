@@ -79,11 +79,13 @@ export default class extends Controller {
      //debugger;
      //debugger;
      this.saponificationOutletElement.dataset.recipeSeries = "[0,0,0,0,0,0]"
-    debugger;
+     //debugger;
+     //debugger;
      //alert(JSON.stringify(seriesArray))
   }
 
   removeRecipe(event){
+    debugger;
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -91,12 +93,13 @@ export default class extends Controller {
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
 
+    //debugger;
     seriesArray.splice(indexTab, 1)
     labelsArray.splice(indexTab, 1)
-
+    debugger;
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
-
+    //debugger;
     recipetoRemove.remove()
     tabtoRemove.remove()
     this.recipeContentTargets.forEach((element)=>{
@@ -108,6 +111,6 @@ export default class extends Controller {
     this.tabRecipeTargets[0].classList.add("active")
     this.recipeContentTargets[0].classList.add("active")
     //debugger;
-    alert(JSON.stringify(seriesArray))
+    //alert(JSON.stringify(seriesArray))
   }
 }
