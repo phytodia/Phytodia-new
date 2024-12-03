@@ -95,7 +95,7 @@ export default class extends Controller {
   }
 
   removeRecipe(event){
-    debugger;
+
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -103,13 +103,13 @@ export default class extends Controller {
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
 
-    //debugger;
-    seriesArray.splice(indexTab, 1)
+
     labelsArray.splice(indexTab, 1)
-    debugger;
+    seriesArray.splice(indexTab, 1)
+
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
-    //debugger;
+
     recipetoRemove.remove()
     tabtoRemove.remove()
     this.recipeContentTargets.forEach((element)=>{
@@ -122,5 +122,30 @@ export default class extends Controller {
     this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
+    this.updateAllcharts()
   }
+
+  updateAllcharts(){
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+    //debugger;
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+    //alert(arrayUpdate)
+
+    this.apexchartsOutlets.forEach((element)=>{
+      element.chart.updateOptions({
+        series: arrayUpdate
+      })
+    })
+     //series: [{data: [
+  //  {x: "02-02-2002",y: 44}, {x: "12-02-2002",y: 51}]
+  //}]
+  }
+
 }
