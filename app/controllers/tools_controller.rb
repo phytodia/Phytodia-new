@@ -44,7 +44,7 @@ class ToolsController < ApplicationController
       INS:0
     }
     @savon_proprietes = @savon_proprietes.to_json
-    @labels = ["Recette 1"]
+    @labels = ["Recette α"]
     @series = [[0, 0, 0, 0, 0, 0]]
   end
 end

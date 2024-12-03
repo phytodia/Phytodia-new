@@ -218,6 +218,7 @@ export default class extends Controller {
     //result.forEach((arr)=>{
     //  arrayDatas.push({name: arr[0],data:arr[1]})
     //})
+    alert(arrayUpdate)
 
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({

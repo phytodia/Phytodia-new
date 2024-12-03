@@ -24,6 +24,7 @@ export default class extends Controller {
 
   }
   newRecipe(event){
+    const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
     //fetch('tools/new_recipe_partial')
     //  .then(response => response.text())
     //  .then(html => this.element.innerHTML = html
@@ -56,9 +57,18 @@ export default class extends Controller {
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
-    labelsArray.push("Recette")
-    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+
+    let letter = `Recette ${alphabet[Math.floor(Math.random()*alphabet.length)]}`
+    while(labelsArray.includes(letter)){
+      letter = `Recette ${alphabet[Math.floor(Math.random()*alphabet.length)]}`
+    }
+    labelsArray.push(letter)
+
     //debugger;
+    //labelsArray.push("Recette")
+    document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+
+    this.tabRecipeTargets.slice(-1)[0].querySelector("span").innerText = letter
     //this.apexchartsOutlets.forEach((element)=>{
     //  element.chart.updateOptions({
     //    series: arrayDatas
