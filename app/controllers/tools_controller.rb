@@ -6,6 +6,7 @@ class ToolsController < ApplicationController
     @series.each do |serie|
       @datas << {name: "Recette #{(@series.index serie)+1}",data:serie}
     end
+    @faqs = Faq.all
   end
 
   def new_recipe_partial
