@@ -196,20 +196,40 @@ export default class extends Controller {
   updateSeries(index,serie){
     let indexTab = index;
     let newSerie = JSON.parse(serie)
+    if(newSerie[0] === null){
+      newSerie = [0,0,0,0,0,0]
+    }
     //update serie
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series))
     seriesArray[indexTab] = newSerie
     //update html with new serie
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
-    alert(document.querySelector(".tabs_list").dataset.series)
+    //alert(document.querySelector(".tabs_list").dataset.series)
+    this.updateAllcharts()
   }
-  updateAllcharts(newSerie){
+  updateAllcharts(){
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+    //debugger;
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //result.forEach((arr)=>{
+    //  arrayDatas.push({name: arr[0],data:arr[1]})
+    //})
+
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
-        series: arrayDatas
+        series: arrayUpdate
       })
     })
+     //series: [{data: [
+  //  {x: "02-02-2002",y: 44}, {x: "12-02-2002",y: 51}]
+  //}]
   }
+
+
 
 
 
