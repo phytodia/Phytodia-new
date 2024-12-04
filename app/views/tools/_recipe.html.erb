@@ -1,14 +1,21 @@
 <div class="recipe">
 <h2 class="titre_test">Recette</h2>
 <div class="tool_saponification_bas" id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart" data-recipe-series="">
-
   <div id="list_ingredients">
     <h2 class="titre_tool">Liste des ingrédients</h2>
-    <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
-      <% @ingredients.keys.each do |ing|%>
-        <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick"><%= ing%></option>
-      <% end %>
-    </select>
+    <div class="liste_ingredients_options">
+      <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
+        <% @ingredients.keys.each do |ing|%>
+          <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick" data-saponification-target="ingredientItem"><%= ing%></option>
+        <% end %>
+      </select>
+      <div class="ingredients_options">
+        <% @ingredients.keys.size.times do %>
+          <i class="fa-solid fa-plus" data-action="click->saponification#addIngredientOption"></i>
+        <% end %>
+      </div>
+    </div><!-- fin liste ingredients options -->
+
   </div><!-- Fin liste ingredients -->
 
   <div id="caracteristiques" data-saponification-target="caracteristiquesIngredient">
@@ -101,7 +108,8 @@
       <table>
         <thead>
           <tr>
-            <th>Ingrédient</th>
+            <th></th>
+            <th class="tableau_ingredient_name ">Ingrédient</th>
             <th>%</th>
             <th>g</th>
           </tr>
@@ -110,6 +118,7 @@
         </tbody>
         <div>
           <tr>
+            <td></td>
             <td>Totaux</td>
             <td>0%</td>
             <td data-saponification-target="sommePoids">0</td>

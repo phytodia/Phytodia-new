@@ -34,16 +34,18 @@
   table {
     thead {
       th {width: 2.5rem; text-align: center;}
-      th:first-child {width: 7rem;}
+      th.tableau_ingredient_name {
+        width: 7rem;
+      }
+      //th:first-child {width: 7rem;}
     }
     tbody {
       tr {
         td{
           input {width: 2.5rem; text-align: center;}
         }
-        td:first-child {
-          input{width: 7rem; text-align: left;}
-        }
+
+        .table_ingredients_input {width: 7rem; text-align: left;}
       }
     }
   }
@@ -108,4 +110,10 @@
     //background-color: wheat;
   }
 
+}
+.liste_ingredients_options {
+  display: flex;
+  text-align: center;
+}
+.ingredients_options {
 }
