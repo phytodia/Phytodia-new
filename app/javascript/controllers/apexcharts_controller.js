@@ -38,7 +38,7 @@ export default class extends Controller {
       },
       series: arrayDatas,
       title: {
-        text: 'Radar saponification basic'
+        text: ''
       },
       yaxis: {
         stepSize: 20
