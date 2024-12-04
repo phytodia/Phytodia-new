@@ -11,7 +11,7 @@ export default class extends Controller {
     console.log(this.apexchartsOutlets)
   }
   createTr(event){
-    let newTd = '<td><input type="text" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
+    let newTd = '<i class="fa-solid fa-minus" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value
@@ -34,11 +34,15 @@ export default class extends Controller {
     let indexPlus = Array.from(event.currentTarget.parentElement.querySelectorAll(".fa-plus")).indexOf(event.currentTarget)
     this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
   }
+  removeIngredientOption(event){
+    event.currentTarget.parentElement.remove()
+    this.changePoids()
+  }
   doubleClick(event){
-    debugger;
+
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
-    debugger;
+
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
       this.createTr(event)
     }
