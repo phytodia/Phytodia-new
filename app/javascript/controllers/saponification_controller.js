@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
   static outlets = [ "apexcharts" ]
   connect() {
     console.log("sapo")
@@ -30,10 +30,15 @@ export default class extends Controller {
       element.value = ingredients[ingredient][element.name]
     })
   }
+  addIngredientOption(event){
+    let indexPlus = Array.from(event.currentTarget.parentElement.querySelectorAll(".fa-plus")).indexOf(event.currentTarget)
+    this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
+  }
   doubleClick(event){
+    debugger;
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
-    //debugger;
+    debugger;
     if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
       this.createTr(event)
     }
@@ -108,20 +113,20 @@ export default class extends Controller {
   }
 
   insertKoh(eleonore) {
-    //debuger;
+
     console.log("Hello")
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh;
   }
   proprietesSavon(){
-    //debugger;
+
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText) // Poids total de la recette.
-    //debugger;
+
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes) //Propriétés du savon final
-    //debugger;
+
     const ingredientsData = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients) // Liste des ingrédients possible à ajouter dans la recette
-    //debugger;
+
     // Pour chaque propriété finale du savon, on itère et récupère les données des ingrédients sélectionnés au prorata de leur poids dans la recette.
     Object.keys(savonProps).forEach((prop)=>{
       savonProps[prop] = 0; // On remet à 0 la propriété du savon final.
@@ -142,14 +147,15 @@ export default class extends Controller {
   }
 
   insertProprietes(proprietesJson){
-    //debugger;
+
     let proprietes = JSON.parse(proprietesJson);
 
     let inputs = Array.from(this.savonProprietesTarget.querySelectorAll("input"));
+
     Object.keys(proprietes).forEach((prop)=>{
       this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = proprietes[prop]
     })
-    //debugger;
+
     //let valuesSavon = proprietes;
     // changer les propriétés au format JSON au format Array []
     let indexTab = parseInt(document.querySelector(".tabs_list").dataset.index);
@@ -157,12 +163,12 @@ export default class extends Controller {
 
     let chartProps = JSON.parse(proprietesJson)
     delete chartProps.INS
-    //debugger;
+
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series);
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels);
 
     let newchartProps = Object.values(chartProps)
-    //debugger;
+
     seriesArray[indexTab] = newchartProps
     //document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
@@ -210,7 +216,7 @@ export default class extends Controller {
   updateAllcharts(){
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
-    //debugger;
+
     let arrayUpdate = [];
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
