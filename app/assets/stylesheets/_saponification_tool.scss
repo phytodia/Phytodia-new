@@ -141,9 +141,10 @@
     display: flex;
     justify-content: center;
     font-size: 1em;
+    margin: 0;
    }
    details {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding: 15px 15px 0px 15px;
+    padding: 15px 15px 15px 15px;
    }
 }
