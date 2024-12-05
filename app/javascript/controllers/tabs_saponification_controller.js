@@ -21,7 +21,7 @@ export default class extends Controller {
     this.tabRecipeTargets[indexTab].classList.add("active");
     this.tabIndexTarget.dataset.index = indexTab.toString();
 
-    this.updatemyChart(indexTab)
+    //this.updatemyChart(indexTab)
   }
   newRecipe(event){
     const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
@@ -122,7 +122,8 @@ export default class extends Controller {
     this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
-    this.updatemyChart(0)
+    //this.updatemyChart(0)
+    this.updateAllcharts()
   }
   updatemyChart(index){
 
