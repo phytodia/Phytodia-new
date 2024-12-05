@@ -219,7 +219,6 @@ export default class extends Controller {
     this.updatemyChart(indexTab)
   }
   updatemyChart(index){
-
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
 
@@ -227,7 +226,6 @@ export default class extends Controller {
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
     })
-    //debugger;
     this.apexchartsOutlets[index].chart.updateOptions({
       series: arrayUpdate
     })

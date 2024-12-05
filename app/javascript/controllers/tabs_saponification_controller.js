@@ -133,7 +133,7 @@ export default class extends Controller {
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
     })
-    //debugger;
+
     this.apexchartsOutlets[index].chart.updateOptions({
       series: arrayUpdate
     })
