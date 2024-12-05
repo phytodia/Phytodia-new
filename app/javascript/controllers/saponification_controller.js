@@ -11,7 +11,7 @@ export default class extends Controller {
     console.log(this.apexchartsOutlets)
   }
   createTr(event){
-    let newTd = '<i class="fa-solid fa-minus" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
+    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value

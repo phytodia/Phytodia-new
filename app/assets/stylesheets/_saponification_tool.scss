@@ -33,14 +33,18 @@
   width: fit-content;
   table {
     thead {
+      display: flex;
       th {width: 2.5rem; text-align: center;}
       th.tableau_ingredient_name {
         width: 7rem;
       }
+      th:first-of-type {width: 1rem;}
       //th:first-child {width: 7rem;}
     }
     tbody {
       tr {
+        display: flex;
+        align-items: center;
         td{
           input {width: 2.5rem; text-align: center;}
         }
