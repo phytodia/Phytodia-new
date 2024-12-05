@@ -113,7 +113,7 @@ export default class extends Controller {
     //return seriesArray;
 
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
-    debugger;
+    //debugger;
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     recipetoRemove.remove()

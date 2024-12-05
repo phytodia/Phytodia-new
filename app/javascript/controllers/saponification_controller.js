@@ -214,8 +214,13 @@ export default class extends Controller {
     }
     //update serie
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series))
+    if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series)).length === 1){
+      indexTab = 0;
+    }
+
     seriesArray[indexTab] = newSerie
     //update html with new serie
+
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
     //alert(document.querySelector(".tabs_list").dataset.series)
     //this.updateAllcharts()
@@ -226,7 +231,7 @@ export default class extends Controller {
     let indexTab = index;
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
-    debugger;
+
     let arrayUpdate = [];
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
