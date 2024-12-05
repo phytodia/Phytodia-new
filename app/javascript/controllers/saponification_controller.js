@@ -215,7 +215,22 @@ export default class extends Controller {
     //update html with new serie
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
     //alert(document.querySelector(".tabs_list").dataset.series)
-    this.updateAllcharts()
+    //this.updateAllcharts()
+    this.updatemyChart(indexTab)
+  }
+  updatemyChart(index){
+
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //debugger;
+    this.apexchartsOutlets[index].chart.updateOptions({
+      series: arrayUpdate
+    })
   }
   updateAllcharts(){
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
