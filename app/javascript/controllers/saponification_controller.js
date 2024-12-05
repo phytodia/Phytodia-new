@@ -75,6 +75,7 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
     this.sommeKoh()
+
     this.proprietesSavon()
   }
 
@@ -200,10 +201,12 @@ export default class extends Controller {
     //this.apexchartsOutlets[indexTab].chart.updateSeries([{
     //  data: newchartProps
     //}])
+
     this.updateSeries(indexTab,JSON.stringify(Object.values(chartProps)))
   }
 
   updateSeries(index,serie){
+    //debugger;
     let indexTab = index;
     let newSerie = JSON.parse(serie)
     if(newSerie[0] === null){
@@ -216,17 +219,23 @@ export default class extends Controller {
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
     //alert(document.querySelector(".tabs_list").dataset.series)
     //this.updateAllcharts()
+
     this.updatemyChart(indexTab)
   }
   updatemyChart(index){
+    let indexTab = index;
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
-
+    debugger;
     let arrayUpdate = [];
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
     })
-    this.apexchartsOutlets[index].chart.updateOptions({
+    //this.connect()
+    if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels)).length === 1){
+      indexTab = 0;
+    }
+    this.apexchartsOutlets[indexTab].chart.updateOptions({
       series: arrayUpdate
     })
   }

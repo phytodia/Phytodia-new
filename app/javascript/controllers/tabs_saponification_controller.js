@@ -21,7 +21,7 @@ export default class extends Controller {
     this.tabRecipeTargets[indexTab].classList.add("active");
     this.tabIndexTarget.dataset.index = indexTab.toString();
 
-    //this.updatemyChart(indexTab)
+    this.updatemyChart(indexTab)
   }
   newRecipe(event){
     const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
@@ -95,7 +95,6 @@ export default class extends Controller {
   }
 
   removeRecipe(event){
-
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -103,11 +102,18 @@ export default class extends Controller {
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
 
+    let valSerieToDelete = Array.from(seriesArray)[indexTab];
+    let valLabelToDelete = Array.from(labelsArray)[indexTab];
 
-    labelsArray.splice(indexTab, 1)
-    seriesArray.splice(indexTab, 1)
+    //labelsArray = Array.from(labelsArray).splice(indexTab, 1)
+    labelsArray = Array.from(labelsArray).filter(val => val !== valLabelToDelete);
+    seriesArray = Array.from(seriesArray).filter(val => val !== valSerieToDelete);
+    //return labelsArray;
+    //seriesArray = Array.from(seriesArray).splice(indexTab, 1)
+    //return seriesArray;
 
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+    debugger;
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     recipetoRemove.remove()
@@ -122,8 +128,10 @@ export default class extends Controller {
     this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
-    //this.updatemyChart(0)
-    this.updateAllcharts()
+
+    //this.saponificationOutlets[0].connect()
+    this.updatemyChart(0)
+    //this.updateAllcharts()
   }
   updatemyChart(index){
 
