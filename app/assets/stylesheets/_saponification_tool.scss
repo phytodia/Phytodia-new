@@ -88,14 +88,16 @@
 }
 .tab_contents {
   //border: solid 3px blue;
-  height: auto;
+  height: 100%;
   width: 100%;
   position: relative;
   height: auto;
   min-height: 50vh;
+  height: 550px;;
   //height: 100vh;
   .tab_content {
     width: 100%;
+    //display: contents;
     //border: solid 1px red;
     height: auto;
     position: absolute;
@@ -120,4 +122,26 @@
   text-align: center;
 }
 .ingredients_options {
+}
+
+#faq {
+
+}
+#list_faq {
+  //border: solid 1px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  details summary::marker {
+    display: none;
+    content: "";
+   }
+   .faq_titre {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+   }
+   details {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0px 15px 0px 15px;
+   }
 }
