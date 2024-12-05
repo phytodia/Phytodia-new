@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   tabSelect(event){
+
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget);
     this.recipeContentTargets.forEach((element)=>{
       element.classList.remove("active")
@@ -21,7 +22,6 @@ export default class extends Controller {
     this.tabRecipeTargets[indexTab].classList.add("active");
     this.tabIndexTarget.dataset.index = indexTab.toString();
 
-    this.updatemyChart(indexTab)
   }
   newRecipe(event){
     const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
@@ -122,21 +122,7 @@ export default class extends Controller {
     this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
-    this.updatemyChart(0)
-  }
-  updatemyChart(index){
-
-    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
-    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
-
-    let arrayUpdate = [];
-    labelsArray.forEach((label)=>{
-      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
-    })
-    //debugger;
-    this.apexchartsOutlets[index].chart.updateOptions({
-      series: arrayUpdate
-    })
+    this.updateAllcharts()
   }
 
   updateAllcharts(){
