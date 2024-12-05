@@ -131,6 +131,7 @@
   //border: solid 1px;
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  gap:1em;
   details summary::marker {
     display: none;
     content: "";
@@ -139,9 +140,10 @@
     gap: 5px;
     display: flex;
     justify-content: center;
+    font-size: 1em;
    }
    details {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding: 0px 15px 0px 15px;
+    padding: 15px 15px 0px 15px;
    }
 }
