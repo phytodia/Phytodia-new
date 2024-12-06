@@ -5,6 +5,7 @@ export default class extends Controller {
 
   static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
   static outlets = [ "apexcharts" ]
+
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
@@ -183,6 +184,18 @@ export default class extends Controller {
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
+    //debugger;
+
+    //update donnees by key
+    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees);
+    let keyDonnees = document.querySelector(".tab.active").innerText;
+    let newDonnees = Object.values(chartProps);
+
+    let valuesToModify = donnees.find(obj => obj.name === keyDonnees);
+    valuesToModify['data'] = JSON.stringify(newDonnees);
+
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
     //this.ingredientsJsonTarget.dataset.series = JSON.stringify(Object.values(chartProps))
     //console.log(this.ingredientsJsonTarget.dataset.series)
 

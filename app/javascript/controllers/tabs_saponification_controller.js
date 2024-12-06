@@ -4,6 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = [ "apexcharts","saponification" ]
+  initialize(){
+    let arrayDonnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    let x = {name:"Recette α",data:"[0,0,0,0,0,0]"}
+    arrayDonnees.push(x)
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(arrayDonnees)
+  }
   connect() {
     console.log(this.apexchartsOutlets)
   }
@@ -89,6 +95,14 @@ export default class extends Controller {
      //debugger;
      //debugger;
      this.saponificationOutletElement.dataset.recipeSeries = "[0,0,0,0,0,0]"
+
+
+    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees);
+    let newDonnees = {'name':letter,'data':'[0,0,0,0,0,0]'}
+    donnees.push(newDonnees)
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
+
      //debugger;
      //debugger;
      //alert(JSON.stringify(seriesArray))
