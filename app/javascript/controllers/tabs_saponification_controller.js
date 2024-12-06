@@ -4,6 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = [ "apexcharts","saponification" ]
+  initialize(){
+    let arrayDonnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    let x = {name:"Recette α",data:"[0,0,0,0,0,0]"}
+    arrayDonnees.push(x)
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(arrayDonnees)
+  }
   connect() {
     console.log(this.apexchartsOutlets)
   }
@@ -89,13 +95,20 @@ export default class extends Controller {
      //debugger;
      //debugger;
      this.saponificationOutletElement.dataset.recipeSeries = "[0,0,0,0,0,0]"
+
+
+    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees);
+    let newDonnees = {'name':letter,'data':'[0,0,0,0,0,0]'}
+    donnees.push(newDonnees)
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
+
      //debugger;
      //debugger;
      //alert(JSON.stringify(seriesArray))
   }
 
   removeRecipe(event){
-
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget.parentElement)
     let recipetoRemove = this.recipeContentTargets[indexTab]
     let tabtoRemove = this.tabRecipeTargets[indexTab]
@@ -103,26 +116,69 @@ export default class extends Controller {
     let seriesArray = JSON.parse(document.querySelector(".tabs_list").dataset.series)
     let labelsArray = JSON.parse(document.querySelector(".tabs_list").dataset.labels)
 
+    let valSerieToDelete = Array.from(seriesArray)[indexTab];
+    let valLabelToDelete = Array.from(labelsArray)[indexTab];
 
-    labelsArray.splice(indexTab, 1)
-    seriesArray.splice(indexTab, 1)
+    //labelsArray = Array.from(labelsArray).splice(indexTab, 1)
+    labelsArray = Array.from(labelsArray).filter(val => val !== valLabelToDelete);
+    seriesArray = Array.from(seriesArray).filter(val => val !== valSerieToDelete);
+    //return labelsArray;
+    //seriesArray = Array.from(seriesArray).splice(indexTab, 1)
+    //return seriesArray;
 
     document.querySelector(".tabs_list").dataset.labels = JSON.stringify(labelsArray)
+    //debugger;
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
 
     recipetoRemove.remove()
     tabtoRemove.remove()
-    this.recipeContentTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets[0].classList.add("active")
-    this.recipeContentTargets[0].classList.add("active")
+
+    //this.recipeContentTargets.forEach((element)=>{
+    //  element.classList.remove("active")
+    //})
+    //this.tabRecipeTargets.forEach((element)=>{
+    //  element.classList.remove("active")
+    //})
+    //this.tabRecipeTargets[0].classList.add("active")
+    //this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
-    this.updateAllcharts()
+
+
+    let keyDonnees = event.currentTarget.parentElement.innerText;
+    let donnees =  JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    delete donnees[donnees.indexOf(donnees.find(obj => obj.name === keyDonnees))]
+    donnees = donnees.filter(item => item !== null);
+    //donnees = Object.entries(donnees).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
+    //this.saponificationOutlets[0].connect()
+    this.updatemyChart(indexTab)
+    //this.updateAllcharts()
+  }
+  updatemyChart(index){
+
+    //let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    //let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+
+    //let arrayUpdate = [];
+    //labelsArray.forEach((label)=>{
+    //  arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    //})
+    //console.log(labelsArray)
+    //console.log(seriesArray)
+
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+    //arrayUpdate.push(newDatas)
+    //newDatas = [newDatas]
+    //let newArrayUpdate = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    this.apexchartsOutlets[index].chart.updateOptions({
+      //series: arrayUpdate
+      series: newDatas
+    })
   }
 
   updateAllcharts(){
@@ -138,9 +194,15 @@ export default class extends Controller {
     //})
     //alert(arrayUpdate)
 
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
-        series: arrayUpdate
+        //series: arrayUpdate
+        series: newDatas
       })
     })
      //series: [{data: [

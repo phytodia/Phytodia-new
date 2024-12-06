@@ -5,6 +5,7 @@ export default class extends Controller {
 
   static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
   static outlets = [ "apexcharts" ]
+
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
@@ -75,6 +76,7 @@ export default class extends Controller {
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh(event)
     this.sommeKoh()
+
     this.proprietesSavon()
   }
 
@@ -182,6 +184,18 @@ export default class extends Controller {
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
+    //debugger;
+
+    //update donnees by key
+    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees);
+    let keyDonnees = document.querySelector(".tab.active").innerText;
+    let newDonnees = Object.values(chartProps);
+
+    let valuesToModify = donnees.find(obj => obj.name === keyDonnees);
+    valuesToModify['data'] = JSON.stringify(newDonnees);
+
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
     //this.ingredientsJsonTarget.dataset.series = JSON.stringify(Object.values(chartProps))
     //console.log(this.ingredientsJsonTarget.dataset.series)
 
@@ -200,10 +214,12 @@ export default class extends Controller {
     //this.apexchartsOutlets[indexTab].chart.updateSeries([{
     //  data: newchartProps
     //}])
+
     this.updateSeries(indexTab,JSON.stringify(Object.values(chartProps)))
   }
 
   updateSeries(index,serie){
+    //debugger;
     let indexTab = index;
     let newSerie = JSON.parse(serie)
     if(newSerie[0] === null){
@@ -211,11 +227,44 @@ export default class extends Controller {
     }
     //update serie
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series))
+    if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series)).length === 1){
+      indexTab = 0;
+    }
+
     seriesArray[indexTab] = newSerie
     //update html with new serie
+
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
     //alert(document.querySelector(".tabs_list").dataset.series)
-    this.updateAllcharts()
+
+    //this.updateAllcharts()
+    this.updatemyChart(indexTab)
+  }
+  updatemyChart(index){
+    let indexTab = index;
+    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+
+    let arrayUpdate = [];
+    labelsArray.forEach((label)=>{
+      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    })
+    //this.connect()
+    if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels)).length === 1){
+      indexTab = 0;
+    }
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+    //arrayUpdate.push(newDatas)
+    //console.log(labelsArray)
+    //console.log(seriesArray)
+    this.apexchartsOutlets[indexTab].chart.updateOptions({
+      //series: arrayUpdate
+      series: newDatas
+    })
+
   }
   updateAllcharts(){
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
@@ -229,10 +278,15 @@ export default class extends Controller {
     //  arrayDatas.push({name: arr[0],data:arr[1]})
     //})
     //alert(arrayUpdate)
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
 
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
-        series: arrayUpdate
+        //series: arrayUpdate
+        series: newDatas
       })
     })
      //series: [{data: [
