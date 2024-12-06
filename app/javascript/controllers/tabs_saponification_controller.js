@@ -144,6 +144,13 @@ export default class extends Controller {
     //debugger;
     //alert(JSON.stringify(seriesArray))
 
+    let keyDonnees = event.currentTarget.parentElement.innerText;
+    let donnees =  JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    delete donnees[donnees.indexOf(donnees.find(obj => obj.name === keyDonnees))]
+    donnees = donnees.filter(item => item !== null);
+    //donnees = Object.entries(donnees).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+    document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
+
     //this.saponificationOutlets[0].connect()
     this.updatemyChart(indexTab)
     //this.updateAllcharts()
