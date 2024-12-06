@@ -35,7 +35,7 @@
 
   <div data-controller="tabs-saponification" data-tabs-saponification-apexcharts-outlet=".online-chart" data-tabs-saponification-saponification-outlet=".tool_saponification_bas">
     <div class="tabs_all_list">
-      <div class="tabs_list" data-tabs-saponification-target="tabIndex" data-index="0" data-series='<%= @series %>' data-labels='<%= @labels %>'>
+      <div class="tabs_list" data-tabs-saponification-target="tabIndex" data-index="0" data-series='<%= @series %>' data-labels='<%= @labels %>' data-donnees='<%= @donnees %>'>
         <div class="tab active" data-action="click->tabs-saponification#tabSelect" data-tabs-saponification-target="tabRecipe"><span>Recette α</span><i class="fa-regular fa-circle-xmark fa-l" data-action="click->tabs-saponification#removeRecipe"></i></div>
       </div>
 
