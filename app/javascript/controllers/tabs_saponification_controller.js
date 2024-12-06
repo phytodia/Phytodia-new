@@ -167,6 +167,8 @@ export default class extends Controller {
     })
     //console.log(labelsArray)
     //console.log(seriesArray)
+    debugger;
+    let newArrayUpdate = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
     this.apexchartsOutlets[index].chart.updateOptions({
       series: arrayUpdate
     })
