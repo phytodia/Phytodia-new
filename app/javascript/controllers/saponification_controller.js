@@ -236,8 +236,8 @@ export default class extends Controller {
 
     document.querySelector(".tabs_list").dataset.series = JSON.stringify(seriesArray)
     //alert(document.querySelector(".tabs_list").dataset.series)
-    //this.updateAllcharts()
 
+    //this.updateAllcharts()
     this.updatemyChart(indexTab)
   }
   updatemyChart(index){
@@ -264,6 +264,7 @@ export default class extends Controller {
       //series: arrayUpdate
       series: newDatas
     })
+
   }
   updateAllcharts(){
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));

@@ -15,6 +15,7 @@ export default class extends Controller {
   }
 
   tabSelect(event){
+
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget);
     this.recipeContentTargets.forEach((element)=>{
       element.classList.remove("active")
@@ -27,7 +28,6 @@ export default class extends Controller {
     this.tabRecipeTargets[indexTab].classList.add("active");
     this.tabIndexTarget.dataset.index = indexTab.toString();
 
-    this.updatemyChart(indexTab)
   }
   newRecipe(event){
     const alphabet = ["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"]
@@ -143,6 +143,7 @@ export default class extends Controller {
     //this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
+
 
     let keyDonnees = event.currentTarget.parentElement.innerText;
     let donnees =  JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
