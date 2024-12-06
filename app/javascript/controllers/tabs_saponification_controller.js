@@ -157,20 +157,26 @@ export default class extends Controller {
   }
   updatemyChart(index){
 
-    let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
-    let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
+    //let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
+    //let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
 
-
-    let arrayUpdate = [];
-    labelsArray.forEach((label)=>{
-      arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
-    })
+    //let arrayUpdate = [];
+    //labelsArray.forEach((label)=>{
+    //  arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
+    //})
     //console.log(labelsArray)
     //console.log(seriesArray)
 
-    let newArrayUpdate = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+    //arrayUpdate.push(newDatas)
+    //newDatas = [newDatas]
+    //let newArrayUpdate = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
     this.apexchartsOutlets[index].chart.updateOptions({
-      series: arrayUpdate
+      //series: arrayUpdate
+      series: newDatas
     })
   }
 
@@ -187,9 +193,15 @@ export default class extends Controller {
     //})
     //alert(arrayUpdate)
 
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
-        series: arrayUpdate
+        //series: arrayUpdate
+        series: newDatas
       })
     })
      //series: [{data: [

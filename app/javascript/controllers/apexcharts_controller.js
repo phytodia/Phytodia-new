@@ -23,13 +23,18 @@ export default class extends Controller {
     let x = Array.from(this.labelsValue)
     let y = Array.from(this.seriesValue)
     let result = x.map((item, index) => [item, y[index]]);
+
     let arrayDatas = [];
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
     console.log(result);
-    //debugger;
-    //debugger;
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+    newDatas = Array.from(newDatas)
+
     return {
       chart: {
         type: 'radar',

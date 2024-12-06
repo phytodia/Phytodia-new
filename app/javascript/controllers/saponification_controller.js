@@ -253,10 +253,16 @@ export default class extends Controller {
     if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels)).length === 1){
       indexTab = 0;
     }
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
+    //arrayUpdate.push(newDatas)
     //console.log(labelsArray)
     //console.log(seriesArray)
     this.apexchartsOutlets[indexTab].chart.updateOptions({
-      series: arrayUpdate
+      //series: arrayUpdate
+      series: newDatas
     })
   }
   updateAllcharts(){
@@ -271,10 +277,15 @@ export default class extends Controller {
     //  arrayDatas.push({name: arr[0],data:arr[1]})
     //})
     //alert(arrayUpdate)
+    let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+    newDatas.forEach(element=>{
+      element['data'] = JSON.parse(element['data'])
+    })
 
     this.apexchartsOutlets.forEach((element)=>{
       element.chart.updateOptions({
-        series: arrayUpdate
+        //series: arrayUpdate
+        series: newDatas
       })
     })
      //series: [{data: [
