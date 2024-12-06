@@ -15,6 +15,7 @@ export default class extends Controller {
   }
 
   tabSelect(event){
+    console.log("tab select")
 
     let indexTab = this.tabRecipeTargets.indexOf(event.currentTarget);
     this.recipeContentTargets.forEach((element)=>{
@@ -23,10 +24,12 @@ export default class extends Controller {
     this.tabRecipeTargets.forEach((element)=>{
       element.classList.remove("active")
     })
-    //debugger;
+
     this.recipeContentTargets[indexTab].classList.add("active");
     this.tabRecipeTargets[indexTab].classList.add("active");
     this.tabIndexTarget.dataset.index = indexTab.toString();
+
+    this.updatemyChart(indexTab)
 
   }
   newRecipe(event){
