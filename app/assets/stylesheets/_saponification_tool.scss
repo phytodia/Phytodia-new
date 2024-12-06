@@ -82,7 +82,8 @@
     &.active {
       background-color: #358E8E;
       border: solid #358E8E;
-    color: white;
+      color: white;
+      .fa-regular {display: none;}
     }
   }
 }

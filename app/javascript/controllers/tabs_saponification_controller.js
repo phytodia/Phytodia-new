@@ -118,19 +118,20 @@ export default class extends Controller {
 
     recipetoRemove.remove()
     tabtoRemove.remove()
-    this.recipeContentTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets.forEach((element)=>{
-      element.classList.remove("active")
-    })
-    this.tabRecipeTargets[0].classList.add("active")
-    this.recipeContentTargets[0].classList.add("active")
+
+    //this.recipeContentTargets.forEach((element)=>{
+    //  element.classList.remove("active")
+    //})
+    //this.tabRecipeTargets.forEach((element)=>{
+    //  element.classList.remove("active")
+    //})
+    //this.tabRecipeTargets[0].classList.add("active")
+    //this.recipeContentTargets[0].classList.add("active")
     //debugger;
     //alert(JSON.stringify(seriesArray))
 
     //this.saponificationOutlets[0].connect()
-    this.updatemyChart(0)
+    this.updatemyChart(indexTab)
     //this.updateAllcharts()
   }
   updatemyChart(index){
@@ -138,11 +139,13 @@ export default class extends Controller {
     let labelsArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels));
     let seriesArray = Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.series));
 
+
     let arrayUpdate = [];
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
     })
-
+    //console.log(labelsArray)
+    //console.log(seriesArray)
     this.apexchartsOutlets[index].chart.updateOptions({
       series: arrayUpdate
     })

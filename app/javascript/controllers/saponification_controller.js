@@ -240,6 +240,8 @@ export default class extends Controller {
     if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels)).length === 1){
       indexTab = 0;
     }
+    //console.log(labelsArray)
+    //console.log(seriesArray)
     this.apexchartsOutlets[indexTab].chart.updateOptions({
       series: arrayUpdate
     })
