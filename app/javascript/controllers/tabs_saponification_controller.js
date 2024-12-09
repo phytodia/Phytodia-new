@@ -156,7 +156,10 @@ export default class extends Controller {
     document.querySelector(".tabs_list").dataset.donnees = JSON.stringify(donnees)
 
     //this.saponificationOutlets[0].connect()
-    this.updatemyChart(indexTab)
+
+    let newIndex = this.tabRecipeTargets.indexOf(document.querySelector(".tab.active"))
+
+    this.updatemyChart(newIndex)
     //this.updateAllcharts()
   }
   updatemyChart(index){
@@ -175,6 +178,7 @@ export default class extends Controller {
     newDatas.forEach(element=>{
       element['data'] = JSON.parse(element['data'])
     })
+
     //arrayUpdate.push(newDatas)
     //newDatas = [newDatas]
     //let newArrayUpdate = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
