@@ -23,7 +23,19 @@
     }
   }
 }
-#caracteristiques {padding-right: 15px;}
+#proprietes_savon {
+  label {
+    white-space: nowrap;
+    min-width: 7em;
+  }
+}
+#caracteristiques {
+  padding-right: 15px;
+  label {
+    white-space: nowrap;
+    min-width: 7em;
+  }
+}
 #tableau_ingredients_selectionnes {
   //border-right: solid 1px;
   width: 25%;
@@ -151,4 +163,24 @@
     padding: 15px 15px 15px 15px;
     height: fit-content;
    }
+}
+.information {
+  position: relative;
+  margin-left: 5px;
+  & > span {
+    visibility: hidden;
+    position: absolute;
+    border: solid 1px;
+    width: 0;
+    height: 0;
+    padding: 3px;
+  }
+  &:hover {
+    span {
+      visibility: visible;
+      width: auto;
+      height: auto;
+      font-size: 0.8em;
+    }
+  }
 }
