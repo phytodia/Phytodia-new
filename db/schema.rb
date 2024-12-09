@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_03_144402) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_09_103210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_03_144402) do
     t.integer "stearic"
     t.integer "ricinoleic"
     t.integer "oleic"
-    t.integer "Linoeic"
+    t.integer "Linoleic"
     t.integer "linolenic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
