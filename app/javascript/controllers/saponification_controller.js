@@ -10,8 +10,10 @@ export default class extends Controller {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
     console.log(this.apexchartsOutlets)
+
   }
   createTr(event){
+    const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
@@ -19,7 +21,7 @@ export default class extends Controller {
     newTr.innerHTML = newTd
 
     this.ingredientTableTarget.appendChild(newTr)
-    this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = event.currentTarget.value
+    this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
 
   }
   getIngredient(event){
@@ -40,7 +42,6 @@ export default class extends Controller {
     this.changePoids()
   }
   doubleClick(event){
-
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
 
