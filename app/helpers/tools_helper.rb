@@ -1,6 +1,7 @@
 module ToolsHelper
   def self.csv_ingredients
     #rails c : ToolsHelper.csv_ingredients
+    # heroku run rake ingredients:ingredient_import
     require "csv"
     filepath = "db/data/export_ingredients.csv"
     Ingredient.destroy_all
