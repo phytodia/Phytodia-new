@@ -5,7 +5,7 @@
     <div class="liste_ingredients_options">
       <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
         <% @ingredients.keys.each do |ing|%>
-          <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick" data-saponification-target="ingredientItem"><%= ing%></option>
+          <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick" data-saponification-target="ingredientItem"><%= @ingredients[ing]["French_name"] %></option>
         <% end %>
       </select>
       <!--
@@ -112,6 +112,12 @@
     <div>
       <label for="Linolenic">Linolenic</label>
       <input type="number" name="Linolenic" value="0">
+      <i class="fa-regular fa-circle-question information"><span>gg</span></i>
+    </div>
+
+    <div>
+      <label for="Vitesse_tracage">Vitesse de traçage</label>
+      <input type="number" name="Vitesse_tracage" value="0">
       <i class="fa-regular fa-circle-question information"><span>gg</span></i>
     </div>
 
@@ -237,6 +243,12 @@
     <div>
       <label for="Linolenic">Linolenic</label>
       <input type="number" name="Linolenic" value="0">
+    </div>
+
+    <div>
+      <label for="Vitesse_tracage">Vitesse de traçage</label>
+      <input type="number" name="Vitesse_tracage" value="0">
+      <i class="fa-regular fa-circle-question information"><span>gg</span></i>
     </div>
   </div> <!-- Fin #caractéristiques -->
 
