@@ -51,6 +51,9 @@ gem "font-awesome-sass", "~> 6.1"
 
 gem "ffi", "< 1.17.0"
 
+gem 'pry', '~> 0.15.0'
+
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
