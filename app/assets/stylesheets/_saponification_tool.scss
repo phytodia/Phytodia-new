@@ -172,7 +172,6 @@
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap:1em;
-  details {height: auto;}
   details summary::marker {
     display: none;
     content: "";
