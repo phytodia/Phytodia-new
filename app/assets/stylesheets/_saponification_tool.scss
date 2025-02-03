@@ -165,7 +165,9 @@
 }
 
 #faq {
-
+  h2 {
+    font-weight: 400;
+  }
 }
 #list_faq {
   //border: solid 1px;
@@ -184,6 +186,7 @@
     margin: 0;
     align-items: center;
     cursor: pointer;
+    font-weight: 400;
    }
    details {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
