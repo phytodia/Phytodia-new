@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -105,9 +105,9 @@ export default class extends Controller {
       let qty = parseFloat(element.lastChild.querySelector("input").value)
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
-    this.sommeNaohTarget.value = naoh
-    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
 
+    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
+      this.sommeNaohTarget.value = naoh
     }
 
   }
@@ -120,9 +120,9 @@ export default class extends Controller {
         Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
       })
       console.log(`KOH: ${Koh}`)
-      this.insertKoh(Koh);
-      if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
 
+      if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
+        this.insertKoh(Koh);
       }
   }
 
@@ -137,15 +137,18 @@ export default class extends Controller {
     console.log("savon choice")
     this.choiceSavonTargets.forEach((element)=>{element.classList.remove("checked")});
     event.currentTarget.classList.add("checked")
-    let typeSavon = document.querySelector(".btn_savon_choix.checked").dataset.typeSavon;
+    let typeSavon = this.choiceSavonTargets.find((elt)=>elt.classList.contains("checked")).dataset.typeSavon;
+    //debugger;
     this.finalSavonChoiceTarget.dataset.finalSavonChoice = typeSavon;
+
     //let typeSavon = dataset.typeSavon;
     console.log(typeSavon);
-    document.querySelectorAll(".select_choice_savon_method").forEach((element)=>
+
+    this.resultsNaohKohTarget.querySelectorAll(".select_choice_savon_method").forEach((element)=>
     {
       element.classList.remove("selected");
     });
-    document.querySelector(`.select_choice_savon_method.${typeSavon}`).classList.add("selected")
+    this.resultsNaohKohTarget.querySelector(`.select_choice_savon_method.${typeSavon}`).classList.add("selected")
 
 
     if (typeSavon === "solide") {
