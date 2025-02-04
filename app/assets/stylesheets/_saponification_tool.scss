@@ -3,6 +3,7 @@
   //border: solid 1px;
   display: grid;
   grid-template-areas:
+  "type type"
   "tete tete"
   "tableau tableau"
   ;
@@ -13,6 +14,9 @@
     grid-area: tableau;
     display: flex;
     gap: 1em;
+  }
+  .types_savon {
+    grid-area: type;
   }
   //gap: 10px;
 }
@@ -165,6 +169,7 @@
 }
 
 #faq {
+  margin-top: 5em;
   h2 {
     font-weight: 400;
   }
@@ -208,6 +213,7 @@
     bottom: 0px;
     min-width: 15em;
     background-color: white;
+    color:black;
   }
   &:hover {
     span {
@@ -220,4 +226,58 @@
 }
 .fa-triangle-exclamation {
   color:#ef6d6d;
+}
+
+.types_savon {
+  gap: 3px;
+  padding: 0.5em 0;
+  display: flex;
+  flex-wrap: wrap;
+  .titre_tool {width: 100%;margin-bottom: 0;}
+  .btn_savon_choix {
+    border: solid 2px #358E8E;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 0em 1em;
+    cursor: pointer;
+    span {font-size: 0.8em; font-family: "Rubik", sans-serif;}
+    &.checked, &:hover {
+      background-color: #358E8E;
+      color: white;
+      img {filter: invert(1)}
+    }
+  }
+}
+.naoh_koh_results {
+  display: flex;
+  gap: 8px;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+}
+.select_choice_savon_method {
+  border: solid 2px transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  p {margin: 0;}
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &.naoh {}
+  &.koh {}
+  &.selected {
+    border: solid 2px #358E8E;
+    border-radius: 3px;
+    background-color:#358E8E;
+    color: white;
+  }
+  &.not_selected {
+    opacity: 0.3;
+  }
 }

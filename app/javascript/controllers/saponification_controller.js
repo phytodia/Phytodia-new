@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -84,7 +84,7 @@ export default class extends Controller {
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
     let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
-    this.sommeNaohTarget.value = newNaoh
+    this.sommeNaohTarget.value = newNaoh;
   }
 
   getNaoh(){
@@ -105,18 +105,23 @@ export default class extends Controller {
       let qty = parseFloat(element.lastChild.querySelector("input").value)
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
+    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
     this.sommeNaohTarget.value = naoh
+    }
+
   }
 
   sommeKoh() {
-    let Koh = 0;
-    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
-      let ingredient = element.dataset.ing
-      let qty = parseFloat(element.lastChild.querySelector("input").value)
-      Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
-    })
-    console.log(`KOH: ${Koh}`)
-    this.insertKoh(Koh);
+      let Koh = 0;
+      this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+        let ingredient = element.dataset.ing
+        let qty = parseFloat(element.lastChild.querySelector("input").value)
+        Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
+      })
+      console.log(`KOH: ${Koh}`)
+      if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
+        this.insertKoh(Koh);
+      }
   }
 
   insertKoh(eleonore) {
@@ -125,6 +130,33 @@ export default class extends Controller {
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh;
   }
+
+  selectSavon(event){
+    console.log("savon choice")
+    this.choiceSavonTargets.forEach((element)=>{element.classList.remove("checked")});
+    event.currentTarget.classList.add("checked")
+    let typeSavon = document.querySelector(".btn_savon_choix.checked").dataset.typeSavon;
+    this.finalSavonChoiceTarget.dataset.finalSavonChoice = typeSavon;
+    //let typeSavon = dataset.typeSavon;
+    console.log(typeSavon);
+    document.querySelectorAll(".select_choice_savon_method").forEach((element)=>
+    {
+      element.classList.remove("selected");
+    });
+    document.querySelector(`.select_choice_savon_method.${typeSavon}`).classList.add("selected")
+
+
+    if (typeSavon === "solide") {
+      console.log(typeSavon);
+      this.sommeNaoh(event)
+    }
+    else if (typeSavon === "liquide") {
+      this.sommeKoh()
+    }
+
+  }
+
+
   proprietesSavon(){
 
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
