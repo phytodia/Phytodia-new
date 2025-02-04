@@ -43,6 +43,84 @@
 
   <!-- Fin tool_saponification_bas-->
 </div><!-- Fin controller saponification -->
+<div data-controller="tabs-saponification">
+  <div id="tabs_faq_saponification">
+    <div class="tab_faq_saponification selected" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="tab_faq_saponification" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+      <h2>Ingrédients</h2>
+    </div>
+  </div>
+
+  <div id="tabs_faq_saponification_contents">
+
+    <div class="tab_faq_saponification_content visible" data-tabs-saponification-target="contentFaq">
+      <div id="list_faq">
+        <% @faqs.each do |faq| %>
+          <details>
+            <summary><h3 class="faq_titre"><%= faq.question %><i class="fa-solid fa-circle-plus"></i></h3></summary>
+            <p><%= faq.answer %></p>
+          </details>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab_faq_saponification_content" data-tabs-saponification-target="contentFaq">
+      <table class="ingredients_table">
+        <thead>
+          <tr>
+            <th>Ingrédient</th>
+            <th>Nom INCI</th>
+            <th>Dureté</th>
+            <th>Pouvoir lavant</th>
+            <th>Condition</th>
+            <th>Bulles</th>
+            <th>Creamy</th>
+            <th>Iodine</th>
+            <th>INS</th>
+            <th>Lauric</th>
+            <th>Myristic</th>
+            <th>Palmitic</th>
+            <th>Stearic</th>
+            <th>Ricinoleic</th>
+            <th>Oleic</th>
+            <th>Linoleic</th>
+            <th>Linolenic</th>
+            <th>Vitesse de traçage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Ingredient.all.each do |ing| %>
+            <tr>
+              <td><%= ing.french_name%></td>
+              <td><%= ing.INCI_name %></td>
+              <td><%= ing.hardness%></td>
+              <td><%= ing.cleansing%></td>
+              <td><%= ing.condition %></td>
+              <td><%= ing.bubbly %></td>
+              <td><%= ing.creamy %></td>
+              <td><%= ing.iodine %></td>
+              <td><%= ing.INS %></td>
+              <td><%= ing.lauric %></td>
+              <td><%= ing.myristic %></td>
+              <td><%= ing.palmitic %></td>
+              <td><%= ing.stearic %></td>
+              <td><%= ing.ricinoleic %></td>
+              <td><%= ing.oleic %></td>
+              <td><%= ing.Linoleic %></td>
+              <td><%= ing.linolenic %></td>
+              <td><%= ing.vitesse_tracage %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- Fin #tabs_faq_saponification_contents -->
+</div>
+
+
+
 <div id="faq">
   <h2>Questions fréquentes</h2>
   <div id="list_faq">
