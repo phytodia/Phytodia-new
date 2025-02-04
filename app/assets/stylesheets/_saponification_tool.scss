@@ -281,3 +281,18 @@
     opacity: 0.3;
   }
 }
+
+#tabs_faq_saponification {
+  display: flex;
+  margin-top: 4em;
+  gap:8px;
+  .tab_faq_saponification {
+    h2 {font-weight: 400; margin: 0;}
+    border: solid 1px;
+  }
+}
+#tabs_faq_saponification_contents {
+  border: solid 1px;
+  height: 10vh;
+
+}
