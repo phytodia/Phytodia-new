@@ -220,6 +220,11 @@ export default class extends Controller {
 
   tabSelectFaq(event){
     let indexTab = this.tabFaqTargets.indexOf(event.currentTarget);
+    this.tabFaqTargets.forEach((tab)=>{
+      tab.classList.remove("selected")
+    });
+    this.tabFaqTargets[indexTab].classList.add("selected")
+
     this.contentFaqTargets.forEach((content)=>{
       content.classList.remove("visible")
     })
