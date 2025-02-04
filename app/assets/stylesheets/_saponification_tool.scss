@@ -169,6 +169,7 @@
 }
 
 #faq {
+  margin-top: 5em;
   h2 {
     font-weight: 400;
   }
@@ -212,6 +213,7 @@
     bottom: 0px;
     min-width: 15em;
     background-color: white;
+    color:black;
   }
   &:hover {
     span {
@@ -227,9 +229,11 @@
 }
 
 .types_savon {
-  display: flex;
   gap: 3px;
   padding: 0.5em 0;
+  display: flex;
+  flex-wrap: wrap;
+  .titre_tool {width: 100%;margin-bottom: 0;}
   .btn_savon_choix {
     border: solid 2px #358E8E;
     border-radius: 3px;
@@ -263,12 +267,15 @@
   div {
     width: 100%;
     display: flex;
+    align-items: center;
   }
   &.naoh {}
   &.koh {}
   &.selected {
     border: solid 2px #358E8E;
     border-radius: 3px;
+    background-color:#358E8E;
+    color: white;
   }
   &.not_selected {
     opacity: 0.3;

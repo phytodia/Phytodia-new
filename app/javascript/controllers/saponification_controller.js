@@ -84,9 +84,7 @@ export default class extends Controller {
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
     let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
-    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
-      this.sommeNaohTarget.value = newNaoh
-    }
+    this.sommeNaohTarget.value = newNaoh;
   }
 
   getNaoh(){
@@ -101,20 +99,19 @@ export default class extends Controller {
 
 
   sommeNaoh(event){
+    let naoh = 0
+    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+      let ingredient = element.dataset.ing
+      let qty = parseFloat(element.lastChild.querySelector("input").value)
+      naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
+    })
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
-      let naoh = 0
-      this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
-        let ingredient = element.dataset.ing
-        let qty = parseFloat(element.lastChild.querySelector("input").value)
-        naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
-      })
-      this.sommeNaohTarget.value = naoh
+    this.sommeNaohTarget.value = naoh
     }
 
   }
 
   sommeKoh() {
-    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
       let Koh = 0;
       this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
         let ingredient = element.dataset.ing
@@ -122,7 +119,8 @@ export default class extends Controller {
         Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
       })
       console.log(`KOH: ${Koh}`)
-      this.insertKoh(Koh);
+      if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
+        this.insertKoh(Koh);
       }
   }
 
