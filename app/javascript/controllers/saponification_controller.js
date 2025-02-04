@@ -84,7 +84,9 @@ export default class extends Controller {
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
     let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
-    this.sommeNaohTarget.value = newNaoh
+    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
+      this.sommeNaohTarget.value = newNaoh
+    }
   }
 
   getNaoh(){

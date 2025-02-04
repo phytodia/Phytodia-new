@@ -250,6 +250,8 @@
 .naoh_koh_results {
   display: flex;
   gap: 8px;
+  margin-top: 0.5em;
+  font-size: 0.9em;
 }
 .select_choice_savon_method {
   border: solid 2px transparent;
@@ -265,7 +267,8 @@
   &.naoh {}
   &.koh {}
   &.selected {
-    border: solid 2px #358E8E;;
+    border: solid 2px #358E8E;
+    border-radius: 3px;
   }
   &.not_selected {
     opacity: 0.3;
