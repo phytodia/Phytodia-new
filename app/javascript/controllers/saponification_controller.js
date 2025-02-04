@@ -105,8 +105,9 @@ export default class extends Controller {
       let qty = parseFloat(element.lastChild.querySelector("input").value)
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
-    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
     this.sommeNaohTarget.value = naoh
+    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
+
     }
 
   }
@@ -119,8 +120,9 @@ export default class extends Controller {
         Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
       })
       console.log(`KOH: ${Koh}`)
+      this.insertKoh(Koh);
       if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
-        this.insertKoh(Koh);
+
       }
   }
 
