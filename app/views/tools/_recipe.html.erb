@@ -1,11 +1,13 @@
 <div class="recipe">
 
 <div class="tool_saponification_bas" id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart" data-recipe-series="" data-recipe-donnees="">
-  <div class="types_savon">
-    <input id="" name="savon" type="checkbox" class="radio_savon"/>
-    <label for=""><div><%= image_tag "savon.png",width:40 %><span>savon solide</span></div></label>
-    <input id="" name="savon" type="checkbox" class="radio_savon"/>
-    <label for=""><div><%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span></div></label>
+  <div class="types_savon" data-saponification-target="finalSavonChoice" data-final-savon-choice="">
+    <div class="btn_savon_choix" data-type-savon="solide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
+      <%= image_tag "savon.png",width:40 %><span>savon solide</span>
+    </div>
+    <div class="btn_savon_choix" data-type-savon="liquide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
+      <%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span>
+    </div>
   </div>
   <div class="soudes">
     <select>
@@ -169,15 +171,24 @@
         <label for="">% Surgraissage</label>
         <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
       </div>
-      <div>
-        <p>Somme NaOH des ingrédients</p>
-        <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
-        <i class="fa-regular fa-circle-question information"><span><p>Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p></span></i>
+      <div class="naoh_koh_results">
+        <div class="select_choice_savon_method naoh solide">
+          <p>Somme NaOH</p>
+          <div>
+            <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
+            <i class="fa-regular fa-circle-question information"><span><p>Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p></span></i>
+          </div>
+        </div>
+
+        <div class="select_choice_savon_method koh liquide">
+          <p>Somme KOH</p>
+          <div>
+            <input type="number" name="somme" value="0" data-saponification-target="sommeKoh" class="resutl_koh">
+            <i class="fa-regular fa-circle-question information"><span><p>???</p></span></i>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>Somme KOH</p>
-        <input type="number" name="somme" value="0" data-saponification-target="sommeKoh" class="resutl_koh">
-      </div>
+      <!-- NaOH + KOH -->
       <br>
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
     </div><!-- Fin des ingrédients de la recette -->
