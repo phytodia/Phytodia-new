@@ -293,6 +293,24 @@
 }
 #tabs_faq_saponification_contents {
   border: solid 1px;
-  height: 10vh;
+  height: auto;
+  position: relative;
+  display: block;
 
+}
+.tab_faq_saponification_content {
+  border: solid 1px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index:-1;
+  visibility: hidden;
+  height: 0;
+  &.visible {
+    z-index:1;
+    height: auto;
+    visibility: visible;
+    display: contents;
+  }
 }

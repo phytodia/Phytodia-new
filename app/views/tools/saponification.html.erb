@@ -43,15 +43,32 @@
 
   <!-- Fin tool_saponification_bas-->
 </div><!-- Fin controller saponification -->
-<div id="tabs_faq_saponification">
-  <div class="tab_faq_saponification">
-    <h2>Questions fréquentes</h2>
+<div data-controller="tabs-saponification">
+  <div id="tabs_faq_saponification">
+    <div class="tab_faq_saponification" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="tab_faq_saponification" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+      <h2>Ingrédients</h2>
+    </div>
   </div>
-  <div class="tab_faq_saponification">
-    <h2>Ingrédients</h2>
-  </div>
-</div>
-<div id="tabs_faq_saponification_contents">
+
+  <div id="tabs_faq_saponification_contents">
+
+    <div class="tab_faq_saponification_content visible" data-tabs-saponification-target="contentFaq">
+      <p>1</p>
+    </div>
+    <div class="tab_faq_saponification_content" data-tabs-saponification-target="contentFaq">
+      <p>2</p>
+      <p>2</p>
+      <p>2</p>
+      <p>2</p>
+      <p>2</p>
+      <p>2</p>
+      <p>2</p>
+    </div>
+
+  </div><!-- Fin #tabs_faq_saponification_contents -->
 </div>
 
 
