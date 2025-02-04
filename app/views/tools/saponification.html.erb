@@ -56,7 +56,14 @@
   <div id="tabs_faq_saponification_contents">
 
     <div class="tab_faq_saponification_content visible" data-tabs-saponification-target="contentFaq">
-      <p>1</p>
+      <div id="list_faq">
+        <% @faqs.each do |faq| %>
+          <details>
+            <summary><h3 class="faq_titre"><%= faq.question %><i class="fa-solid fa-circle-plus"></i></h3></summary>
+            <p><%= faq.answer %></p>
+          </details>
+        <% end %>
+      </div>
     </div>
     <div class="tab_faq_saponification_content" data-tabs-saponification-target="contentFaq">
       <p>2</p>
