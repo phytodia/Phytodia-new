@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/contact'
   get 'pages/about'
+
+  get 'sort/:name/:sort',to:"tools#sort_ingredients_table",as: :ingredient_sort
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

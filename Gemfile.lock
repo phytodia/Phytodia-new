@@ -69,7 +69,13 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     base64 (0.2.0)
+    better_errors (2.10.1)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+      rouge (>= 1.0.0)
     bindex (0.8.1)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
     builder (3.3.0)
@@ -90,6 +96,7 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debug_inspector (1.2.0)
     erubi (1.13.0)
     ffi (1.16.3)
     font-awesome-sass (6.5.2)
@@ -214,6 +221,7 @@ GEM
     reline (0.5.10)
       io-console (~> 0.5)
     rexml (3.3.8)
+    rouge (4.5.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -272,6 +280,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootsnap
   capybara
   debug
