@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="tabs-saponification"
 export default class extends Controller {
-  static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent","tabFaq","contentFaq"]
+  static targets = ["tabRecipe","newRecipe","recipeContent","tabIndex","chart","chartParent"]
   static outlets = [ "apexcharts","saponification" ]
   initialize(){
     let arrayDonnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
@@ -215,20 +215,6 @@ export default class extends Controller {
      //series: [{data: [
   //  {x: "02-02-2002",y: 44}, {x: "12-02-2002",y: 51}]
   //}]
-  }
-
-
-  tabSelectFaq(event){
-    let indexTab = this.tabFaqTargets.indexOf(event.currentTarget);
-    this.tabFaqTargets.forEach((tab)=>{
-      tab.classList.remove("selected")
-    });
-    this.tabFaqTargets[indexTab].classList.add("selected")
-
-    this.contentFaqTargets.forEach((content)=>{
-      content.classList.remove("visible")
-    })
-    this.contentFaqTargets[indexTab].classList.add("visible")
   }
 
 }

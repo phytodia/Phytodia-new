@@ -43,19 +43,19 @@
 
   <!-- Fin tool_saponification_bas-->
 </div><!-- Fin controller saponification -->
-<div data-controller="tabs-saponification">
+<div data-controller="tabs-tools">
   <div id="tabs_faq_saponification">
-    <div class="tab_faq_saponification selected" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+    <div class="tab_faq_saponification selected" data-tabs-tools-target="tabFaq" data-action="click->tabs-tools#tabSelectFaq">
       <h2>Questions fréquentes</h2>
     </div>
-    <div class="tab_faq_saponification" data-tabs-saponification-target="tabFaq" data-action="click->tabs-saponification#tabSelectFaq">
+    <div class="tab_faq_saponification" data-tabs-tools-target="tabFaq" data-action="click->tabs-tools#tabSelectFaq">
       <h2>Ingrédients</h2>
     </div>
   </div>
 
   <div id="tabs_faq_saponification_contents">
 
-    <div class="tab_faq_saponification_content visible" data-tabs-saponification-target="contentFaq">
+    <div class="tab_faq_saponification_content visible" data-tabs-tools-target="contentFaq">
       <div id="list_faq">
         <% @faqs.each do |faq| %>
           <details>
@@ -65,7 +65,7 @@
         <% end %>
       </div>
     </div>
-    <div class="tab_faq_saponification_content" data-tabs-saponification-target="contentFaq">
+    <div class="tab_faq_saponification_content" data-tabs-tools-target="contentFaq">
       <%= render "tools/tableau_ingredients"%>
     </div>
 
