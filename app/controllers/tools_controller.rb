@@ -14,9 +14,6 @@ class ToolsController < ApplicationController
     render partial: "recipe"
   end
 
-  def full_list
-  end
-
   def sort_ingredients_table
     #@ingredients_table
 
@@ -29,7 +26,8 @@ class ToolsController < ApplicationController
     case element_to_sort
     when "ingredient"
       @ingredients_table = @ingredients_table.reorder("french_name #{sort_type}")
-    when ""
+    when "INCI"
+      @ingredients_table = @ingredients_table.reorder(INCI_name: sort_type.to_sym)
     else
 
     end
