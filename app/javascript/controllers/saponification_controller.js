@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","concentrationLessive"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","concentrationLessive","sommeGraissesINS","qtyLessiveSoude"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -127,7 +127,6 @@ export default class extends Controller {
   }
 
   insertKoh(eleonore) {
-
     console.log("Hello")
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh;
@@ -135,9 +134,20 @@ export default class extends Controller {
 
   changeEau(){
     //modification de la qte d'eau en fonction de la concentration de lessive
+    let sommeGraisses = parseInt(this.sommeGraissesINSTarget.value)
+    debugger;
   }
   changeLessive(){
     //quand la concentration de lessive change...
+    debugger;
+  }
+  getQtyLessiveSoude(){
+    debugger;
+    // let concentrationLessive = XX
+    // let tauxSurgraissage = YY
+    // get poids de la soude = poids du gras * concentration de la lessive désirée
+    // qty soude = Poids de la soude * (1 - taux de surgraissage)
+    // qty lessive de soude = qty soude + concentration de la lessive
   }
 
   selectSavon(event){

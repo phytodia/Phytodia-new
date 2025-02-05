@@ -197,6 +197,10 @@
         <label for="">qté eau</label>
         <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeEau" data-saponification-target="qtyWater">
       </div>
+      <div>
+        <label for="">Qté lessive de soude</label>
+        <input type="number" name="lessive" value="0" data-saponification-target="qtyLessiveSoude">
+      </div>
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
     </div><!-- Fin des ingrédients de la recette -->
 
@@ -236,7 +240,7 @@
 
       <div>
         <label for="INS">INS</label>
-        <input type="number" name="INS" value="0">
+        <input type="number" name="INS" value="0" data-saponification-target="sommeGraissesINS">
       </div>
 
       <hr>
