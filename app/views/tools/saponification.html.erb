@@ -66,54 +66,7 @@
       </div>
     </div>
     <div class="tab_faq_saponification_content" data-tabs-saponification-target="contentFaq">
-      <table class="ingredients_table">
-        <thead>
-          <tr>
-            <th>Ingrédient</th>
-            <th>Nom INCI</th>
-            <th>Dureté</th>
-            <th>Pouvoir lavant</th>
-            <th>Condition</th>
-            <th>Bulles</th>
-            <th>Creamy</th>
-            <th>Iodine</th>
-            <th>INS</th>
-            <th>Lauric</th>
-            <th>Myristic</th>
-            <th>Palmitic</th>
-            <th>Stearic</th>
-            <th>Ricinoleic</th>
-            <th>Oleic</th>
-            <th>Linoleic</th>
-            <th>Linolenic</th>
-            <th>Vitesse de traçage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Ingredient.all.each do |ing| %>
-            <tr>
-              <td><%= ing.french_name%></td>
-              <td><%= ing.INCI_name %></td>
-              <td><%= ing.hardness%></td>
-              <td><%= ing.cleansing%></td>
-              <td><%= ing.condition %></td>
-              <td><%= ing.bubbly %></td>
-              <td><%= ing.creamy %></td>
-              <td><%= ing.iodine %></td>
-              <td><%= ing.INS %></td>
-              <td><%= ing.lauric %></td>
-              <td><%= ing.myristic %></td>
-              <td><%= ing.palmitic %></td>
-              <td><%= ing.stearic %></td>
-              <td><%= ing.ricinoleic %></td>
-              <td><%= ing.oleic %></td>
-              <td><%= ing.Linoleic %></td>
-              <td><%= ing.linolenic %></td>
-              <td><%= ing.vitesse_tracage %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render "tools/tableau_ingredients"%>
     </div>
 
   </div><!-- Fin #tabs_faq_saponification_contents -->

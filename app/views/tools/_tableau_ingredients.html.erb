@@ -1,0 +1,48 @@
+<table id="ingredients_table">
+  <thead>
+    <tr>
+      <th><span class="ing_head">Ingrédient<div class="sort_ing"><%= link_to ingredient_sort_path(name:"ingredient",sort:"asc"), data: { turbo_stream: true } do %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"ingredient",sort:"desc"), data: { turbo_stream: true } do %><i class="fa-solid fa-sort-down"></i><% end %></div></th>
+      <th><span class="ing_head">Nom INCI<div class="sort_ing"><%= link_to ingredient_sort_path(name:"INCI",sort:"asc"), data: { turbo_stream: true } do %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"INCI",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></th>
+      <th><span class="ing_head">Dureté<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></th>
+      <th><span class="ing_head">Pouvoir lavant<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Condition<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Bulles<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Creamy<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Iodine<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">INS<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Lauric<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Myristic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Palmitic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Stearic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Ricinoleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Oleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Linoleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Linolenic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Vitesse de traçage<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients_table.each do |ing| %>
+      <tr>
+        <td><%= ing.french_name%></td>
+        <td><%= ing.INCI_name %></td>
+        <td><%= ing.hardness%></td>
+        <td><%= ing.cleansing%></td>
+        <td><%= ing.condition %></td>
+        <td><%= ing.bubbly %></td>
+        <td><%= ing.creamy %></td>
+        <td><%= ing.iodine %></td>
+        <td><%= ing.INS %></td>
+        <td><%= ing.lauric %></td>
+        <td><%= ing.myristic %></td>
+        <td><%= ing.palmitic %></td>
+        <td><%= ing.stearic %></td>
+        <td><%= ing.ricinoleic %></td>
+        <td><%= ing.oleic %></td>
+        <td><%= ing.Linoleic %></td>
+        <td><%= ing.linolenic %></td>
+        <td><%= ing.vitesse_tracage %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -14,7 +14,31 @@ class ToolsController < ApplicationController
     render partial: "recipe"
   end
 
-  def full_list
+  def sort_ingredients_table
+    #@ingredients_table
+
+    #User.order('name DESC')
+    # .order not working -> utiliser .reorder
+    # SELECT "users".* FROM "users" ORDER BY name DESC
+    element_to_sort = params[:name]
+    sort_type = params[:sort] #asc or desc
+
+    case element_to_sort
+    when "ingredient"
+      @ingredients_table = @ingredients_table.reorder("french_name #{sort_type}")
+    when "INCI"
+      @ingredients_table = @ingredients_table.reorder(INCI_name: sort_type.to_sym)
+    else
+
+    end
+
+    respond_to do |format|
+      format.turbo_stream do
+        #Ajouter locals: @ingredients_table
+        render turbo_stream: turbo_stream.replace(:ingredients_table, partial:"tools/tableau_ingredients")
+      end
+    end
+    #redirect_to tools_saponification_path
   end
 
   def set_params_savon
@@ -48,5 +72,7 @@ class ToolsController < ApplicationController
     @savon_proprietes = @savon_proprietes.to_json
     @labels = ["Recette α"]
     @series = [[0, 0, 0, 0, 0, 0]]
+
+    @ingredients_table = Ingredient.all.order("french_name asc")
   end
 end
