@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","concentrationLessive"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -131,6 +131,13 @@ export default class extends Controller {
     console.log("Hello")
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh;
+  }
+
+  changeEau(){
+    //modification de la qte d'eau en fonction de la concentration de lessive
+  }
+  changeLessive(){
+    //quand la concentration de lessive change...
   }
 
   selectSavon(event){

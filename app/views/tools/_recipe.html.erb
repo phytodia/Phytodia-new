@@ -16,7 +16,12 @@
       <option value="">NaOH</option>
       <option value="">KOH</option>
     </select>
-    <input type="number" placeholder="concentration lessive">
+    <input type="number" placeholder="concentration lessive" data-action="change->saponification#changeLessive" data-saponification-target="concentrationLessive">
+
+    <div>
+      <label for="">% Surgraissage</label>
+      <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
+    </div>
   </div>
   <div class="tableaux">
     <div id="list_ingredients">
@@ -168,10 +173,6 @@
         </table>
       </div>
 
-      <div>
-        <label for="">% Surgraissage</label>
-        <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
-      </div>
       <hr>
       <div class="naoh_koh_results" data-saponification-target="resultsNaohKoh">
         <div class="select_choice_savon_method naoh solide">
@@ -192,6 +193,10 @@
       </div>
       <!-- NaOH + KOH -->
       <br>
+      <div>
+        <label for="">qté eau</label>
+        <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeEau" data-saponification-target="qtyWater">
+      </div>
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
     </div><!-- Fin des ingrédients de la recette -->
 
