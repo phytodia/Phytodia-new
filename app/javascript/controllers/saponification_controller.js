@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","concentrationLessive","sommeGraissesINS","qtyLessiveSoude"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -133,16 +133,30 @@ export default class extends Controller {
   }
 
   changeEau(){
+   
     //modification de la qte d'eau en fonction de la concentration de lessive
-    let sommeGraisses = parseInt(this.sommeGraissesINSTarget.value)
-    debugger;
+    //let sommeGraisses = parseInt(this.sommeGraissesINSTarget.value)
+    // récupérer le poids total des graisses * concentration de lessive entrée 
+    
   }
-  changeLessive(){
+  changeSoude(){
+    let poidsEau = parseFloat(this.sommePoidsTarget.innerText) * (parseFloat(this.pourcentageEauTarget.value)/100)
+    console.log("ChangeEau")
+    console.log(poidsEau)
+
+    this.qtyWaterTarget.value = poidsEau
     //quand la concentration de lessive change...
-    debugger;
+    //debugger;
+    this.getQtyLessiveSoude()
   }
   getQtyLessiveSoude(){
+    //debugger;
+    let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
+    let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
+    console.log(qtySoude)
     debugger;
+    this.qtySoudeTarget.value = qtySoude
+    
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
     // get poids de la soude = poids du gras * concentration de la lessive désirée

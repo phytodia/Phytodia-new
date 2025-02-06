@@ -16,7 +16,8 @@
       <option value="">NaOH</option>
       <option value="">KOH</option>
     </select>
-    <input type="number" placeholder="concentration lessive" data-action="change->saponification#changeLessive" data-saponification-target="concentrationLessive">
+    <br>
+    <input type="number" placeholder="% eau désirée" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
 
     <div>
       <label for="">% Surgraissage</label>
@@ -198,8 +199,8 @@
         <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeEau" data-saponification-target="qtyWater">
       </div>
       <div>
-        <label for="">Qté lessive de soude</label>
-        <input type="number" name="lessive" value="0" data-saponification-target="qtyLessiveSoude">
+        <label for="">Qté de soude</label>
+        <input type="number" name="lessive" value="0" data-saponification-target="qtySoude">
       </div>
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
     </div><!-- Fin des ingrédients de la recette -->
