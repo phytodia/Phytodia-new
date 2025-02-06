@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -200,6 +200,15 @@ export default class extends Controller {
       this.sommeKoh()
     }
 
+  }
+
+  lessiveSelect(){
+    if(this.selectSoudeTarget.value==="lessive"){
+      this.concentrationLessiveTarget.classList.add("visible")
+    }
+    else {
+      this.concentrationLessiveTarget.classList.remove("visible")
+    }
   }
 
 

@@ -277,6 +277,17 @@
   }
 }
 
+.input_lessive_concentration {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  &.visible {
+    visibility: visible;
+    height: auto;
+    width: auto;
+  }
+}
+
 #tabs_faq_saponification {
   display: flex;
   margin-top: 4em;
