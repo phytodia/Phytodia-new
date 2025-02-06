@@ -19,6 +19,8 @@
       <th><span class="ing_head">Linoleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">Linolenic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">Vitesse de traçage<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">NaOH<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">KOH<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
     </tr>
   </thead>
   <tbody>
@@ -42,6 +44,8 @@
         <td><%= ing.Linoleic %></td>
         <td><%= ing.linolenic %></td>
         <td><%= ing.vitesse_tracage %></td>
+        <td><%= ing.NaOH_SAP %></td>
+        <td><%= ing.KOH_SAP %></td>
       </tr>
     <% end %>
   </tbody>
