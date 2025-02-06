@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -133,11 +133,11 @@ export default class extends Controller {
   }
 
   changeEau(){
-   
+
     //modification de la qte d'eau en fonction de la concentration de lessive
     //let sommeGraisses = parseInt(this.sommeGraissesINSTarget.value)
-    // récupérer le poids total des graisses * concentration de lessive entrée 
-    
+    // récupérer le poids total des graisses * concentration de lessive entrée
+
   }
   changeSoude(){
     let poidsEau = parseFloat(this.sommePoidsTarget.innerText) * (parseFloat(this.pourcentageEauTarget.value)/100)
@@ -156,7 +156,7 @@ export default class extends Controller {
     console.log(qtySoude)
     debugger;
     this.qtySoudeTarget.value = qtySoude
-    
+
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
     // get poids de la soude = poids du gras * concentration de la lessive désirée
@@ -184,12 +184,31 @@ export default class extends Controller {
 
     if (typeSavon === "solide") {
       console.log(typeSavon);
+      this.selectSoudeTarget.querySelector(".solide").display = ""
+      Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = "none"})
+      this.selectSoudeTarget.value = "naoh"
+      this.selectSoudeTarget.disabled = false
+
       this.sommeNaoh(event)
     }
     else if (typeSavon === "liquide") {
+      Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
+      this.selectSoudeTarget.querySelector(".solide").style.display = "none"
+      this.selectSoudeTarget.value = "koh"
+      this.selectSoudeTarget.disabled = false
+
       this.sommeKoh()
     }
 
+  }
+
+  lessiveSelect(){
+    if(this.selectSoudeTarget.value==="lessive"){
+      this.concentrationLessiveTarget.classList.add("visible")
+    }
+    else {
+      this.concentrationLessiveTarget.classList.remove("visible")
+    }
   }
 
 

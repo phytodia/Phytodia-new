@@ -11,14 +11,15 @@
     </div>
   </div>
   <div class="soudes">
-    <select>
+    <select data-saponification-target="selectSoude" disabled data-action="saponification#lessiveSelect">
       <label for="">Type de soude</label>
-      <option value="">NaOH</option>
-      <option value="">KOH</option>
+      <option value="naoh" class="select_soude solide">NaOH</option>
+      <option value="koh" class="select_soude liquide">KOH</option>
+      <option value="lessive" class="select_soude liquide">Lessive</option>
     </select>
     <br>
     <input type="number" placeholder="% eau désirée" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
-
+    <input type="number" placeholder="conc. de la soude" class="input_lessive_concentration" data-saponification-target="concentrationLessive">
     <div>
       <label for="">% Surgraissage</label>
       <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
