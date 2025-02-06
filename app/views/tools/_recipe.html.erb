@@ -11,10 +11,11 @@
     </div>
   </div>
   <div class="soudes">
-    <select>
+    <select data-saponification-target="selectSoude" disabled>
       <label for="">Type de soude</label>
-      <option value="">NaOH</option>
-      <option value="">KOH</option>
+      <option value="naoh" class="select_soude solide">NaOH</option>
+      <option value="koh" class="select_soude liquide">KOH</option>
+      <option value="lessive" class="select_soude liquide">Lessive</option>
     </select>
     <br>
     <input type="number" placeholder="% eau désirée" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
