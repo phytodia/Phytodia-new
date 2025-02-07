@@ -20,7 +20,7 @@ export default class extends Controller {
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value
     newTr.innerHTML = newTd
-
+    //
     if (this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient').length>0) {
       this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
       newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
