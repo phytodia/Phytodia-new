@@ -19,7 +19,7 @@
     </select>
     <br>
     <input type="number" placeholder="% eau désirée" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
-    <input type="number" placeholder="conc. de la soude" class="input_lessive_concentration" data-saponification-target="concentrationLessive">
+    <input type="number" placeholder="conc. de la soude" class="input_lessive_concentration" data-saponification-target="concentrationLessive" data-action="change->saponification#getConcentrationLessive">
     <div>
       <label for="">% Surgraissage</label>
       <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
@@ -202,6 +202,10 @@
       <div>
         <label for="">Qté de soude</label>
         <input type="number" name="lessive" value="0" data-saponification-target="qtySoude">
+      </div>
+      <div>
+        <label for="">Qté de lessive (préparée)</label>
+        <input class="lessive_soude_result" type="number" name="lessive_soude" value="0" data-saponification-target="qtyLessiveSoude">
       </div>
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
     </div><!-- Fin des ingrédients de la recette -->

@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -79,12 +79,16 @@ export default class extends Controller {
     this.sommeKoh()
 
     this.proprietesSavon()
+    //rajout des appels à fonctions suivantes
+    this.changeSoude()
+    this.getQtyLessiveSoude()
+    this.getConcentrationLessive()
   }
 
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
     let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
-    this.sommeNaohTarget.value = newNaoh;
+    this.sommeNaohTarget.value = newNaoh.toFixed(2);
   }
 
   getNaoh(){
@@ -107,7 +111,7 @@ export default class extends Controller {
     })
 
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
-      this.sommeNaohTarget.value = naoh
+      this.sommeNaohTarget.value = naoh.toFixed(2)
     }
 
   }
@@ -129,7 +133,7 @@ export default class extends Controller {
   insertKoh(eleonore) {
     console.log("Hello")
     let Koh = eleonore;
-    this.sommeKohTarget.value = Koh;
+    this.sommeKohTarget.value = Koh.toFixed(2);
   }
 
   changeEau(){
@@ -144,7 +148,7 @@ export default class extends Controller {
     console.log("ChangeEau")
     console.log(poidsEau)
 
-    this.qtyWaterTarget.value = poidsEau
+    this.qtyWaterTarget.value = poidsEau.toFixed(2)
     //quand la concentration de lessive change...
     //debugger;
     this.getQtyLessiveSoude()
@@ -154,8 +158,8 @@ export default class extends Controller {
     let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
     let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
     console.log(qtySoude)
-    debugger;
-    this.qtySoudeTarget.value = qtySoude
+
+    this.qtySoudeTarget.value = qtySoude.toFixed(2)
 
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
@@ -205,10 +209,18 @@ export default class extends Controller {
   lessiveSelect(){
     if(this.selectSoudeTarget.value==="lessive"){
       this.concentrationLessiveTarget.classList.add("visible")
+      this.qtyLessiveSoudeTarget.classList.add("visible")
     }
     else {
       this.concentrationLessiveTarget.classList.remove("visible")
+      this.qtyLessiveSoudeTarget.classList.remove("visible")
     }
+  }
+
+  getConcentrationLessive(){
+    let concentrationLessive = parseFloat(this.concentrationLessiveTarget.value);
+    let qtyLessiveFinal = parseFloat(this.qtySoudeTarget.value) / (concentrationLessive/100)
+    this.qtyLessiveSoudeTarget.value = qtyLessiveFinal.toFixed(2);
   }
 
 
