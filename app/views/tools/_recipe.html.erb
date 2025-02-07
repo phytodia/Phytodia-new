@@ -35,6 +35,15 @@
           <% end %>
         </select>
         <!--
+        <div class="list_ingredients_add_option">
+          <% @ingredients.keys.size.times do %>
+            <span>
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          <% end %>
+        </div>
+        -->
+        <!--
         <div class="ingredients_options">
           <% @ingredients.keys.size.times do %>
             <i class="fa-solid fa-plus" data-action="click->saponification#addIngredientOption"></i>
@@ -45,7 +54,7 @@
 
     </div><!-- Fin liste ingredients -->
 
-    <div id="caracteristiques" data-saponification-target="caracteristiquesIngredient">
+    <div id="caracteristiques" data-saponification-target="caracteristiquesIngredient" data-ingredient-name="">
       <h2 class="titre_tool">Propriétés de l'ingrédient</h2>
       <div>
         <label for="Hardness">Dureté</label>
@@ -146,7 +155,8 @@
         <input type="number" name="Vitesse_tracage" value="0" disabled>
         <i class="fa-regular fa-circle-question information"><span>gg</span></i>
       </div>
-
+      <br>
+      <div class="add_ing_button" data-action="click->saponification#addIngButton" data-saponification-target="addIngBtn"><span>Ajouter l'ingrédient</span><i class="fa-solid fa-plus"></i></div>
     </div> <!-- Fin #caractéristiques -->
 
     <!-- Ingredients sélectionnés dans la recette -->
