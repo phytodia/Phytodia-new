@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -32,10 +32,15 @@ export default class extends Controller {
     inputs.forEach((element) => {
       element.value = ingredients[ingredient][element.name]
     })
+    this.caracteristiquesIngredientTarget.dataset.ingredientName = ingredient
   }
-  addIngredientOption(event){
-    let indexPlus = Array.from(event.currentTarget.parentElement.querySelectorAll(".fa-plus")).indexOf(event.currentTarget)
-    this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
+  addIngredientOption(ingredientEnglish){
+    let listIngredients = document.querySelector(".liste_ingredients_options select")
+    listIngredients.querySelector(`[value="${ingredientEnglish}"]`).dispatchEvent(new MouseEvent("dblclick"))
+    //debugger;
+    //document.querySelector(".liste_ingredients_options select").value
+    //let indexPlus = Array.from(event.currentTarget.parentElement.querySelectorAll(".fa-plus")).indexOf(event.currentTarget)
+    //this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
   }
   removeIngredientOption(event){
     event.currentTarget.parentElement.remove()
@@ -247,6 +252,11 @@ export default class extends Controller {
     let concentrationLessive = parseFloat(this.concentrationLessiveTarget.value);
     let qtyLessiveFinal = parseFloat(this.qtySoudeTarget.value) / (concentrationLessive/100)
     this.qtyLessiveSoudeTarget.value = qtyLessiveFinal.toFixed(2);
+  }
+
+  addIngButton(){
+    let ing = this.caracteristiquesIngredientTarget.dataset.ingredientName
+    this.addIngredientOption(ing)
   }
 
 
