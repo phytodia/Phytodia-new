@@ -110,9 +110,6 @@ export default class extends Controller {
 
     })
   }
-  insert100pourcent(){
-    //remplace 0 par 100% en bas du tableau des ingrédients
-  }
 
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
