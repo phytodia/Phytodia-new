@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -79,6 +79,10 @@ export default class extends Controller {
     this.sommeKoh()
 
     this.proprietesSavon()
+    //rajout des appels à fonctions suivantes
+    this.changeSoude()
+    this.getQtyLessiveSoude()
+    this.getConcentrationLessive()
   }
 
   changeSurgraissage(event) {
@@ -154,7 +158,7 @@ export default class extends Controller {
     let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
     let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
     console.log(qtySoude)
-    debugger;
+
     this.qtySoudeTarget.value = qtySoude
 
     // let concentrationLessive = XX
@@ -209,6 +213,12 @@ export default class extends Controller {
     else {
       this.concentrationLessiveTarget.classList.remove("visible")
     }
+  }
+
+  getConcentrationLessive(){
+    let concentrationLessive = parseFloat(this.concentrationLessiveTarget.value);
+    let qtyLessiveFinal = parseFloat(this.qtySoudeTarget.value) / (concentrationLessive/100)
+    this.qtyLessiveSoudeTarget.value = qtyLessiveFinal
   }
 
 
