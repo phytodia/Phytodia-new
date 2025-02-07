@@ -17,17 +17,19 @@ export default class extends Controller {
     let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
+    newTr.classList.add("ing_to_get")
     newTr.dataset.ing = event.currentTarget.value
     newTr.innerHTML = newTd
     //
     if (this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient').length>0) {
+     
       this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
-      newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
     }
     else {
       this.ingredientTableTarget.appendChild(newTr)
-      this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
+      //this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
     }
+    newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
 
   }
   getIngredient(event){
@@ -56,12 +58,12 @@ export default class extends Controller {
     //alert("Gogole")
     //console.log(this.ingredientTdTargets)
 
-    if (this.ingredientTableTarget.querySelectorAll("tr").length === 0){
+    if (this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").length === 0){
       this.createTr(event)
     }
-    else if(this.ingredientTableTarget.querySelectorAll("tr").length !== 0) {
+    else if(this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").length !== 0) {
       let ingredientsList = new Array()
-      Array.from(this.ingredientTableTarget.querySelectorAll("tr")).forEach((element)=>{
+      Array.from(this.ingredientTableTarget.querySelectorAll("tr.ing_to_get")).forEach((element)=>{
         ingredientsList.push(element.dataset.ing)
         //console.log(ingredientsList)
       })
@@ -79,16 +81,16 @@ export default class extends Controller {
   }
   changePoids(event){
     let somme = 0
-
+ 
     this.ingPoidsTargets.forEach((element)=>{
-
       if(element.value !== '') {
         somme = somme + parseFloat(element.value)
       }
     })
+    
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
-    this.sommeNaoh(event)
+    this.sommeNaoh()
     this.sommeKoh()
 
     //rajout pourcentages
@@ -132,7 +134,7 @@ export default class extends Controller {
 
   getNaoh(){
     let naoh = 0
-    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+    this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").forEach((element)=>{
       let ingredient = element.dataset.ing
       let qty = parseFloat(element.lastChild.querySelector("input").value)
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
@@ -141,9 +143,9 @@ export default class extends Controller {
   }
 
 
-  sommeNaoh(event){
+  sommeNaoh(){
     let naoh = 0
-    this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+    this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").forEach((element)=>{
       let ingredient = element.dataset.ing
       let qty = parseFloat(element.lastChild.querySelector("input").value)
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
@@ -157,7 +159,7 @@ export default class extends Controller {
 
   sommeKoh() {
       let Koh = 0;
-      this.ingredientTableTarget.querySelectorAll("tr").forEach((element)=>{
+      this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").forEach((element)=>{
         let ingredient = element.dataset.ing
         let qty = parseFloat(element.lastChild.querySelector("input").value)
         Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
@@ -232,7 +234,7 @@ export default class extends Controller {
       this.selectSoudeTarget.value = "naoh"
       this.selectSoudeTarget.disabled = false
 
-      this.sommeNaoh(event)
+      this.sommeNaoh()
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
@@ -269,8 +271,7 @@ export default class extends Controller {
 
 
   proprietesSavon(){
-
-    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr")) // Array des ingrédients sélectionnés.
+    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr.ing_to_get")) // Array des ingrédients sélectionnés.
     let totalPoids = parseFloat(this.sommePoidsTarget.innerText) // Poids total de la recette.
 
     let savonProps = JSON.parse(this.savonProprietesTarget.dataset.proprietes) //Propriétés du savon final
