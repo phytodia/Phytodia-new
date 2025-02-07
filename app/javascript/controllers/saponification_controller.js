@@ -19,7 +19,7 @@ export default class extends Controller {
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value
     newTr.innerHTML = newTd
-
+    //
     if (this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient').length>0) {
       this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
       newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
@@ -28,7 +28,6 @@ export default class extends Controller {
       this.ingredientTableTarget.appendChild(newTr)
       this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
     }
-
 
   }
   getIngredient(event){
@@ -42,7 +41,6 @@ export default class extends Controller {
     this.caracteristiquesIngredientTarget.dataset.ingredientName = ingredient
   }
   addIngredientOption(ingredientEnglish){
-
     let listIngredients = this.listIngredientsTarget.querySelector(".liste_ingredients_options select")
     listIngredients.querySelector(`[value="${ingredientEnglish}"]`).dispatchEvent(new MouseEvent("dblclick"))
     //debugger;
