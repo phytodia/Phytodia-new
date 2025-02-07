@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -14,7 +14,7 @@ export default class extends Controller {
   }
   createTr(event){
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
+    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0"></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.dataset.ing = event.currentTarget.value
@@ -78,11 +78,37 @@ export default class extends Controller {
     this.sommeNaoh(event)
     this.sommeKoh()
 
+    //rajout pourcentages
+    this.modifPourcentagesIngs()
+    //
     this.proprietesSavon()
     //rajout des appels à fonctions suivantes
     this.changeSoude()
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
+
+
+  }
+  changePourcentageIng(){
+  }
+  modifPourcentagesIngs(){
+    //modifie le pourcentage de tous les ingrédients quand le poids d'un ingrédient change
+    let somme = parseFloat(this.sommePoidsTarget.innerText)
+    if (somme === 0){
+      this.pourcentagePoidsTotalTarget.innerText = "0%";
+    }
+    else {
+      this.pourcentagePoidsTotalTarget.innerText = "100%";
+    }
+    this.ingPoidsTargets.forEach((element)=>{
+
+      let pourcentageIng = (parseFloat(element.value)/somme)*100
+
+      let indexIng = this.ingPoidsTargets.indexOf(element)
+
+      this.ingPourcentageTargets[indexIng].value = pourcentageIng
+
+    })
   }
 
   changeSurgraissage(event) {
