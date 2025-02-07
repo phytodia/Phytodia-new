@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -21,15 +21,14 @@ export default class extends Controller {
     newTr.dataset.ing = event.currentTarget.value
     newTr.innerHTML = newTd
 
-    if (this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient').length>0) {
-      this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
+    if (document.getElementsByClassName('pre_input_ingredient').length>0) {
+      document.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
       newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
     }
     else {
       this.ingredientTableTarget.appendChild(newTr)
       this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
     }
-
 
   }
   getIngredient(event){
@@ -43,8 +42,7 @@ export default class extends Controller {
     this.caracteristiquesIngredientTarget.dataset.ingredientName = ingredient
   }
   addIngredientOption(ingredientEnglish){
-
-    let listIngredients = this.listIngredientsTarget.querySelector(".liste_ingredients_options select")
+    let listIngredients = document.querySelector(".liste_ingredients_options select")
     listIngredients.querySelector(`[value="${ingredientEnglish}"]`).dispatchEvent(new MouseEvent("dblclick"))
     //debugger;
     //document.querySelector(".liste_ingredients_options select").value
