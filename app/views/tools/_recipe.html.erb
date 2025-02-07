@@ -28,7 +28,7 @@
   <div class="tableaux">
     <div id="list_ingredients">
       <h2 class="titre_tool">Liste des ingrédients</h2>
-      <div class="liste_ingredients_options">
+      <div class="liste_ingredients_options" data-saponification-target="listIngredients">
         <select name="ingredients" size="5" data-action="change->saponification#getIngredient">
           <% @ingredients.keys.each do |ing|%>
             <option value="<%= ing %>" data-action="dblclick->saponification#doubleClick" data-saponification-target="ingredientItem"><%= @ingredients[ing]["French_name"] %></option>
