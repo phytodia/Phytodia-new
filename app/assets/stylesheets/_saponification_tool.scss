@@ -13,7 +13,7 @@
   .tableaux {
     grid-area: tableau;
     display: flex;
-    gap: 1em;
+    //gap: 1em;
   }
   .types_savon {
     grid-area: type;
@@ -354,4 +354,27 @@
   align-items: center;
   a {text-decoration: none;color:#358E8E}
   .sort_ing {display: flex; flex-direction: column;}
+}
+.results_tool_saponification {
+  border: solid 1px #358E8E;
+  padding: 5px;
+  border-radius: 3px;
+  div {
+  border-bottom: solid 1px lightgrey;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.5em;
+  input {
+    width: 4em !important;
+    text-align: center;
+    border:none;
+    background-color: white;
+    color:black;
+  }
+  }
+}
+.tableaux {
+  #list_ingredients,#caracteristiques,#tableau_ingredients_selectionnes,#proprietes_savon {
+    padding: 0 10px;
+  }
 }
