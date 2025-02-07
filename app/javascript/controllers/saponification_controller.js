@@ -13,7 +13,6 @@ export default class extends Controller {
 
   }
   createTr(event){
-
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
@@ -21,14 +20,8 @@ export default class extends Controller {
     newTr.dataset.ing = event.currentTarget.value
     newTr.innerHTML = newTd
 
-    if (document.getElementsByClassName('pre_input_ingredient').length>0) {
-      document.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
-      newTr.querySelector("input").value = ingredients[event.currentTarget.value]["French_name"]
-    }
-    else {
-      this.ingredientTableTarget.appendChild(newTr)
-      this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
-    }
+    this.ingredientTableTarget.appendChild(newTr)
+    this.ingredientTableTarget.lastChild.getElementsByTagName("input")[0].value = ingredients[event.currentTarget.value]["French_name"]
 
   }
   getIngredient(event){
