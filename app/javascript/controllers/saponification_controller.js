@@ -79,7 +79,9 @@ export default class extends Controller {
   }
   changePoids(event){
     let somme = 0
+
     this.ingPoidsTargets.forEach((element)=>{
+
       if(element.value !== '') {
         somme = somme + parseFloat(element.value)
       }
