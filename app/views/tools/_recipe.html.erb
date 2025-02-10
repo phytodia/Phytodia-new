@@ -9,7 +9,7 @@
     <div class="btn_savon_choix" data-type-savon="liquide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
       <%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span>
     </div>
-    <div class="save_recipe_soap">
+    <div class="save_recipe_soap" data-saponification-target="saveSavon">
 
       <%= form_with(url: save_recipe_path, metho: "post",model: @new_recipe) do |f| %>
         <div>
@@ -21,7 +21,7 @@
           <%= f.number_field :qty_water %>
         </div>
         <div>
-          <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]'%>
+          <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>
         </div>
         <%= f.submit %>
       <% end %>
