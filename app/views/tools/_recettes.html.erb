@@ -1,0 +1,9 @@
+<h1>Recettes</h1>
+<ul>
+<% @recipes.each do |recette| %>
+<li>
+  <h3><%= recette.titre %></h3>
+  <%= recette.recipe_soap_ingredients.last.name_ing if !recette.recipe_soap_ingredients.last.nil?%>
+</li>
+<% end %>
+</ul>

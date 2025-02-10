@@ -10,6 +10,8 @@ class ToolsController < ApplicationController
     @faqs = Faq.all
 
     @new_recipe = RecipeSoap.new
+
+    @recipes = RecipeSoap.all
   end
 
   def new_recipe_partial
@@ -17,10 +19,20 @@ class ToolsController < ApplicationController
   end
 
   def save_recipe_soap
+    ingredients_list = Ingredient.pluck(:english_name,:id).each {|arr| arr[0].downcase}
+    ingredients_list = Hash[ingredients_list].transform_keys(&:downcase)
+
     @recipe_soap = RecipeSoap.new(soap_params)
-    @recipe_soap.ingredients = params[:recipe_soap][:ingredients]
-    fail
     @recipe_soap.save
+
+    ingredients = params[:recipe_soap][:ingredients]
+    ingredients.each do |ing|
+      ing_recipe = RecipeSoapIngredient.new(name_ing:ing["name_ing"],qty:ing["qty"].to_f,recipe_soap_id:@recipe_soap.id,ingredient_id:ingredients_list[ing["name_ing"].downcase])
+      ing_recipe.save
+    end
+    redirect_to tools_saponification_path()
+
+    #@recipe_soap.ingredients = params[:recipe_soap][:ingredients]
 
   end
 

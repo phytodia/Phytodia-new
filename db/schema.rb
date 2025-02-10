@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_10_095934) do
   create_table "recipe_soap_ingredients", force: :cascade do |t|
     t.bigint "ingredient_id", null: false
     t.bigint "recipe_soap_id", null: false
+    t.string "name_ing"
+    t.float "qty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_recipe_soap_ingredients_on_ingredient_id"
