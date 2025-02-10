@@ -22,7 +22,7 @@ export default class extends Controller {
     newTr.innerHTML = newTd
     //
     if (this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient').length>0) {
-     
+
       this.ingredientTableTarget.getElementsByClassName('pre_input_ingredient')[0].replaceWith(newTr)
     }
     else {
@@ -81,13 +81,13 @@ export default class extends Controller {
   }
   changePoids(event){
     let somme = 0
- 
+
     this.ingPoidsTargets.forEach((element)=>{
       if(element.value !== '') {
         somme = somme + parseFloat(element.value)
       }
     })
-    
+
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
     this.sommeNaoh()
@@ -292,6 +292,7 @@ export default class extends Controller {
     this.savonProprietesTarget.dataset.proprietes = JSON.stringify(savonProps)
 
     console.log(savonProps);
+
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
     //alert("Propriete savon")
     //alert(document.querySelector(".tabs_list").dataset.series)
@@ -332,7 +333,7 @@ export default class extends Controller {
     //debugger;
 
     //update donnees by key
-    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees);
+    let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees); // jeu des 6 indicateurs principaux
     let keyDonnees = document.querySelector(".tab.active").innerText;
     let newDonnees = Object.values(chartProps);
 
@@ -360,11 +361,15 @@ export default class extends Controller {
     //  data: newchartProps
     //}])
 
-    this.updateSeries(indexTab,JSON.stringify(Object.values(chartProps)))
+
+
+    // ne conserver que les 6 premiers éléments de l'objet
+    let chartFirstPropsElements = Object.fromEntries(Object.entries(chartProps).slice(0,6))
+
+    this.updateSeries(indexTab,JSON.stringify(Object.values(chartFirstPropsElements)))
   }
 
   updateSeries(index,serie){
-    //debugger;
     let indexTab = index;
     let newSerie = JSON.parse(serie)
     if(newSerie[0] === null){
@@ -394,13 +399,19 @@ export default class extends Controller {
     labelsArray.forEach((label)=>{
       arrayUpdate.push({name:label,data:seriesArray[labelsArray.indexOf(label)]});
     })
+
+
     //this.connect()
     if (Array.from(JSON.parse(document.querySelector(".tabs_list").dataset.labels)).length === 1){
       indexTab = 0;
     }
     let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
+
+    // Conserver uniquement les 6 premiers éléments
     newDatas.forEach(element=>{
-      element['data'] = JSON.parse(element['data'])
+      //element['data'] = JSON.parse(element['data']) // pour tous les éléments
+      element['data'] = JSON.parse(element['data']).slice(0,6) // conserver les 6 premiers éléments
+
     })
     //arrayUpdate.push(newDatas)
     //console.log(labelsArray)

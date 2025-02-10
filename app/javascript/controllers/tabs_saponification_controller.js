@@ -176,7 +176,8 @@ export default class extends Controller {
 
     let newDatas = JSON.parse(document.querySelector(".tabs_list").dataset.donnees)
     newDatas.forEach(element=>{
-      element['data'] = JSON.parse(element['data'])
+      //element['data'] = JSON.parse(element['data'])
+      element['data'] = JSON.parse(element['data']).slice(0,6) // conserver les 6 premiers éléments
     })
 
     //arrayUpdate.push(newDatas)
