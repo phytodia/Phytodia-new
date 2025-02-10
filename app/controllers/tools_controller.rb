@@ -8,10 +8,16 @@ class ToolsController < ApplicationController
     end
     @donnees = []
     @faqs = Faq.all
+
+    @new_recipe = RecipeSoap.new
   end
 
   def new_recipe_partial
     render partial: "recipe"
+  end
+
+  def save_recipe_soap
+    fail
   end
 
   def sort_ingredients_table

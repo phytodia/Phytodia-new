@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'recipe_soaps/new'
-  get 'recipe_soaps/create'
   root "pages#home"
 
   get 'tools/saponification'
@@ -9,7 +7,10 @@ Rails.application.routes.draw do
   get 'pages/contact'
   get 'pages/about'
 
+  #resources :recipe_soaps, only: [:new, :create]
+
   get 'sort/:name/:sort',to:"tools#sort_ingredients_table",as: :ingredient_sort
+  post 'save_recipe', to: "tools#save_recipe_soap"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
