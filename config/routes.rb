@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'recipe_soaps/new'
+  get 'recipe_soaps/create'
   root "pages#home"
 
   get 'tools/saponification'

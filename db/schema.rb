@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_23_072021) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_10_095934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,4 +49,24 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_23_072021) do
     t.float "vitesse_tracage"
   end
 
+  create_table "recipe_soap_ingredients", force: :cascade do |t|
+    t.bigint "ingredient_id", null: false
+    t.bigint "recipe_soap_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_recipe_soap_ingredients_on_ingredient_id"
+    t.index ["recipe_soap_id"], name: "index_recipe_soap_ingredients_on_recipe_soap_id"
+  end
+
+  create_table "recipe_soaps", force: :cascade do |t|
+    t.string "titre"
+    t.float "qty_water"
+    t.float "surgraissage_taux"
+    t.string "type_soude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "recipe_soap_ingredients", "ingredients"
+  add_foreign_key "recipe_soap_ingredients", "recipe_soaps"
 end

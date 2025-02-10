@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titre: MyString
+  qty_water: 1.5
+  surgraissage_taux: 1.5
+  type_soude: MyString
+
+two:
+  titre: MyString
+  qty_water: 1.5
+  surgraissage_taux: 1.5
+  type_soude: MyString
