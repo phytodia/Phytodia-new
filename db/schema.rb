@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_11_162933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "qty_soude"
-    t.integer "counter"
+    t.integer "counter", default: 0
   end
 
   add_foreign_key "recipe_soap_ingredients", "ingredients"

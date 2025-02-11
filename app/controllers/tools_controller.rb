@@ -36,6 +36,18 @@ class ToolsController < ApplicationController
 
   end
 
+  def counter
+    @recipe_soap = RecipeSoap.find(params[:format])
+    @recipe_soap.counter = @recipe_soap.counter += 1
+    fail
+    respond_to do |format|
+      format.turbo_stream do
+        #Ajouter locals: @ingredients_table
+        render turbo_stream: turbo_stream.replace(:ingredients_table, partial:"tools/tableau_ingredients")
+      end
+    end
+  end
+
   def sort_ingredients_table
     #@ingredients_table
 

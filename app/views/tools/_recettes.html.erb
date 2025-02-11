@@ -5,10 +5,17 @@
   <li class="recipe_soap_card">
     <div class="titre_recipe_soap">
       <h3><%= recette.titre %></h3>
-      <div class="counter_recipe_soap">
-        <span>10</span>
-        <div><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-down"></i></div>
-      </div>
+        <div class="counter_recipe_soap">
+            <span id="recette_id_<%= recette.id %>">
+              <%= recette.counter %>
+            </span>
+          <%= link_to "test", counter_path(recette), data: { turbo_stream: true } %>
+          <div>
+          <%= link_to counter_path(recette), data: { turbo_stream: true } do %>
+            <i class="fa-solid fa-caret-up"></i>
+          <% end %>
+          <i class="fa-solid fa-caret-down"></i></div>
+        </div>
     </div>
     <h4>Ingredients</h4>
     <ul>

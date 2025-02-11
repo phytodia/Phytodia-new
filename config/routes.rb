@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'sort/:name/:sort',to:"tools#sort_ingredients_table",as: :ingredient_sort
   post 'save_recipe', to: "tools#save_recipe_soap"
+  get "counter", to: "tools#counter"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
