@@ -403,6 +403,23 @@
   gap: 1em;
   .recipe_soap_card {
     list-style: none;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding:10px;
+  }
+}
+.titre_recipe_soap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  h3 {flex-grow: 1; text-align: center;margin: 0;}
+  .counter_recipe_soap {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    div {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

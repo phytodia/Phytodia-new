@@ -3,7 +3,13 @@
   <ul class="list_recipes_soap">
   <% @recipes.each do |recette| %>
   <li class="recipe_soap_card">
-    <h3><%= recette.titre %></h3>
+    <div class="titre_recipe_soap">
+      <h3><%= recette.titre %></h3>
+      <div class="counter_recipe_soap">
+        <span>10</span>
+        <div><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-down"></i></div>
+      </div>
+    </div>
     <ul>
     <h4>Ingredients</h4>
     <% recette.recipe_soap_ingredients.each do |ing| %>
