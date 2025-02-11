@@ -29,6 +29,20 @@
         <div>
           <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>
         </div>
+        <div>
+          <%= f.label :hardness %>
+          <%= f.number_field :hardness %>
+          <%= f.label :cleansing %>
+          <%= f.number_field :cleansing %>
+          <%= f.label :condition %>
+          <%= f.number_field :condition %>
+          <%= f.label :bubbly %>
+          <%= f.number_field :bubbly %>
+          <%= f.label :creamy %>
+          <%= f.number_field :creamy %>
+          <%= f.label :iodine %>
+          <%= f.number_field :iodine %>
+        </div>
         <%= f.submit %>
       <% end %>
     </div>

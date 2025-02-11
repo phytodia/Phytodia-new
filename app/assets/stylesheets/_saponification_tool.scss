@@ -400,20 +400,26 @@
 .list_recipes_soap {
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1em;
   .recipe_soap_card {
     list-style: none;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding:10px;
+    h4 {font-family: "Rubik", sans-serif;margin: 0; font-weight: 400;}
+    ul {
+      padding: 0;
+      list-style-position: inside;
+    }
   }
 }
 .titre_recipe_soap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: 400;
   border-bottom: 1px solid lightgrey;
-  h3 {flex-grow: 1; text-align: center;margin: 0;}
+  h3 {flex-grow: 1; text-align: center;margin: 0;font-weight: 400;}
   .counter_recipe_soap {
     display: flex;
     align-items: center;
