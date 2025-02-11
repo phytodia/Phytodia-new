@@ -10,8 +10,8 @@
         <div><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-down"></i></div>
       </div>
     </div>
-    <ul>
     <h4>Ingredients</h4>
+    <ul>
     <% recette.recipe_soap_ingredients.each do |ing| %>
       <li><%= ing.qty %> g <%= ing.name_ing %></li>
     <% end %>
