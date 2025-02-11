@@ -1,9 +1,20 @@
-<h1>Recettes</h1>
-<ul>
-<% @recipes.each do |recette| %>
-<li>
-  <h3><%= recette.titre %></h3>
-  <%= recette.recipe_soap_ingredients.last.name_ing if !recette.recipe_soap_ingredients.last.nil?%>
-</li>
-<% end %>
+<h2>Recettes</h2>
+<div>
+  <ul class="list_recipes_soap">
+  <% @recipes.each do |recette| %>
+  <li class="recipe_soap_card">
+    <h3><%= recette.titre %></h3>
+    <ul>
+    <h4>Ingredients</h4>
+    <% recette.recipe_soap_ingredients.each do |ing| %>
+      <li><%= ing.qty %> g <%= ing.name_ing %></li>
+    <% end %>
+    </ul>
+    <h4>Qté eau</h4>
+    <h4>Type d'alcali utilisé Naoh/KOH</h4>
+    <h4>Qté soude</h4>
+    <h4>% de surgraissage</h4>
+  </li>
+  <% end %>
 </ul>
+</div>

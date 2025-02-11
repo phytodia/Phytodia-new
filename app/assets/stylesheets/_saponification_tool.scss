@@ -395,3 +395,14 @@
 .pre_input_ingredient {
   margin-left: 16px;
 }
+
+.list_recipes_soap {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1em;
+  .recipe_soap_card {
+    list-style: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
+  }
+}
