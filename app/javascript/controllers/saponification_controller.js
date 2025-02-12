@@ -153,6 +153,7 @@ export default class extends Controller {
 
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
       this.sommeNaohTarget.value = naoh.toFixed(2)
+      this.qtySoudeTargets.forEach((element=>{element.value = naoh.toFixed(2) }))
     }
 
   }
@@ -175,6 +176,7 @@ export default class extends Controller {
     console.log("Hello")
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh.toFixed(2);
+    this.qtySoudeTargets.forEach((element=>{element.value = Koh.toFixed(2) }))
   }
 
   changeEau(){
@@ -200,7 +202,7 @@ export default class extends Controller {
     let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
     console.log(qtySoude)
 
-    this.qtySoudeTargets.forEach((element=>{element.value = qtySoude.toFixed(2) }))
+    //this.qtySoudeTargets.forEach((element=>{element.value = qtySoude.toFixed(2) }))
 
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
