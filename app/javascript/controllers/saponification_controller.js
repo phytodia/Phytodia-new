@@ -200,7 +200,7 @@ export default class extends Controller {
     let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
     console.log(qtySoude)
 
-    this.qtySoudeTarget.value = qtySoude.toFixed(2)
+    this.qtySoudeTargets.forEach((element=>{element.value = qtySoude.toFixed(2) }))
 
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
@@ -282,6 +282,16 @@ export default class extends Controller {
     })
     //'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]'
     this.saveSavonTarget.querySelector("#recipe_soap_ingredients").value = JSON.stringify(arrayFormIngredients)
+
+
+    // Add proprietes savon in form
+    let keysSavonSave = Object.keys(JSON.parse(propsSavon)).slice(0,6)
+    let dataJson = JSON.parse(propsSavon)
+    keysSavonSave.forEach((key)=>{
+      this.saveSavonTarget.querySelector(`#recipe_soap_${key.toLowerCase()}`).value = dataJson[key]
+    })
+    //this.saveSavonTarget.querySelector("#recipe_soap_hardness").value
+
     // [{"name_ing":"","qty":20.0}]
     //let proprietesSavon = propsSavon;
   }

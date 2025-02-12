@@ -24,7 +24,8 @@
           <%= f.label :type_alcali %>
           <%= f.text_field :type_soude %>
           <%= f.label :qty_soude %>
-          <%= f.number_field :qty_soude %>
+          <%= f.number_field :qty_soude, data: {saponification_target: "qtySoude" } %>
+
         </div>
         <div>
           <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>
