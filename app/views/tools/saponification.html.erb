@@ -1,5 +1,9 @@
-<h1>Calculateur de saponification</h1>
-<%= link_to "Vue DB/SQL", rails_db_path()%>
+<div itemscope itemtype="https://schema.org/WebApplication">
+  <h1 itemprop="name">Calculateur de saponification</h1>
+  <p itemprop="description">
+    Projet réalisé par <span itemprop="creditText">Mme Éleonore Hesry et Mr Thomas Hunckler</span> pour le laboratoire Phytodia
+  </p>
+  <%= link_to "Vue DB/SQL", rails_db_path()%>
 <div>
   <h2>Propriétés</h2>
   <div>
@@ -56,14 +60,18 @@
     </div>
   </div>
 
-  <div id="tabs_faq_saponification_contents">
+  <div id="tabs_faq_saponification_contents" itemscope itemtype="https://schema.org/FAQPage">
 
     <div class="tab_faq_saponification_content visible" data-tabs-tools-target="contentFaq">
       <div id="list_faq">
         <% @faqs.each do |faq| %>
-          <details>
-            <summary><h3 class="faq_titre"><%= faq.question %><i class="fa-solid fa-circle-plus"></i></h3></summary>
-            <p><%= faq.answer %></p>
+          <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <summary><h3 class="faq_titre" itemprop="name"><%= faq.question %><i class="fa-solid fa-circle-plus"></i></h3></summary>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <div itemprop="text">
+                <p><%= faq.answer %></p>
+              </div>
+            </div>
           </details>
         <% end %>
       </div>
@@ -77,4 +85,5 @@
 
 
   </div><!-- Fin #tabs_faq_saponification_contents -->
+</div>
 </div>
