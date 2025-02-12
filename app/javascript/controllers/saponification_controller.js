@@ -306,6 +306,9 @@ export default class extends Controller {
     // [{"name_ing":"","qty":20.0}]
     //let proprietesSavon = propsSavon;
   }
+  saveSoapSubmit(){
+    this.saveSavonTarget.querySelector("form").submit();
+  }
 
 
   proprietesSavon(){

@@ -430,3 +430,14 @@
     }
   }
 }
+.form_recipe_soap_hidden_element {
+  visibility: hidden;
+  height: 0;
+}
+.save_soap_recipe_action {
+  display: flex;
+  width: fit-content;
+  height: 30px;
+  justify-content: center;
+   align-items: center;
+}

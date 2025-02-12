@@ -16,39 +16,45 @@
           <%= f.label :titre %>
           <%= f.text_field :titre %>
         </div>
-        <div>
-          <%= f.label :qty_water %>
-          <%= f.number_field :qty_water, data: {saponification_target: "qtyWater" },step:0.01 %>
-        </div>
-        <div>
-          <%= f.label :type_alcali %>
-          <%= f.text_field :type_soude, data: {saponification_target: "typeAlcali" } %>
-          <%= f.label :qty_soude %>
-          <%= f.number_field :qty_soude, data: {saponification_target: "qtySoude" },step:0.01 %>
-        </div>
-        <div>
-          <%= f.label :pourcentage_surgraissage %>
-          <%= f.text_field :surgraissage_taux, class:"recipe_soap_surgraissage_taux" %>
-        </div>
-        <div>
-          <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>
-        </div>
-        <div>
-          <%= f.label :hardness %>
-          <%= f.number_field :hardness, class:"recipe_soap_hardness" %>
-          <%= f.label :cleansing %>
-          <%= f.number_field :cleansing,class:"recipe_soap_cleansing" %>
-          <%= f.label :condition %>
-          <%= f.number_field :condition,class:"recipe_soap_condition" %>
-          <%= f.label :bubbly %>
-          <%= f.number_field :bubbly,class:"recipe_soap_bubbly" %>
-          <%= f.label :creamy %>
-          <%= f.number_field :creamy,class:"recipe_soap_creamy" %>
-          <%= f.label :iodine %>
-          <%= f.number_field :iodine,class:"recipe_soap_iodine" %>
-        </div>
+        <div class="form_recipe_soap_hidden_element">
+          <div>
+            <%= f.label :qty_water %>
+            <%= f.number_field :qty_water, data: {saponification_target: "qtyWater" },step:0.01 %>
+          </div>
+          <div>
+            <%= f.label :type_alcali %>
+            <%= f.text_field :type_soude, data: {saponification_target: "typeAlcali" } %>
+            <%= f.label :qty_soude %>
+            <%= f.number_field :qty_soude, data: {saponification_target: "qtySoude" },step:0.01 %>
+          </div>
+          <div>
+            <%= f.label :pourcentage_surgraissage %>
+            <%= f.text_field :surgraissage_taux, class:"recipe_soap_surgraissage_taux" %>
+          </div>
+          <div>
+            <%= f.text_field :ingredients,value:'[]', class:"ing_list_form_save"%>
+          </div>
+          <div>
+            <%= f.label :hardness %>
+            <%= f.number_field :hardness, class:"recipe_soap_hardness" %>
+            <%= f.label :cleansing %>
+            <%= f.number_field :cleansing,class:"recipe_soap_cleansing" %>
+            <%= f.label :condition %>
+            <%= f.number_field :condition,class:"recipe_soap_condition" %>
+            <%= f.label :bubbly %>
+            <%= f.number_field :bubbly,class:"recipe_soap_bubbly" %>
+            <%= f.label :creamy %>
+            <%= f.number_field :creamy,class:"recipe_soap_creamy" %>
+            <%= f.label :iodine %>
+            <%= f.number_field :iodine,class:"recipe_soap_iodine" %>
+          </div>
+
         <%= f.submit %>
+        </div>
       <% end %>
+      <div class="save_soap_recipe_action" data-action="click->saponification#saveSoapSubmit">
+       <i class="fa-regular fa-floppy-disk fa-2xl"></i>
+      </div>
     </div>
   </div>
   <div class="soudes">
