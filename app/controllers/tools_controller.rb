@@ -119,6 +119,6 @@ class ToolsController < ApplicationController
 
   def soap_params
     params[:recipe_soap][:ingredients] = JSON.parse(params[:recipe_soap][:ingredients]).map {|element| JSON.parse(element)}
-    params.require(:recipe_soap).permit(:titre,:qty_water,ingredients:[])
+    params.require(:recipe_soap).permit(:titre,:qty_water,:qty_soude,:type_soude,:surgraissage,:hardness,:cleansing,:condition,:bubbly,:creamy,:iodine,ingredients:[])
   end
 end

@@ -18,13 +18,17 @@
         </div>
         <div>
           <%= f.label :qty_water %>
-          <%= f.number_field :qty_water %>
+          <%= f.number_field :qty_water, data: {saponification_target: "qtyWater" },step:0.01 %>
         </div>
         <div>
           <%= f.label :type_alcali %>
-          <%= f.text_field :type_soude %>
+          <%= f.text_field :type_soude, data: {saponification_target: "typeAlcali" } %>
           <%= f.label :qty_soude %>
-          <%= f.number_field :qty_soude %>
+          <%= f.number_field :qty_soude, data: {saponification_target: "qtySoude" },step:0.01 %>
+        </div>
+        <div>
+          <%= f.label :pourcentage_surgraissage %>
+          <%= f.text_field :surgraissage, data: {saponification_target: "typeAlcali" } %>
         </div>
         <div>
           <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>

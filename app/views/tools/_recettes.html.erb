@@ -12,10 +12,10 @@
                 <%= recette.counter %>
               </span>
             <div>
-            <%= link_to counter_path(recipe:recette, arrow: "up") do %>
+            <%= link_to counter_path(recipe:recette, arrow: "up"), method: :post do %>
               <i class="fa-solid fa-caret-up"></i>
             <% end %>
-            <%= link_to counter_path(recipe:recette, arrow: "down") do %>
+            <%= link_to counter_path(recipe:recette, arrow: "down"), method: :post do %>
               <i class="fa-solid fa-caret-down"></i></div>
             <% end %>
           </div>
@@ -28,10 +28,10 @@
       <li><%= ing.qty %> g <%= ing.name_ing %></li>
     <% end %>
     </ul>
-    <h4>Qté eau :</h4>
-    <h4>Type d'alcali utilisé Naoh/KOH :</h4>
-    <h4>Qté soude :</h4>
-    <h4>% de surgraissage :</h4>
+    <h4>Qté eau : <%= recette.qty_water %></h4>
+    <h4>Type d'alcali: <%= recette.type_soude %></h4>
+    <h4>Qté soude :<%= recette.qty_soude %></h4>
+    <h4>% de surgraissage : <%= recette.surgraissage %></h4>
   </li>
   <% end %>
 </ul>

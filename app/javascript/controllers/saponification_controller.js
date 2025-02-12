@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -45,7 +45,7 @@ export default class extends Controller {
   addIngredientOption(ingredientEnglish){
     let listIngredients = this.listIngredientsTarget.querySelector(".liste_ingredients_options select")
     listIngredients.querySelector(`[value="${ingredientEnglish}"]`).dispatchEvent(new MouseEvent("dblclick"))
-    //debugger;
+
     //document.querySelector(".liste_ingredients_options select").value
     //let indexPlus = Array.from(event.currentTarget.parentElement.querySelectorAll(".fa-plus")).indexOf(event.currentTarget)
     //this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
@@ -130,6 +130,9 @@ export default class extends Controller {
     let naohBase = this.getNaoh() //Appelle une autre fonction
     let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
     this.sommeNaohTarget.value = newNaoh.toFixed(2);
+
+    //ajout surgraissage au formulaire SavonSave
+    this.saveSavonTarget.querySelector("#recipe_soap_surgraissage").value = this.pourcentageSurgraissageTarget.value
   }
 
   getNaoh(){
@@ -153,6 +156,7 @@ export default class extends Controller {
 
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
       this.sommeNaohTarget.value = naoh.toFixed(2)
+      this.qtySoudeTargets.forEach((element=>{element.value = naoh.toFixed(2) }))
     }
 
   }
@@ -175,6 +179,7 @@ export default class extends Controller {
     console.log("Hello")
     let Koh = eleonore;
     this.sommeKohTarget.value = Koh.toFixed(2);
+    this.qtySoudeTargets.forEach((element=>{element.value = Koh.toFixed(2) }))
   }
 
   changeEau(){
@@ -189,18 +194,17 @@ export default class extends Controller {
     console.log("ChangeEau")
     console.log(poidsEau)
 
-    this.qtyWaterTarget.value = poidsEau.toFixed(2)
+    this.qtyWaterTargets.forEach((element)=>{element.value = poidsEau.toFixed(2)})
     //quand la concentration de lessive change...
-    //debugger;
+
     this.getQtyLessiveSoude()
   }
   getQtyLessiveSoude(){
-    //debugger;
     let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
     let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
     console.log(qtySoude)
 
-    this.qtySoudeTarget.value = qtySoude.toFixed(2)
+    //this.qtySoudeTargets.forEach((element=>{element.value = qtySoude.toFixed(2) }))
 
     // let concentrationLessive = XX
     // let tauxSurgraissage = YY
@@ -214,7 +218,7 @@ export default class extends Controller {
     this.choiceSavonTargets.forEach((element)=>{element.classList.remove("checked")});
     event.currentTarget.classList.add("checked")
     let typeSavon = this.choiceSavonTargets.find((elt)=>elt.classList.contains("checked")).dataset.typeSavon;
-    //debugger;
+
     this.finalSavonChoiceTarget.dataset.finalSavonChoice = typeSavon;
 
     //let typeSavon = dataset.typeSavon;
@@ -235,6 +239,7 @@ export default class extends Controller {
       this.selectSoudeTarget.disabled = false
 
       this.sommeNaoh()
+      this.typeAlcaliTarget.value = "NaOH"
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
@@ -243,16 +248,19 @@ export default class extends Controller {
       this.selectSoudeTarget.disabled = false
 
       this.sommeKoh()
+      this.typeAlcaliTarget.value = "KOH"
     }
 
   }
 
   lessiveSelect(){
     if(this.selectSoudeTarget.value==="lessive"){
+      this.typeAlcaliTarget.value = "Lessive"
       this.concentrationLessiveTarget.classList.add("visible")
       this.qtyLessiveSoudeTarget.classList.add("visible")
     }
     else {
+      this.typeAlcaliTarget.value = "KOH"
       this.concentrationLessiveTarget.classList.remove("visible")
       this.qtyLessiveSoudeTarget.classList.remove("visible")
     }
@@ -282,6 +290,16 @@ export default class extends Controller {
     })
     //'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]'
     this.saveSavonTarget.querySelector("#recipe_soap_ingredients").value = JSON.stringify(arrayFormIngredients)
+
+
+    // Add proprietes savon in form
+    let keysSavonSave = Object.keys(JSON.parse(propsSavon)).slice(0,6)
+    let dataJson = JSON.parse(propsSavon)
+    keysSavonSave.forEach((key)=>{
+      this.saveSavonTarget.querySelector(`#recipe_soap_${key.toLowerCase()}`).value = dataJson[key]
+    })
+    //this.saveSavonTarget.querySelector("#recipe_soap_hardness").value
+
     // [{"name_ing":"","qty":20.0}]
     //let proprietesSavon = propsSavon;
   }
@@ -348,7 +366,6 @@ export default class extends Controller {
     result.forEach((arr)=>{
       arrayDatas.push({name: arr[0],data:arr[1]})
     })
-    //debugger;
 
     //update donnees by key
     let donnees = JSON.parse(document.querySelector(".tabs_list").dataset.donnees); // jeu des 6 indicateurs principaux
