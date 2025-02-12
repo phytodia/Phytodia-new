@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_11_162933) do
     t.string "type_soude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "qty_soude"
+    t.float "qty_soude", default: 0.0
     t.integer "counter", default: 0
     t.integer "hardness", default: 0
     t.integer "cleansing", default: 0
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_11_162933) do
     t.integer "bubbly", default: 0
     t.integer "creamy", default: 0
     t.integer "iodine", default: 0
+    t.float "surgraissage", default: 0.0
   end
 
   add_foreign_key "recipe_soap_ingredients", "ingredients"

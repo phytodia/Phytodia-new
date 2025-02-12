@@ -3,6 +3,5 @@ class RecipeSoapsController < ApplicationController
   end
 
   def create
-    fail
   end
 end
