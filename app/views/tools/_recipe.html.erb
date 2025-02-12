@@ -22,7 +22,7 @@
         </div>
         <div>
           <%= f.label :type_alcali %>
-          <%= f.text_field :type_soude %>
+          <%= f.text_field :type_soude, data: {saponification_target: "typeAlcali" } %>
           <%= f.label :qty_soude %>
           <%= f.number_field :qty_soude, data: {saponification_target: "qtySoude" } %>
 
