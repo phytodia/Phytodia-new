@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "counter_soap_#{@recipe_soap.id}" do %>
+  <div class="counter_recipe_soap">
+      <span id="recette_id_<%= @recipe_soap.id %>">
+        <%= @recipe_soap.counter %>
+      </span>
+    <div>
+    <%= link_to counter_path(recipe:@recipe_soap, arrow: "up") do %>
+      <i class="fa-solid fa-caret-up"></i>
+    <% end %>
+    <%= link_to counter_path(recipe:@recipe_soap, arrow: "down") do %>
+      <i class="fa-solid fa-caret-down"></i></div>
+    <% end %>
+  </div>
+<% end %>
