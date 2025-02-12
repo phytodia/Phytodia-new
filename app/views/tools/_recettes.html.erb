@@ -2,9 +2,9 @@
 <div>
   <ul class="list_recipes_soap">
   <% @recipes.each do |recette| %>
-  <li class="recipe_soap_card">
+  <li class="recipe_soap_card" itemscope itemtype="https://schema.org/Recipe">
     <div class="titre_recipe_soap">
-      <h3><%= recette.titre %></h3>
+      <h3 itemprop="name"><%= recette.titre %></h3>
 
         <%= turbo_frame_tag "counter_soap_#{recette.id}" do %>
           <div class="counter_recipe_soap">
@@ -22,16 +22,21 @@
         <% end %>
 
     </div>
-    <h4>Ingredients</h4>
-    <ul>
-    <% recette.recipe_soap_ingredients.each do |ing| %>
-      <li><%= ing.qty %> g <%= ing.name_ing %></li>
-    <% end %>
-    </ul>
-    <h4>Qté eau : <%= recette.qty_water %></h4>
-    <h4>Type d'alcali: <%= recette.type_soude %></h4>
-    <h4>Qté soude :<%= recette.qty_soude %></h4>
-    <h4>% de surgraissage : <%= recette.surgraissage_taux %></h4>
+    <div itemprop="description">
+      <h4>Ingredients</h4>
+      <ul>
+      <% recette.recipe_soap_ingredients.each do |ing| %>
+        <li itemprop="recipeIngredient"><%= ing.qty %> g <%= ing.name_ing %></li>
+      <% end %>
+      </ul>
+      <h4 itemprop="recipeIngredient">Qté eau : <%= recette.qty_water %></h4>
+      <h4 itemprop="recipeIngredient">Type d'alcali: <%= recette.type_soude %></h4>
+      <h4 itemprop="recipeIngredient">Qté soude :<%= recette.qty_soude %></h4>
+      <h4 itemprop="recipeIngredient">% de surgraissage : <%= recette.surgraissage_taux %></h4>
+      <h4>Instructions</h4>
+      <div itemprop="recipeInstructions">
+      </div>
+    </div>
   </li>
   <% end %>
 </ul>
