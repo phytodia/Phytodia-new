@@ -12,10 +12,10 @@
                 <%= recette.counter %>
               </span>
             <div>
-            <%= link_to counter_path(recipe:recette, arrow: "up") do %>
+            <%= link_to counter_path(recipe:recette, arrow: "up"), method: :post do %>
               <i class="fa-solid fa-caret-up"></i>
             <% end %>
-            <%= link_to counter_path(recipe:recette, arrow: "down") do %>
+            <%= link_to counter_path(recipe:recette, arrow: "down"), method: :post do %>
               <i class="fa-solid fa-caret-down"></i></div>
             <% end %>
           </div>
