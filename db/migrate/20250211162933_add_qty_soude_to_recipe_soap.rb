@@ -8,6 +8,5 @@ class AddQtySoudeToRecipeSoap < ActiveRecord::Migration[7.0]
     add_column :recipe_soaps, :bubbly, :integer, default:0
     add_column :recipe_soaps, :creamy, :integer, default:0
     add_column :recipe_soaps, :iodine, :integer, default:0
-    add_column :recipe_soaps, :surgraissage, :float, default:0
   end
 end

@@ -132,7 +132,7 @@ export default class extends Controller {
     this.sommeNaohTarget.value = newNaoh.toFixed(2);
 
     //ajout surgraissage au formulaire SavonSave
-    this.saveSavonTarget.querySelector("#recipe_soap_surgraissage").value = this.pourcentageSurgraissageTarget.value
+    this.saveSavonTarget.querySelector("#recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
   }
 
   getNaoh(){

@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_11_162933) do
     t.integer "bubbly", default: 0
     t.integer "creamy", default: 0
     t.integer "iodine", default: 0
-    t.float "surgraissage", default: 0.0
   end
 
   add_foreign_key "recipe_soap_ingredients", "ingredients"
