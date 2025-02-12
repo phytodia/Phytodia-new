@@ -191,7 +191,7 @@ export default class extends Controller {
     console.log("ChangeEau")
     console.log(poidsEau)
 
-    this.qtyWaterTarget.value = poidsEau.toFixed(2)
+    this.qtyWaterTargets.forEach((element)=>{element.value = poidsEau.toFixed(2)})
     //quand la concentration de lessive change...
     //debugger;
     this.getQtyLessiveSoude()
