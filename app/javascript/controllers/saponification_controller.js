@@ -132,7 +132,7 @@ export default class extends Controller {
     this.sommeNaohTarget.value = newNaoh.toFixed(2);
 
     //ajout surgraissage au formulaire SavonSave
-    this.saveSavonTarget.querySelector("#recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
+    this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
   }
 
   getNaoh(){
@@ -289,14 +289,17 @@ export default class extends Controller {
       arrayFormIngredients.push(hashIng)
     })
     //'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]'
-    this.saveSavonTarget.querySelector("#recipe_soap_ingredients").value = JSON.stringify(arrayFormIngredients)
+
+    this.saveSavonTarget.querySelector(".ing_list_form_save").value = JSON.stringify(arrayFormIngredients)
 
 
     // Add proprietes savon in form
     let keysSavonSave = Object.keys(JSON.parse(propsSavon)).slice(0,6)
+
     let dataJson = JSON.parse(propsSavon)
+
     keysSavonSave.forEach((key)=>{
-      this.saveSavonTarget.querySelector(`#recipe_soap_${key.toLowerCase()}`).value = dataJson[key]
+      this.saveSavonTarget.querySelector(`.recipe_soap_${key.toLowerCase()}`).value = dataJson[key]
     })
     //this.saveSavonTarget.querySelector("#recipe_soap_hardness").value
 
