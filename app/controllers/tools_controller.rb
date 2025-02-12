@@ -8,10 +8,42 @@ class ToolsController < ApplicationController
     end
     @donnees = []
     @faqs = Faq.all
+
+    @new_recipe = RecipeSoap.new
+
+    @recipes = RecipeSoap.all
   end
 
   def new_recipe_partial
     render partial: "recipe"
+  end
+
+  def save_recipe_soap
+    ingredients_list = Ingredient.pluck(:english_name,:id).each {|arr| arr[0].downcase}
+    ingredients_list = Hash[ingredients_list].transform_keys(&:downcase)
+
+    @recipe_soap = RecipeSoap.new(soap_params)
+    @recipe_soap.save
+
+    ingredients = params[:recipe_soap][:ingredients]
+    ingredients.each do |ing|
+      ing_recipe = RecipeSoapIngredient.new(name_ing:ing["name_ing"],qty:ing["qty"].to_f,recipe_soap_id:@recipe_soap.id,ingredient_id:ingredients_list[ing["name_ing"].downcase])
+      ing_recipe.save
+    end
+    redirect_to tools_saponification_path()
+
+    #@recipe_soap.ingredients = params[:recipe_soap][:ingredients]
+
+  end
+
+  def counter
+    @recipe_soap = RecipeSoap.find(params[:recipe].to_i)
+    if params[:arrow] == "up"
+      @recipe_soap.counter = @recipe_soap.counter += 1
+    elsif params[:arrow] == "down"
+      @recipe_soap.counter = @recipe_soap.counter -= 1
+    end
+    @recipe_soap.save
   end
 
   def sort_ingredients_table
@@ -40,7 +72,7 @@ class ToolsController < ApplicationController
     end
     #redirect_to tools_saponification_path
   end
-
+  private
   def set_params_savon
     @ingredients2 = YAML.load_file("#{Rails.root.to_s}/db/data/saponification.yml")
     @hash_ingredients = {}
@@ -83,5 +115,10 @@ class ToolsController < ApplicationController
     @series = [[0, 0, 0, 0, 0, 0]]
 
     @ingredients_table = Ingredient.all.order("french_name asc")
+  end
+
+  def soap_params
+    params[:recipe_soap][:ingredients] = JSON.parse(params[:recipe_soap][:ingredients]).map {|element| JSON.parse(element)}
+    params.require(:recipe_soap).permit(:titre,:qty_water,ingredients:[])
   end
 end

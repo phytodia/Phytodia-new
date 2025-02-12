@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -269,6 +269,23 @@ export default class extends Controller {
     this.addIngredientOption(ing)
   }
 
+  insertSaveSavon(propsSavon){
+    let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr.ing_to_get"))
+
+    let arrayFormIngredients = []
+
+    ingredientsSelected.forEach((ligne)=>{
+      let nameIng = ligne.dataset.ing;
+      let qtyIng = ligne.lastChild.querySelector("input").value
+      let hashIng = `{"name_ing":"${nameIng}","qty":${qtyIng}}`
+      arrayFormIngredients.push(hashIng)
+    })
+    //'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]'
+    this.saveSavonTarget.querySelector("#recipe_soap_ingredients").value = JSON.stringify(arrayFormIngredients)
+    // [{"name_ing":"","qty":20.0}]
+    //let proprietesSavon = propsSavon;
+  }
+
 
   proprietesSavon(){
     let ingredientsSelected = Array.from(this.ingredientTableTarget.querySelectorAll("tr.ing_to_get")) // Array des ingrédients sélectionnés.
@@ -294,6 +311,7 @@ export default class extends Controller {
     console.log(savonProps);
 
     this.insertProprietes(JSON.stringify(savonProps)) // On appelle la fonction qui insert les propriétés du savon dans les cases dédiées.
+    this.insertSaveSavon(JSON.stringify(savonProps)) //On appelle la function pour le formulaire SaveSavon.
     //alert("Propriete savon")
     //alert(document.querySelector(".tabs_list").dataset.series)
   }

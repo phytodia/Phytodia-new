@@ -9,6 +9,43 @@
     <div class="btn_savon_choix" data-type-savon="liquide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
       <%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span>
     </div>
+    <div class="save_recipe_soap" data-saponification-target="saveSavon">
+
+      <%= form_with(url: save_recipe_path, metho: "post",model: @new_recipe) do |f| %>
+        <div>
+          <%= f.label :titre %>
+          <%= f.text_field :titre %>
+        </div>
+        <div>
+          <%= f.label :qty_water %>
+          <%= f.number_field :qty_water %>
+        </div>
+        <div>
+          <%= f.label :type_alcali %>
+          <%= f.text_field :type_soude %>
+          <%= f.label :qty_soude %>
+          <%= f.number_field :qty_soude %>
+        </div>
+        <div>
+          <%= f.text_field :ingredients,value:'[{"product_id":123,"name":"stack"},{"product_id":456,"name":"overflow"}]', class:"ing_list_form_save"%>
+        </div>
+        <div>
+          <%= f.label :hardness %>
+          <%= f.number_field :hardness %>
+          <%= f.label :cleansing %>
+          <%= f.number_field :cleansing %>
+          <%= f.label :condition %>
+          <%= f.number_field :condition %>
+          <%= f.label :bubbly %>
+          <%= f.number_field :bubbly %>
+          <%= f.label :creamy %>
+          <%= f.number_field :creamy %>
+          <%= f.label :iodine %>
+          <%= f.number_field :iodine %>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div>
   <div class="soudes">
     <select data-saponification-target="selectSoude" disabled data-action="saponification#lessiveSelect">
@@ -24,6 +61,7 @@
       <label for="">% Surgraissage</label>
       <input type="number" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
     </div>
+
   </div>
   <div class="tableaux">
     <div id="list_ingredients">
@@ -173,14 +211,14 @@
             </tr>
           </thead>
           <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
-          
+
             <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
             </tr>
             <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
             </tr>
             <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
             </tr>
-          
+
           </tbody>
           <div>
             <tr>
