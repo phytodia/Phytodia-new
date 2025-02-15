@@ -4,26 +4,8 @@
     Projet réalisé par <span itemprop="creditText">Mme Éleonore Hesry et Mr Thomas Hunckler</span> pour le laboratoire Phytodia
   </p>
   <%= link_to "Vue DB/SQL", rails_db_path()%>
-<div>
-  <h2>Propriétés</h2>
   <div>
 
-    <hr>
-    <div>
-      <h2>% d'eau dans l'huile</h2>
-    </div>
-    <hr>
-
-
-  </div>
-
-
-  <div>
-  <h2>Recherche de la qté de liquide de dissolution de la soude caustique</h2>
-  <p>Tuto: <a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/calcul-de-la-soude/</a></p>
-  <p><a href="https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/">https://iletaitunsavon.com/fabriquer-son-savon-a-froid/proportion-eau-naoh-de-la-lessive-de-soude/</a></p>
-
-  </div>
 
   <div data-controller="tabs-saponification" data-tabs-saponification-apexcharts-outlet=".online-chart" data-tabs-saponification-saponification-outlet=".tool_saponification_bas">
     <div class="tabs_all_list">
@@ -33,21 +15,21 @@
 
       <div class="tab new" data-action="click->tabs-saponification#newRecipe" data-tabs-saponification-target="newRecipe"><span>Nouvelle recette</span><i class="fa-solid fa-circle-plus fa-l"></i></div>
     </div>
+
     <div class="tab_contents">
       <div class="tab_content active" data-tabs-saponification-target="recipeContent">
         <div class="">
           <%= render "recipe"%>
         </div>
       </div><!--  Fin Tab Content -->
-
     </div>
 
   </div> <!-- Fin tabs stimulus constroller -->
 
 
   <!-- Fin tool_saponification_bas-->
-</div><!-- Fin controller saponification -->
-<div data-controller="tabs-tools">
+  </div><!-- Fin controller saponification -->
+  <div data-controller="tabs-tools">
   <div id="tabs_faq_saponification">
     <div class="tab_faq_saponification selected" data-tabs-tools-target="tabFaq" data-action="click->tabs-tools#tabSelectFaq">
       <h2>Questions fréquentes</h2>
@@ -85,5 +67,5 @@
 
 
   </div><!-- Fin #tabs_faq_saponification_contents -->
-</div>
+  </div>
 </div>
