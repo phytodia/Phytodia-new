@@ -52,6 +52,7 @@ export default class extends Controller {
   }
   removeIngredientOption(event){
     event.currentTarget.parentElement.remove()
+    this.ingredientItemTargets.filter((item) => item.value === event.currentTarget.parentElement.dataset.ing)[0].classList.remove("ingredient_add_to_recipe")
   }
   doubleClick(event){
     //alert("Gogole")
@@ -76,6 +77,7 @@ export default class extends Controller {
         alert("Déjà présent dans le tableau")
       }
     }
+    event.currentTarget.classList.add("ingredient_add_to_recipe")
 
   }
   clickInput(event){
