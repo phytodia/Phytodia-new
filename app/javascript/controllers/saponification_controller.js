@@ -14,7 +14,7 @@ export default class extends Controller {
   }
   createTr(event){
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
+    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.classList.add("ing_to_get")
@@ -52,7 +52,6 @@ export default class extends Controller {
   }
   removeIngredientOption(event){
     event.currentTarget.parentElement.remove()
-    this.changePoids()
   }
   doubleClick(event){
     //alert("Gogole")
@@ -79,9 +78,13 @@ export default class extends Controller {
     }
 
   }
+  clickInput(event){
+    event.currentTarget.value = ""
+    this.changePoids
+  }
   changePoids(event){
     let somme = 0
-
+    debugger;
     this.ingPoidsTargets.forEach((element)=>{
       if(element.value !== '') {
         somme = somme + parseFloat(element.value)
