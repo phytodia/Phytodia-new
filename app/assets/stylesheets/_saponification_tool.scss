@@ -9,6 +9,18 @@
   ;
   .soudes {
     grid-area: tete;
+    display: flex;
+    gap: 10px;
+    //grid-template-columns: 1fr 1fr 1fr;
+    & > div {
+      width: fit-content;
+      & > div {
+        padding: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        input {width: 5em;}
+      }
+    }
   }
   .tableaux {
     grid-area: tableau;
@@ -357,18 +369,22 @@
   .sort_ing {display: flex; flex-direction: column;}
 }
 .results_tool_saponification {
-  border: solid 1px #358E8E;
+  //border: solid 1px #358E8E;
   padding: 5px;
   border-radius: 3px;
   div {
-  border-bottom: solid 1px lightgrey;
+  //border-bottom: solid 1px lightgrey;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
-  line-height: 1.5em;
+  //line-height: 1.5em;
+  & > div {
+    gap: 5px;
+  }
   input {
     width: 4em !important;
     text-align: center;
-    border:none;
+    //border:none;
     background-color: white;
     color:black;
   }
@@ -440,4 +456,12 @@
   height: 30px;
   justify-content: center;
    align-items: center;
+}
+.green_label {
+  background-color: #358E8E;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  margin-right: 1em;
 }
