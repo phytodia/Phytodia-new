@@ -173,6 +173,9 @@
       height: 24px;
       align-items: center;
       display: flex;
+      &.ingredient_add_to_recipe {
+        background-color: grey;
+      }
     }
     option:hover,
     option:focus,
