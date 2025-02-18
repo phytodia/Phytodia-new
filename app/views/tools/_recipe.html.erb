@@ -60,7 +60,7 @@
   <div class="soudes">
     <div>
       <div>
-        <label for="" class="green_label">Type de base</label>
+        <label for="" class="green_label">Type de base <i class="fa-regular fa-circle-question information"><span><p>..</p></span></i></label>
         <select data-saponification-target="selectSoude" disabled data-action="saponification#lessiveSelect">
           <option value="naoh" class="select_soude solide">NaOH</option>
           <option value="koh" class="select_soude liquide">KOH</option>
@@ -68,17 +68,17 @@
         </select>
       </div>
       <div>
-        <label for="" class="green_label">Taux de surgraissage</label>
+        <label for="" class="green_label">Taux de surgraissage <i class="fa-regular fa-circle-question information"><span><p>Le taux de surgraissage minimale est recommandé à 5 % pour ne pas avoir un savon trop caustique et ne doit pas dépasser 8 ou 10% pour ne pas avoir un savon trop mou et qui risque de rancir. </p></span></i></label>
         <input type="number" placeholder="%" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
       </div>
     </div>
     <div>
       <div>
-        <label for="" class="green_label">Pourcentage d'eau désiré</label>
+        <label for="" class="green_label">Pourcentage d'eau désiré <i class="fa-regular fa-circle-question information"><span><p>Le pourcentage d’eau qui est généralement recommandé est de 30%. Il peut varier de 25 à 40 % selon la vitesse de traçage souhaité les graisses choisies.</p></span></i></label>
         <input type="number" placeholder="%" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
       </div>
       <div>
-        <label for="" class="green_label">Pourcentage d'ajout/additifs(Faire JS)</label>
+        <label for="" class="green_label">Pourcentage d'ajout/additifs(Faire JS) <i class="fa-regular fa-circle-question information"><span><p>L’ajout total d’additifs ne doit pas dépasser 10 % du poids total des huiles. Les fragrances ne doivent généralement pas dépasser 3% du poids des huiles (environ 30g pour 1kg d’huile), de même que pour les argiles, colorants et autres additifs (miel, sucre). Attention certaines huiles essentielles (cannelle, girofle, menthe) ou autres additifs accélèrent particulièrement la trace et augmente fortement la température du mélange. Il est important de vérifier les recommandations données par le fournisseur.</p></span></i></label>
         <input type="number" placeholder="%">
       </div>
     </div>
