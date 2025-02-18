@@ -155,6 +155,7 @@
       //height: 50px;
       visibility: visible;
       height: auto;
+      background-color: white;
       h2 {}
     }
   }
@@ -395,7 +396,7 @@
   }
 }
 .tableaux {
-  #list_ingredients,#caracteristiques,#tableau_ingredients_selectionnes,#proprietes_savon {
+  #list_ingredients,#caracteristiques,#tableau_ingredients_selectionnes,#proprietes_savon, #ingredient_selectionne_attributs {
     padding: 0 10px;
   }
 }
@@ -478,11 +479,30 @@
   }
 }
 #ingredient_selectionne_attributs {
-  border-right: solid 1px;
-  //visibility: hidden;
-  //width: 0;
+
+  visibility: hidden;
+  width: 0;
+  height: 0;
   &.open {
     visibility: visible;
     width: auto;
+    height: auto;
+    min-width: 12em;
+    max-width: 12em;
+    border-right: solid 1px;
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .titre_tool {
+      text-align: center;
+      text-wrap: wrap;
+    }
+    table {
+      width: 100%;
+      border: solid 1px;
+    }
   }
 }

@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -315,12 +315,16 @@ export default class extends Controller {
   infoIngredient(event){
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let ing = event.currentTarget.parentElement.parentElement.dataset.ing;
-    debugger;
-    this.ingSelectionneProprietesTarget
+    this.ingSelectionneProprietesTarget.classList.add("open")
+    this.ingSelectionneProprietesTarget.querySelector(".titre_tool").innerText = `Propriétés - ${ingredients[ing]["French_name"]}`
     let tds = Array.from(this.ingSelectionneProprietesTarget.querySelector("table").querySelectorAll("td"))
-    .forEach((element)=>{
-      element.querySelector("[name='Hardness']")
+    tds.filter((item)=> item.hasAttribute("name")).forEach((element)=>{
+      element.innerText = ingredients[ing][element.attributes.name.value]
     })
+    debugger;
+  }
+  closeInfoIng(event){
+    this.closeInfoTarget.parentElement.parentElement.classList.remove("open")
   }
 
 
