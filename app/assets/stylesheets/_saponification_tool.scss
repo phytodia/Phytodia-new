@@ -479,4 +479,10 @@
 }
 #ingredient_selectionne_attributs {
   border-right: solid 1px;
+  //visibility: hidden;
+  //width: 0;
+  &.open {
+    visibility: visible;
+    width: auto;
+  }
 }
