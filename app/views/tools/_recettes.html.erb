@@ -33,6 +33,35 @@
       <h4 itemprop="recipeIngredient">Type d'alcali: <%= recette.type_soude %></h4>
       <h4 itemprop="recipeIngredient">Qté soude :<%= recette.qty_soude %></h4>
       <h4 itemprop="recipeIngredient">% de surgraissage : <%= recette.surgraissage_taux %></h4>
+      <h4>Propriétés</h4>
+      <table>
+        <tbody>
+        <tr>
+          <td>Dureté</td>
+          <td><%= recette.hardness%></td>
+        </tr>
+        <tr>
+          <td>Pouvoir lavant</td>
+          <td><%= recette.cleansing %></td>
+        </tr>
+        <tr>
+          <td>Condition</td>
+          <td><%= recette.condition %></td>
+        </tr>
+        <tr>
+          <td>Pouvoir moussant</td>
+          <td><%= recette.bubbly %></td>
+        </tr>
+        <tr>
+          <td>Onctuosité</td>
+          <td><% recette.creamy %></td>
+        </tr>
+        <tr>
+          <td>Indice Iodine</td>
+          <td><%= recette.iodine %></td>
+        </tr>
+        </tbody>
+      </table>
       <h4>Instructions</h4>
       <div itemprop="recipeInstructions">
       </div>
