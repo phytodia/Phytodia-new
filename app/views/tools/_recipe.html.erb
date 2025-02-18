@@ -60,7 +60,7 @@
   <div class="soudes">
     <div>
       <div>
-        <label for="" class="green_label">Type de base</label>
+        <label for="" class="green_label">Type de base <i class="fa-regular fa-circle-question information"><span><p>..</p></span></i></label>
         <select data-saponification-target="selectSoude" disabled data-action="saponification#lessiveSelect">
           <option value="naoh" class="select_soude solide">NaOH</option>
           <option value="koh" class="select_soude liquide">KOH</option>
@@ -68,17 +68,17 @@
         </select>
       </div>
       <div>
-        <label for="" class="green_label">Taux de surgraissage</label>
+        <label for="" class="green_label">Taux de surgraissage <i class="fa-regular fa-circle-question information"><span><p>Le taux de surgraissage minimale est recommandé à 5 % pour ne pas avoir un savon trop caustique et ne doit pas dépasser 8 ou 10% pour ne pas avoir un savon trop mou et qui risque de rancir. </p></span></i></label>
         <input type="number" placeholder="%" name="surgraissage" value="0" data-action="change->saponification#changeSurgraissage" data-saponification-target="pourcentageSurgraissage">
       </div>
     </div>
     <div>
       <div>
-        <label for="" class="green_label">Pourcentage d'eau désiré</label>
+        <label for="" class="green_label">Pourcentage d'eau désiré <i class="fa-regular fa-circle-question information"><span><p>Le pourcentage d’eau qui est généralement recommandé est de 30%. Il peut varier de 25 à 40 % selon la vitesse de traçage souhaité les graisses choisies.</p></span></i></label>
         <input type="number" placeholder="%" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
       </div>
       <div>
-        <label for="" class="green_label">Pourcentage d'ajout/additifs(Faire JS)</label>
+        <label for="" class="green_label">Pourcentage d'ajout/additifs(Faire JS) <i class="fa-regular fa-circle-question information"><span><p>L’ajout total d’additifs ne doit pas dépasser 10 % du poids total des huiles. Les fragrances ne doivent généralement pas dépasser 3% du poids des huiles (environ 30g pour 1kg d’huile), de même que pour les argiles, colorants et autres additifs (miel, sucre). Attention certaines huiles essentielles (cannelle, girofle, menthe) ou autres additifs accélèrent particulièrement la trace et augmente fortement la température du mélange. Il est important de vérifier les recommandations données par le fournisseur.</p></span></i></label>
         <input type="number" placeholder="%">
       </div>
     </div>
@@ -310,31 +310,37 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
       <div>
         <label for="Hardness">Dureté</label>
         <input type="number" name="Hardness" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Représente la solidité du savon. L’intervalle doit être situé entre 29 et 54. Sa valeur dépend des acides gras saturés (palmitique, stéarique, laurique, myristique). Généralement, un savon doux (plus soluble) sera situé entre 29 et 35 et un savon solide entre 40 et 54.</p></span></i>
       </div>
 
       <div>
         <label for="Cleansing">Pourvoir lavant</label>
         <input type="number" name="Cleansing" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Détermine la capacité du savon à éliminer les graisses et les impuretés. L’intervalle doit être situé entre 12 et 22. Sa valeur dépend des acides gras laurique et myristique. Bas (<12) : savon doux, idéal pour peaux sèches. Élevé (>22) : savon très lavant, mais peut assécher. </p></span></i>
       </div>
 
       <div>
         <label for="Condition">Condition</label>
         <input type="number" name="Condition" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Indique la capacité émolliente du savon, c’est à dire nourrissante, hydratante et à protéger la peau. L’intervalle doit être situé entre 44 et 69. Sa valeur dépend des acides gras insaturés (oléique, linoléique, linolénique). Bas (<44) : savon peu hydratant. Élevé (>69) : savon riche, adapté aux peaux sèches ou sensibles. </p></span></i>
       </div>
 
       <div>
         <label for="Bubbly">Pouvoir moussant</label>
         <input type="number" name="Bubbly" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Mesure la capacité du savon à mousser et à produire des bulles. L’intervalle doit être situé entre 14 et 46. Sa valeur dépend des acides laurique et myristique. Bas (<14) : savon peu moussant. Élevé (>46) : savon très moussant. </p></span></i>
       </div>
 
       <div>
         <label for="Creamy">Onctuosité</label>
         <input type="number" name="Creamy" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Mesure la tenue et l’onctuosité de la mousse. L’intervalle doit être situé entre 16 et 48. Sa valeur dépend des acides stéarique et palmitique. Bas (<16) : mousse légère. Élevé (>48) : mousse abondante et onctueuse. </p></span></i>
       </div>
 
       <div>
         <label for="Iodine">Indice Iodine</label>
         <input type="number" name="Iodine" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>Mesure le niveau d’insaturation d’une huile végétale, soit en pratique ses risques d’oxydation et sa fragilité. Plus cet indice est élevé, plus l’huile végétale est fragile Plus l’indice d’iode d’un savon est élevé, plus le savon risque de s’oxyder et de rancir, plus sa durée de conservation peut être courte. L’intervalle doit être situé entre 41 et 70. </p></span></i>
       </div>
 
       <hr>
@@ -342,6 +348,8 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
       <div>
         <label for="INS">INS</label>
         <input type="number" name="INS" value="0" data-saponification-target="sommeGraissesINS" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L’INS donne une note globale au savon et reprend les paramètres précédemment cités : dureté, détergence, émollience, mousse. C’est un paramètre d’équilibre. L’INS d’une huile est calculé en déduisant l’indice d’iode à l’indice de saponification (indice KOH).
+L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées par sa quantité. L’intervalle doit être situé entre 136 et 170.</p></span></i>
       </div>
 
       <hr>
@@ -349,49 +357,56 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
       <div>
         <label for="Lauric">Acide Laurique</label>
         <input type="number" name="Lauric" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L'acide laurique ou acide dodécanoïque est un acide gras saturé à chaîne moyenne  (C12 :0) de formule semi-développée CH3–(CH2)10–COOH.</p></span></i>
       </div>
 
       <div>
         <label for="Myristic">Acide Myristique</label>
         <input type="number" name="Myristic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L’acide myristique ou acide tétradécanoïque est un acide gras saturé (C14 :0), de formule semi-développée CH3–(CH2)12–COOH. </p></span></i>
       </div>
 
       <div>
-        <label for="Palmitic">Acide Palmitique
-</label>
+        <label for="Palmitic">Acide Palmitique</label>
         <input type="number" name="Palmitic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L’acide palmitique ou acide cétylique est un acide gras saturé (C16 :0), de formule semi-développée CH3(CH2)14COOH.  </p></span></i>
       </div>
 
       <div>
         <label for="Stearic">Acide Stéarique</label>
         <input type="number" name="Stearic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L'acide stéarique ou acide octadécanoïque est un acide gras à chaîne moyenne (C18 :0), de formule semi-développée est CH3-(CH2)16-COOH. </p></span></i>
       </div>
 
       <div>
         <label for="Ricinoleic">Acide Ricinoléique</label>
         <input type="number" name="Ricinoleic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L’acide ricinoléique est un acide gras mono-insaturé hydroxylé oméga-9 de formule chimique semi-développée CH3–(CH2)5–HCOH–CH2–CH=CH–(CH2)7–COOH.</p></span></i>
       </div>
 
       <div>
         <label for="Oleic">Acide Oléique</label>
         <input type="number" name="Oleic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L'acide oléique est un acide gras mono-insaturé (C18 :1), de formule semi - développée CH3(CH2)7CH=CH(CH2)7COOH).  </p></span></i>
       </div>
 
       <div>
         <label for="Linoleic">Acide Linoléique</label>
         <input type="number" name="Linoleic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L'acide linoléique est un acide gras polyinsaturé oméga-6 (C18: 2), de formule semi-développée CH3(CH2)4CH=CH–CH2–CH=CH(CH2)7–COOH. </p></span></i>
       </div>
 
       <div>
         <label for="Linolenic">Acide Linolénique
 </label>
         <input type="number" name="Linolenic" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>L'acide linolénique est un acide gras polyinsaturé oméga-3 (C18 :3), de formule semi-développée CH3(CH2)4CH=CH–CH2–CH=CH(CH2)7–COOH. </p></span></i>
       </div>
 
       <div>
         <label for="Vitesse_tracage">Vitesse de traçage</label>
         <input type="number" name="Vitesse_tracage" value="0" disabled>
-        <i class="fa-regular fa-circle-question information"><span>gg</span></i>
+        <i class="fa-regular fa-circle-question information"><span><p>La vitesse de traçage dépend de la composition en acides gras des graisses présentent dans le mélange. Les acides gras saturés entraînent une vitesse de traçage rapide tandis que les acides gras insaturés entraînent une vitesse de traçage lente.</p></span></i>
       </div>
     </div> <!-- Fin #caractéristiques -->
 
