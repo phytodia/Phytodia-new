@@ -472,3 +472,11 @@
 .fa-circle-question {
   span,p{background-color: white; z-index: 1;}
 }
+.ing_to_get {
+  .fa-circle-question {
+    cursor: pointer;
+  }
+}
+#ingredient_selectionne_attributs {
+  border-right: solid 1px;
+}
