@@ -60,13 +60,50 @@ class ToolsController < ApplicationController
     # .order not working -> utiliser .reorder
     # SELECT "users".* FROM "users" ORDER BY name DESC
     element_to_sort = params[:name]
-    sort_type = params[:sort] #asc or desc
 
+    sort_type = params[:sort] #asc or desc
+    #fail
+    #Ingredient
+    #sort_type
     case element_to_sort
     when "ingredient"
       @ingredients_table = @ingredients_table.reorder("french_name #{sort_type}")
     when "INCI"
       @ingredients_table = @ingredients_table.reorder(INCI_name: sort_type.to_sym)
+    when "durete"
+      @ingredients_table = @ingredients_table.reorder(hardness: sort_type.to_sym)
+    when "pouvoir lavant"
+      @ingredients_table = @ingredients_table.reorder(cleansing: sort_type.to_sym)
+    when "condition"
+      @ingredients_table = @ingredients_table.reorder(condition: sort_type.to_sym)
+    when "bulles"
+      @ingredients_table = @ingredients_table.reorder(bubbly: sort_type.to_sym)
+    when "creamy"
+      @ingredients_table = @ingredients_table.reorder(creamy: sort_type.to_sym)
+    when "iodine"
+      @ingredients_table = @ingredients_table.reorder(iodine: sort_type.to_sym)
+    when "INS"
+      @ingredients_table = @ingredients_table.reorder(INS: sort_type.to_sym)
+    when "Lauric"
+      @ingredients_table = @ingredients_table.reorder(lauric: sort_type.to_sym)
+    when "Myristic"
+      @ingredients_table = @ingredients_table.reorder(myristic: sort_type.to_sym)
+    when "Palmitic"
+      @ingredients_table = @ingredients_table.reorder(palmitic: sort_type.to_sym)
+    when "Stearic"
+      @ingredients_table = @ingredients_table.reorder(stearic: sort_type.to_sym)
+    when "Ricinoleic"
+      @ingredients_table = @ingredients_table.reorder(ricinoleic: sort_type.to_sym)
+    when "Oleic"
+      @ingredients_table = @ingredients_table.reorder(oleic: sort_type.to_sym)
+    when "Linoleic"
+      @ingredients_table = @ingredients_table.reorder(Linoleic: sort_type.to_sym)
+    when "Linolenic"
+      @ingredients_table = @ingredients_table.reorder(linolenic: sort_type.to_sym)
+    when "NaOH"
+      @ingredients_table = @ingredients_table.reorder(NaOH_SAP: sort_type.to_sym)
+    when "KOH"
+      @ingredients_table = @ingredients_table.reorder(KOH_SAP: sort_type.to_sym)
     else
 
     end
