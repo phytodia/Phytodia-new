@@ -316,7 +316,11 @@ export default class extends Controller {
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let ing = event.currentTarget.parentElement.parentElement.dataset.ing;
     debugger;
-    //ingSelectionneProprietesTarget
+    this.ingSelectionneProprietesTarget
+    let tds = Array.from(this.ingSelectionneProprietesTarget.querySelector("table").querySelectorAll("td"))
+    .forEach((element)=>{
+      element.querySelector("[name='Hardness']")
+    })
   }
 
 
