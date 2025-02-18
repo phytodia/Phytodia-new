@@ -9,16 +9,18 @@
   ;
   .soudes {
     grid-area: tete;
-    display: flex;
-    gap: 10px;
-    //grid-template-columns: 1fr 1fr 1fr;
-    & > div {
-      width: fit-content;
+    & >div {
+      display: flex;
+      gap: 10px;
+      //grid-template-columns: 1fr 1fr 1fr;
       & > div {
-        padding: 5px 0;
-        display: flex;
-        justify-content: space-between;
-        input {width: 5em;}
+        width: fit-content;
+        & > div {
+          padding: 5px 0;
+          display: flex;
+          justify-content: space-between;
+          input {width: 5em;}
+        }
       }
     }
   }
