@@ -3,18 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo"]
   static outlets = [ "apexcharts" ]
 
   connect() {
     console.log("sapo")
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
     console.log(this.apexchartsOutlets)
-
   }
   createTr(event){
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
-    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>'
+    let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePoids" data-saponification-target="ingPoids" value="0"><i class="fa-regular fa-circle-question information" data-action="click->saponification#infoIngredient"></i></td>'
     console.log(document.querySelectorAll('[data-ing]'))
     let newTr = document.createElement('tr')
     newTr.classList.add("ing_to_get")
@@ -86,7 +85,6 @@ export default class extends Controller {
   }
   changePoids(event){
     let somme = 0
-    debugger;
     this.ingPoidsTargets.forEach((element)=>{
       if(element.value !== '') {
         somme = somme + parseFloat(element.value)
@@ -313,6 +311,20 @@ export default class extends Controller {
   }
   saveSoapSubmit(){
     this.saveSavonTarget.querySelector("form").submit();
+  }
+  infoIngredient(event){
+    const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    let ing = event.currentTarget.parentElement.parentElement.dataset.ing;
+    this.ingSelectionneProprietesTarget.classList.add("open")
+    this.ingSelectionneProprietesTarget.querySelector(".titre_tool").innerText = `Propriétés - ${ingredients[ing]["French_name"]}`
+    let tds = Array.from(this.ingSelectionneProprietesTarget.querySelector("table").querySelectorAll("td"))
+    tds.filter((item)=> item.hasAttribute("name")).forEach((element)=>{
+      element.innerText = ingredients[ing][element.attributes.name.value]
+    })
+    debugger;
+  }
+  closeInfoIng(event){
+    this.closeInfoTarget.parentElement.parentElement.classList.remove("open")
   }
 
 
