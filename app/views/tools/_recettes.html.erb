@@ -4,7 +4,7 @@
   <% @recipes.each do |recette| %>
   <li class="recipe_soap_card" itemscope itemtype="https://schema.org/Recipe">
     <div class="titre_recipe_soap">
-      <h3 itemprop="name"><%= recette.titre %></h3>
+      <h3 itemprop="name">Recette #<%= recette.id %></h3>
 
         <%= turbo_frame_tag "counter_soap_#{recette.id}" do %>
           <div class="counter_recipe_soap">

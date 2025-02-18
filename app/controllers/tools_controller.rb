@@ -23,11 +23,11 @@ class ToolsController < ApplicationController
       redirect_to tools_saponification_path()
     else
 
-
       ingredients_list = Ingredient.pluck(:english_name,:id).each {|arr| arr[0].downcase}
       ingredients_list = Hash[ingredients_list].transform_keys(&:downcase)
 
       @recipe_soap = RecipeSoap.new(soap_params)
+
       @recipe_soap.save
 
       ingredients = params[:recipe_soap][:ingredients]
