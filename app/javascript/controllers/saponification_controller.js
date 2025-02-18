@@ -365,6 +365,78 @@ export default class extends Controller {
 
     Object.keys(proprietes).forEach((prop)=>{
       this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = proprietes[prop]
+      this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("color_alert")
+      this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("color_alert")
+      if(prop === "Hardness"){
+        if(proprietes[prop]>=29 && proprietes[prop]<=54){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "Cleansing"){
+        if(proprietes[prop]>=12 && proprietes[prop]<=22){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "Condition"){
+        if(proprietes[prop]>=44 && proprietes[prop]<=69){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "Bubbly"){
+        if(proprietes[prop]>=14 && proprietes[prop]<=46){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "Creamy"){
+        if(proprietes[prop]>=16 && proprietes[prop]<=48){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "Iodine"){
+        if(proprietes[prop]>=41 && proprietes[prop]<=70){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
+      else if(prop === "INS"){
+        if(proprietes[prop]>=136 && proprietes[prop]<=170){
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+        }
+        else{
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+        }
+      }
     })
 
     //let valuesSavon = proprietes;
