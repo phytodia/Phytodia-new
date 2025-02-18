@@ -506,3 +506,11 @@
     }
   }
 }
+.color_alert {
+  &.green {
+    background-color: rgb(151, 211, 151) !important;
+  }
+  &.red {
+    background-color: rgb(255, 148, 148) !important;
+  }
+}
