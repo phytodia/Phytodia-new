@@ -2,12 +2,30 @@
 
 <div class="tool_saponification_bas" id="JSON" data-controller="saponification" data-saponification-target="ingredientsJson" data-ingredients="<%= @json %>" data-saponification-apexcharts-outlet=".online-chart" data-recipe-series="" data-recipe-donnees="">
   <div class="types_savon" data-saponification-target="finalSavonChoice" data-final-savon-choice="">
-    <h2 class="titre_tool">1. Choisissez votre type de savon</h2>
-    <div class="btn_savon_choix" data-type-savon="solide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
-      <%= image_tag "savon.png",width:40 %><span>savon solide</span>
+    <div>
+      <h2 class="titre_tool">1. Choisissez votre type de savon</h2>
+      <div class="savons_type_select">
+        <div class="btn_savon_choix" data-type-savon="solide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
+          <%= image_tag "savon.png",width:40 %><span>savon solide</span>
+        </div>
+        <div class="btn_savon_choix" data-type-savon="liquide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
+          <%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span>
+        </div>
+      </div>
     </div>
-    <div class="btn_savon_choix" data-type-savon="liquide" data-saponification-target="choiceSavon" data-action="click->saponification#selectSavon">
-      <%= image_tag "savon-liquide.png",width:40 %><span>savon liquide</span>
+    <div class="message_alert_alcali" data-saponification-target="alcaliAlertMessage">
+      <div class="message_alert_alcali_type naoh">
+        <%= image_tag "logo-corrosif.png" %>
+        <p>NaOH : La soude est un produit extrêmement corrosif qui peut provoquer de graves brûlures. Il est à manipuler avec une grande précaution.</p>
+      </div>
+      <div class="message_alert_alcali_type koh">
+        <%= image_tag "logo-corrosif.png" %>
+        <p>KOH : Composé caustique et très corrosif à manipuler avec une grande précaution.</p>
+      </div>
+      <div class="message_alert_alcali_type lessive">
+        <%= image_tag "logo-corrosif.png" %>
+        <p>Lessive : Vérifier la concentration de votre lessive de soude déjà préparer. Elle est généralement située aux alentours de 30%. Attention !!! Manipuler la lessive de soude avec une grande précaution</p>
+      </div>
     </div>
     <div class="save_recipe_soap" data-saponification-target="saveSavon">
 
@@ -48,12 +66,12 @@
             <%= f.label :iodine %>
             <%= f.number_field :iodine,class:"recipe_soap_iodine" %>
           </div>
-
         <%= f.submit %>
         </div>
       <% end %>
       <div class="save_soap_recipe_action" data-action="click->saponification#saveSoapSubmit">
        <i class="fa-regular fa-floppy-disk fa-2xl"></i>
+       <p>Sauvegarder la recette</p>
       </div>
     </div>
   </div>
