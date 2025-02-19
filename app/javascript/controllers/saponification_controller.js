@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -233,6 +233,9 @@ export default class extends Controller {
     });
     this.resultsNaohKohTarget.querySelector(`.select_choice_savon_method.${typeSavon}`).classList.add("selected")
 
+    Array.from(this.alcaliAlertMessageTarget.querySelectorAll(".message_alert_alcali_type")).forEach((element)=>{
+      element.classList.remove("visible")
+    })
 
     if (typeSavon === "solide") {
       console.log(typeSavon);
@@ -243,6 +246,8 @@ export default class extends Controller {
 
       this.sommeNaoh()
       this.typeAlcaliTarget.value = "NaOH"
+
+      this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.naoh").classList.add("visible")
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
@@ -252,6 +257,8 @@ export default class extends Controller {
 
       this.sommeKoh()
       this.typeAlcaliTarget.value = "KOH"
+
+      this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.add("visible")
     }
 
   }
@@ -261,6 +268,9 @@ export default class extends Controller {
       this.typeAlcaliTarget.value = "Lessive"
       this.concentrationLessiveTarget.classList.add("visible")
       this.qtyLessiveSoudeTarget.classList.add("visible")
+
+      this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.remove("visible")
+      this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.lessive").classList.add("visible")
     }
     else {
       this.typeAlcaliTarget.value = "KOH"
@@ -321,7 +331,7 @@ export default class extends Controller {
     tds.filter((item)=> item.hasAttribute("name")).forEach((element)=>{
       element.innerText = ingredients[ing][element.attributes.name.value]
     })
-    debugger;
+
   }
   closeInfoIng(event){
     this.closeInfoTarget.parentElement.parentElement.classList.remove("open")

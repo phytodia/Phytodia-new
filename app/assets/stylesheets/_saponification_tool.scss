@@ -249,11 +249,34 @@
 }
 
 .types_savon {
-  gap: 3px;
+  gap: 2em;
   padding: 0.5em 0;
   display: flex;
   flex-wrap: wrap;
-  .titre_tool {width: 100%;margin-bottom: 0;}
+  .savons_type_select {display: flex; gap:3px}
+  .message_alert_alcali {
+    position: relative;
+    max-width: 30%;
+    width: 100%;
+    background-color: white;
+    .message_alert_alcali_type {
+      display: flex;
+      background-color: white;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      z-index: -2;
+      height: 100%;
+      gap:10px;
+      img {width: 4em;object-fit: contain;}
+      &.naoh {}
+      &.koh {}
+      &.lessive {}
+      &.visible {z-index: 1;}
+      p {margin: 0;}
+    }
+  }
+  .titre_tool {width: 100%;margin-bottom: 0; margin: 0;}
   .btn_savon_choix {
     border: solid 2px #358E8E;
     border-radius: 3px;
@@ -457,12 +480,32 @@
   visibility: hidden;
   height: 0;
 }
+.save_recipe_soap {
+  display: flex;
+  width: fit-content;
+  align-items: end;
+  form {width: 0; height: 0;}
+}
 .save_soap_recipe_action {
   display: flex;
   width: fit-content;
   height: 30px;
   justify-content: center;
-   align-items: center;
+  align-items: center;
+  background-color: #358E8E;
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  color: white;
+  gap: 5px;
+  border: solid 1px transparent;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+  }
 }
 .green_label {
   background-color: #358E8E;
