@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -100,17 +100,22 @@ export default class extends Controller {
     this.modifPourcentagesIngs()
     //
     this.proprietesSavon()
+    this.checkPoids()
     //rajout des appels à fonctions suivantes
     this.changeSoude()
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
-    //this.checkPoids()
+    this.checkPoids()
 
   }
   checkPoids(){
-    //if(parseFloat(this.sommePoidsTarget.innerText) < 500){
-
-    //}
+    debugger;
+    if(parseFloat(this.sommePoidsTarget.innerText) < 500){
+      this.alertPoidsTarget.classList.add("visible")
+    }
+    else {
+      this.alertPoidsTarget.classList.remove("visible")
+    }
   }
   changePourcentageIng(){
   }
