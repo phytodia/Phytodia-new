@@ -103,6 +103,8 @@ class ToolsController < ApplicationController
       @ingredients_table = @ingredients_table.reorder(NaOH_SAP: sort_type.to_sym)
     when "KOH"
       @ingredients_table = @ingredients_table.reorder(KOH_SAP: sort_type.to_sym)
+    when "vitesse"
+      @ingredients_table = @ingredients_table.reorder(vitesse_tracage: sort_type.to_sym)
     else
 
     end
