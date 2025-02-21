@@ -140,7 +140,7 @@
     </div><!-- Fin liste ingredients -->
 
     <div id="caracteristiques" data-saponification-target="caracteristiquesIngredient" data-ingredient-name="">
-      <h2 class="titre_tool">Propriétés de l'ingrédient</h2>
+      <h2 class="titre_tool light">Propriétés de l'ingrédient</h2>
       <div>
         <label for="Hardness">Dureté</label>
         <input type="number" name="Hardness" value="0" disabled>
@@ -175,6 +175,12 @@
         <label for="Iodine">Indice Iodine</label>
         <input type="number" name="Iodine" value="0" disabled>
         <i class="fa-regular fa-circle-question information"><span><p>Mesure le niveau d’insaturation d’une huile végétale, soit en pratique ses risques d’oxydation et sa fragilité. Plus cet indice est élevé, plus l’huile végétale est fragile Plus l’indice d’iode d’un savon est élevé, plus le savon risque de s’oxyder et de rancir, plus sa durée de conservation peut être courte. L’intervalle doit être situé entre 41 et 70. </p></span></i>
+      </div>
+
+      <div>
+        <label for="Vitesse_tracage">Vitesse de traçage</label>
+        <input type="number" name="Vitesse_tracage" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>La vitesse de traçage dépend de la composition en acides gras des graisses présentent dans le mélange. Les acides gras saturés entraînent une vitesse de traçage rapide tandis que les acides gras insaturés entraînent une vitesse de traçage lente.</p></span></i>
       </div>
 
       <hr>
@@ -236,11 +242,6 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
         <i class="fa-regular fa-circle-question information"><span><p>L'acide linolénique est un acide gras polyinsaturé oméga-3 (C18 :3), de formule semi-développée CH3(CH2)4CH=CH–CH2–CH=CH(CH2)7–COOH. </p></span></i>
       </div>
 
-      <div>
-        <label for="Vitesse_tracage">Vitesse de traçage</label>
-        <input type="number" name="Vitesse_tracage" value="0" disabled>
-        <i class="fa-regular fa-circle-question information"><span><p>La vitesse de traçage dépend de la composition en acides gras des graisses présentent dans le mélange. Les acides gras saturés entraînent une vitesse de traçage rapide tandis que les acides gras insaturés entraînent une vitesse de traçage lente.</p></span></i>
-      </div>
       <br>
       <div class="add_ing_button" data-action="click->saponification#addIngButton" data-saponification-target="addIngBtn"><span>Ajouter l'ingrédient</span><i class="fa-solid fa-plus"></i></div>
     </div> <!-- Fin #caractéristiques -->
@@ -353,6 +354,10 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
         <td name="Iodine"></td>
       </tr>
       <tr>
+        <td>Vitesse de traçage</td>
+        <td name="Vitesse_tracage"></td>
+      </tr>
+      <tr>
         <td>INS</td>
         <td name="INS"></td>
       </tr>
@@ -387,10 +392,6 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
       <tr>
         <td>Acide Linolénique</td>
         <td name="Linolenic"></td>
-      </tr>
-      <tr>
-        <td>Vitesse de traçage</td>
-        <td name="Vitesse_tracage"></td>
       </tr>
       </table>
     </div>
@@ -430,6 +431,12 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
         <label for="Iodine">Indice Iodine</label>
         <input type="number" name="Iodine" value="0" disabled class="">
         <i class="fa-regular fa-circle-question information"><span><p>Mesure le niveau d’insaturation d’une huile végétale, soit en pratique ses risques d’oxydation et sa fragilité. Plus cet indice est élevé, plus l’huile végétale est fragile Plus l’indice d’iode d’un savon est élevé, plus le savon risque de s’oxyder et de rancir, plus sa durée de conservation peut être courte. L’intervalle doit être situé entre 41 et 70. </p></span></i>
+      </div>
+
+      <div>
+        <label for="Vitesse_tracage">Vitesse de traçage</label>
+        <input type="number" name="Vitesse_tracage" value="0" disabled>
+        <i class="fa-regular fa-circle-question information"><span><p>La vitesse de traçage dépend de la composition en acides gras des graisses présentent dans le mélange. Les acides gras saturés entraînent une vitesse de traçage rapide tandis que les acides gras insaturés entraînent une vitesse de traçage lente.</p></span></i>
       </div>
 
       <hr>
@@ -486,17 +493,11 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
       </div>
 
       <div>
-        <label for="Linolenic">Acide Linolénique
-</label>
+        <label for="Linolenic">Acide Linolénique</label>
         <input type="number" name="Linolenic" value="0" disabled>
         <i class="fa-regular fa-circle-question information"><span><p>L'acide linolénique est un acide gras polyinsaturé oméga-3 (C18 :3), de formule semi-développée CH3(CH2)4CH=CH–CH2–CH=CH(CH2)7–COOH. </p></span></i>
       </div>
 
-      <div>
-        <label for="Vitesse_tracage">Vitesse de traçage</label>
-        <input type="number" name="Vitesse_tracage" value="0" disabled>
-        <i class="fa-regular fa-circle-question information"><span><p>La vitesse de traçage dépend de la composition en acides gras des graisses présentent dans le mélange. Les acides gras saturés entraînent une vitesse de traçage rapide tandis que les acides gras insaturés entraînent une vitesse de traçage lente.</p></span></i>
-      </div>
     </div> <!-- Fin #caractéristiques -->
 
     <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
