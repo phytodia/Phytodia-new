@@ -109,7 +109,7 @@ export default class extends Controller {
   }
   checkPoids(){
     if(parseFloat(this.sommePoidsTarget.innerText) < 500){
-
+      
     }
   }
   changePourcentageIng(){
