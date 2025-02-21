@@ -416,6 +416,9 @@
       border: 1px solid grey;
       padding: 8px 10px;
     }
+    tr {position: relative;
+      & > td:first-of-type {background-color: white; position: sticky; left: 0;}
+    }
 }
 .ing_head {
   display: flex;
@@ -590,5 +593,6 @@
 .tableFixHead thead {
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: white;}
 //.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: white; }
