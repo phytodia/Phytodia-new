@@ -3,9 +3,9 @@ namespace :ingredients do
   task ingredient_import: :environment do
     require "csv"
     filepath = "db/data/new_ingredients_huiles.csv"
-    RecipeSoap.delete_all
-    RecipeSoapIngredient.delete_all
-    Ingredient.delete_all
+    RecipeSoap.destroy_all
+    RecipeSoapIngredient.destroy_all
+    Ingredient.destroy_all
 
     CSV.foreach((filepath), headers: true, encoding:'iso-8859-1:utf-8', col_sep: ";") do |row|
       puts "nouvel ingrédient"
