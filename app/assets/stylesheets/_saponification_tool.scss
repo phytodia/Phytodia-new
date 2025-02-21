@@ -382,7 +382,7 @@
 }
 #ingredients_table {
     border-collapse: collapse;
-    border: 2px solid grey;
+    //border: 2px solid grey;
     font-family: sans-serif;
     font-size: 0.8rem;
     letter-spacing: 1px;
@@ -559,3 +559,10 @@
     background-color: rgb(255, 148, 148) !important;
   }
 }
+
+.tableFixHead { overflow: auto; max-height: 70vh; }
+.tableFixHead thead {
+  position: sticky;
+  top: 0;
+  background-color: white;}
+//.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: white; }

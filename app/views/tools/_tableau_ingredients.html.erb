@@ -1,3 +1,4 @@
+<div class="tableFixHead">
 <table id="ingredients_table">
   <thead>
     <tr>
@@ -18,7 +19,7 @@
       <th><span class="ing_head">Oleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"Oleic",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"Oleic",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">Linoleic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"Linoleic",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"Linoleic",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">Linolenic<div class="sort_ing"><%= link_to ingredient_sort_path(name:"Linolenic",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"Linolenic",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
-      <th><span class="ing_head">Vitesse de traçage<div class="sort_ing"><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"",sort:""), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
+      <th><span class="ing_head">Vitesse de traçage<div class="sort_ing"><%= link_to ingredient_sort_path(name:"vitesse",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"vitesse",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">NaOH<div class="sort_ing"><%= link_to ingredient_sort_path(name:"NaOH",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"NaOH",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
       <th><span class="ing_head">KOH<div class="sort_ing"><%= link_to ingredient_sort_path(name:"KOH",sort:"asc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-up"></i><% end %><%= link_to ingredient_sort_path(name:"KOH",sort:"desc"), data: { turbo_stream: true } do  %><i class="fa-solid fa-sort-down"></i><% end %></div></span></th>
     </tr>
@@ -43,10 +44,11 @@
         <td><%= ing.oleic %></td>
         <td><%= ing.Linoleic %></td>
         <td><%= ing.linolenic %></td>
-        <td><%= ing.vitesse_tracage %></td>
-        <td><%= ing.NaOH_SAP %></td>
-        <td><%= ing.KOH_SAP %></td>
+        <td><%= ing.vitesse_tracage.round(2) %></td>
+        <td><%= ing.NaOH_SAP.round(2) %></td>
+        <td><%= ing.KOH_SAP.round(2) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
