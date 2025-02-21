@@ -3,8 +3,8 @@ module ToolsHelper
     #rails c : ToolsHelper.csv_ingredients
     # heroku run rake ingredients:ingredient_import
     require "csv"
-    filepath = "db/data/export_ingredients.csv"
-    Ingredient.destroy_all
+    filepath = "db/data/new_ingredients_huiles.csv"
+    Ingredient.delete_all
 
     CSV.foreach((filepath), headers: true, encoding:'iso-8859-1:utf-8', col_sep: ";") do |row|
       puts "nouvel ingrédient"
