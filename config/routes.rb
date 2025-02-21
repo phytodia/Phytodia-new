@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "tools#saponification"
+  root "pages#home"
 
-  #get 'tools/saponification'
+  get 'tools/saponification',to: "tools#saponification"
   get '/new_recipe_partial', to: "tools#new_recipe_partial"
   get 'pages/home'
   get 'pages/contact'

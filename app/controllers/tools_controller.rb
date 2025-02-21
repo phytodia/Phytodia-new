@@ -34,7 +34,7 @@ class ToolsController < ApplicationController
         ing_recipe.save
       end
 
-      redirect_to root_path()
+      redirect_to tools_saponification_path()
     end
 
 
