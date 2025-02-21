@@ -104,8 +104,13 @@ export default class extends Controller {
     this.changeSoude()
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
+    this.checkPoids()
 
+  }
+  checkPoids(){
+    if(parseFloat(this.sommePoidsTarget.innerText) < 500){
 
+    }
   }
   changePourcentageIng(){
   }
