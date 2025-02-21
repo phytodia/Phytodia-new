@@ -83,9 +83,16 @@
   table {
     thead {
       display: flex;
-      th {width: 2.5rem; text-align: center;}
+      tr {display: grid;
+        grid-template-columns: 20px 140px 60px 80px;
+        gap: 5px;
+      }
+      th {width: 100%; text-align: center; justify-content: center;display: flex;
+        i {visibility: hidden;}
+      }
+      th.left {justify-content: flex-start;}
       th.tableau_ingredient_name {
-        width: 7rem;
+        //width: 7rem;
       }
       th:first-of-type {width: 1rem;}
       //th:first-child {width: 7rem;}
@@ -94,13 +101,28 @@
       tr {
         display: flex;
         align-items: center;
+        display: grid;
+        grid-template-columns: 20px 140px 60px 80px;
+        gap: 5px;
+        td:first-of-type > input {border: none;}
         td{
-          input {width: 2.5rem; text-align: center;}
+          display: flex;
+          width: 100%;
+          input {display:flex;width:100%; text-align: center;}
         }
+        td.left {justify-content: flex-start;}
 
-        .table_ingredients_input {width: 7rem; text-align: left;}
+        .table_ingredients_input {display:flex;width:100%; text-align: left;}
       }
     }
+  }
+  .total_recipe_ingredients {
+    td {display: flex; justify-content: center;}
+    span {display: flex; width: 100%;justify-content: center;}
+    i {visibility: hidden;}
+  }
+  .ing_to_get {
+    td input {border: solid 1px !important;}
   }
 }
 #caracteristiques, #tableau_ingredients_selectionnes {
@@ -444,7 +466,7 @@
   font-weight: 400;
 }
 .pre_input_ingredient {
-  margin-left: 16px;
+  //margin-left: 16px;
 }
 
 .list_recipes_soap {

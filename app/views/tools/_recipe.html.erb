@@ -254,27 +254,27 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
           <thead>
             <tr>
               <th></th>
-              <th class="tableau_ingredient_name ">Ingrédient</th>
+              <th class="tableau_ingredient_name left">Ingrédient</th>
               <th>%</th>
-              <th>g</th>
+              <th><span>g</span><i class="fa-regular fa-circle-question information"></i></th>
             </tr>
           </thead>
           <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
 
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
 
           </tbody>
           <div>
-            <tr>
+            <tr class="total_recipe_ingredients">
               <td></td>
-              <td>Totaux</td>
+              <td class="left">Totaux</td>
               <td data-saponification-target="pourcentagePoidsTotal">0%</td>
-              <td data-saponification-target="sommePoids">0</td>
+              <td><span data-saponification-target="sommePoids">0</span><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
           </div>
         </table>
