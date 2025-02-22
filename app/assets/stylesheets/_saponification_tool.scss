@@ -8,6 +8,7 @@
   "type type"
   "tete tete"
   "tableau tableau"
+  "proprietes proprietes"
   ;
   .soudes {
     grid-area: tete;
@@ -33,6 +34,10 @@
   }
   .types_savon {
     grid-area: type;
+  }
+  .proprietes_ingredients_selectionnes {
+    border: solid 1px;
+    grid-area: proprietes;
   }
   //gap: 10px;
 }
