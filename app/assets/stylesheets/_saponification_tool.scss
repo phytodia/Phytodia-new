@@ -276,12 +276,16 @@
 .types_savon {
   gap: 2em;
   padding: 0.5em 0;
-  display: flex;
-  flex-wrap: wrap;
+  //display: flex;
+  //flex-wrap: wrap;
+
+  display: grid;
+  grid-template-columns: 20% 65% 10%;
+
   .savons_type_select {display: flex; gap:3px}
   .message_alert_alcali {
     position: relative;
-    max-width: 30%;
+    max-width: 80%;
     width: 100%;
     background-color: white;
     .message_alert_alcali_type {
