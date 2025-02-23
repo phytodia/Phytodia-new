@@ -77,7 +77,7 @@ export default class extends Controller {
       }
     }
     event.currentTarget.classList.add("ingredient_add_to_recipe")
-
+    this.synthesePropertiesIngredients(event.currentTarget.value)
   }
   clickInput(event){
     event.currentTarget.value = ""
@@ -105,11 +105,9 @@ export default class extends Controller {
     this.changeSoude()
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
-    this.checkPoids()
 
   }
   checkPoids(){
-    debugger;
     if(parseFloat(this.sommePoidsTarget.innerText) < 500){
       this.alertPoidsTarget.classList.add("visible")
     }
@@ -156,6 +154,13 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
     return naoh;
+  }
+  synthesePropertiesIngredients(event){
+    let ingdtEng = event;
+    let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    let ingdt = ingredients[event]
+    let insertHtml = `<tr><td>${ingdt["French_name"]}</td><td>${ingdt["Hardness"]}</td><td>${ingdt["Cleansing"]}</td><td>${ingdt["Condition"]}</td><td>${ingdt["Bubbly"]}</td><td>${ingdt["Creamy"]}</td><td>${ingdt["Iodine"]}</td><td>${ingdt["Vitesse_tracage"]}</td></tr>`;
+    this.syntheseProprietesTarget.querySelector("tbody").insertAdjacentHTML("beforeend", insertHtml);
   }
 
 

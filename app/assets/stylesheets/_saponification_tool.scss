@@ -620,3 +620,14 @@
   z-index: 1;
   background-color: white;}
 //.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: white; }
+
+.proprietes_ingredients_selectionnes {
+  height: 8em;
+  div {
+    height: 5em;
+    overflow-y: auto;
+  }
+  table,tr,td,th {
+    border:1px solid black;border-collapse:collapse;
+  }
+}
