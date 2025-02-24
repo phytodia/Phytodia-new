@@ -185,16 +185,17 @@ export default class extends Controller {
   }
 
   sommeKoh() {
-      let Koh = 0;
+      let koh = 0;
       this.ingredientTableTarget.querySelectorAll("tr.ing_to_get").forEach((element)=>{
         let ingredient = element.dataset.ing
         let qty = parseFloat(element.lastChild.querySelector("input").value)
-        Koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
+        koh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["KOH SAP"] * qty
       })
-      console.log(`KOH: ${Koh}`)
+      koh = koh * 0.9
+      console.log(`KOH: ${koh}`)
 
       if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
-        this.insertKoh(Koh);
+        this.insertKoh(koh);
       }
   }
 
