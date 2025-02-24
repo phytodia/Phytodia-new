@@ -499,6 +499,28 @@ export default class extends Controller {
           this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
         }
       }
+      else if(prop === "Vitesse_tracage"){
+        if(proprietes[prop]<1){
+          // rouge
+          // Très lent
+        }
+        else if(proprietes[prop]>=1 && proprietes[prop]<=3{
+          //jaune
+          // Lent
+        })
+        else if(proprietes[prop]>=4 && proprietes[prop]<=6){
+          //verte
+          //normal
+        }
+        else if (proprietes[prop]>=7 && proprietes[prop]<=10){
+          //jaune
+          //rapide
+        }
+        else if (proprietes[prop]>10){
+          //rouge
+          //très rapide
+        }
+      }
     })
 
     //let valuesSavon = proprietes;
