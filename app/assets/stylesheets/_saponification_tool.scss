@@ -630,4 +630,7 @@
   table,tr,td,th {
     border:1px solid black;border-collapse:collapse;
   }
+  th {padding: 0px 10px;}
+  td {text-align: center;}
+  td:first-child {text-align: left;}
 }
