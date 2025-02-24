@@ -503,22 +503,42 @@ export default class extends Controller {
         if(proprietes[prop]<1){
           // rouge
           // Très lent
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("yellow")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = "Très lent"
         }
-        else if(proprietes[prop]>=1 && proprietes[prop]<=3{
+        else if(proprietes[prop]>=1 && proprietes[prop]<=3){
           //jaune
           // Lent
-        })
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("yellow")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = "Lent"
+        }
         else if(proprietes[prop]>=4 && proprietes[prop]<=6){
           //verte
           //normal
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("yellow")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = "Normal"
         }
         else if (proprietes[prop]>=7 && proprietes[prop]<=10){
           //jaune
           //rapide
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("yellow")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = "Rapide"
         }
         else if (proprietes[prop]>10){
           //rouge
           //très rapide
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("green")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.remove("yellow")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).classList.add("red")
+          this.savonProprietesTarget.querySelector(`input[name=${prop}]`).value = "Très rapide"
         }
       }
     })
