@@ -260,7 +260,7 @@ export default class extends Controller {
 
     if (typeSavon === "solide") {
       console.log(typeSavon);
-      this.selectSoudeTarget.querySelector(".solide").display = ""
+      Array.from(this.selectSoudeTarget.querySelectorAll(".solide")).forEach((element)=>{element.style.display = ""})
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = "none"})
       this.selectSoudeTarget.value = "naoh"
       this.selectSoudeTarget.disabled = false
@@ -272,7 +272,7 @@ export default class extends Controller {
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
-      this.selectSoudeTarget.querySelector(".solide").style.display = "none"
+      this.selectSoudeTarget.querySelectorAll(".solide").forEach((element)=>{element.style.display = "none"})
       this.selectSoudeTarget.value = "koh"
       this.selectSoudeTarget.disabled = false
 
