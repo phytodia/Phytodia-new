@@ -292,11 +292,40 @@ export default class extends Controller {
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.remove("visible")
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.lessive").classList.add("visible")
+
+      this.pourcentageEauTarget.classList.add("blocked")
+      this.pourcentageEauTarget.disabled = true
+
+      this.qtyWaterTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
+
+
+      this.qtySoudeTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
+
     }
     else {
       this.typeAlcaliTarget.value = "KOH"
       this.concentrationLessiveTarget.classList.remove("visible")
       this.qtyLessiveSoudeTarget.classList.remove("visible")
+
+      this.pourcentageEauTarget.disabled = false
+      this.pourcentageEauTarget.classList.remove("blocked")
+
+      this.qtyWaterTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
+
+
+      this.qtySoudeTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
     }
   }
 
