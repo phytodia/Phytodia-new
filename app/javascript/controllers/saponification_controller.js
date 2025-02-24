@@ -50,8 +50,10 @@ export default class extends Controller {
     //this.ingredientItemTargets[indexPlus].dispatchEvent(new MouseEvent("dblclick"))
   }
   removeIngredientOption(event){
+    let indexIngdt = Array.from(event.currentTarget.parentElement.parentElement.querySelectorAll("tr.ing_to_get")).indexOf(event.currentTarget.parentElement)
     event.currentTarget.parentElement.remove()
     this.ingredientItemTargets.filter((item) => item.value === event.currentTarget.parentElement.dataset.ing)[0].classList.remove("ingredient_add_to_recipe")
+    this.deleteIngdtTable(indexIngdt)
   }
   doubleClick(event){
     //alert("Gogole")
@@ -161,6 +163,9 @@ export default class extends Controller {
     let ingdt = ingredients[event]
     let insertHtml = `<tr><td>${ingdt["French_name"]}</td><td>${ingdt["Hardness"]}</td><td>${ingdt["Cleansing"]}</td><td>${ingdt["Condition"]}</td><td>${ingdt["Bubbly"]}</td><td>${ingdt["Creamy"]}</td><td>${ingdt["Iodine"]}</td><td>${ingdt["Vitesse_tracage"]}</td></tr>`;
     this.syntheseProprietesTarget.querySelector("tbody").insertAdjacentHTML("beforeend", insertHtml);
+  }
+  deleteIngdtTable(index){
+    Array.from(this.syntheseProprietesTarget.querySelector('tbody').querySelectorAll('tr'))[index].remove()
   }
 
 
