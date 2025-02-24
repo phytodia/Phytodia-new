@@ -260,7 +260,7 @@ export default class extends Controller {
 
     if (typeSavon === "solide") {
       console.log(typeSavon);
-      this.selectSoudeTarget.querySelector(".solide").display = ""
+      Array.from(this.selectSoudeTarget.querySelectorAll(".solide")).forEach((element)=>{element.style.display = ""})
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = "none"})
       this.selectSoudeTarget.value = "naoh"
       this.selectSoudeTarget.disabled = false
@@ -272,7 +272,7 @@ export default class extends Controller {
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
-      this.selectSoudeTarget.querySelector(".solide").style.display = "none"
+      this.selectSoudeTarget.querySelectorAll(".solide").forEach((element)=>{element.style.display = "none"})
       this.selectSoudeTarget.value = "koh"
       this.selectSoudeTarget.disabled = false
 
@@ -292,11 +292,39 @@ export default class extends Controller {
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.remove("visible")
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.lessive").classList.add("visible")
+
+      this.pourcentageEauTarget.classList.add("blocked")
+      this.pourcentageEauTarget.disabled = true
+
+      this.qtyWaterTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
+
+
+      this.qtySoudeTargets.forEach((element)=>{
+        element.classList.add("blocked")
+        element.disabled = true
+      })
+
     }
     else {
       this.typeAlcaliTarget.value = "KOH"
       this.concentrationLessiveTarget.classList.remove("visible")
       this.qtyLessiveSoudeTarget.classList.remove("visible")
+
+      this.pourcentageEauTarget.disabled = false
+      this.pourcentageEauTarget.classList.remove("blocked")
+
+      this.qtyWaterTargets.forEach((element)=>{
+        element.classList.remove("blocked")
+        element.disabled = false
+      })
+
+      this.qtySoudeTargets.forEach((element)=>{
+        element.classList.remove("blocked")
+        element.disabled = false
+      })
     }
   }
 
