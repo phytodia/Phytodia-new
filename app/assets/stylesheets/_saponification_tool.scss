@@ -81,6 +81,8 @@
 #tableau_ingredients_selectionnes {
   //border-right: solid 1px;
   width:auto;
+  max-width: 30%;
+  width: min-content;
 }
 .table_ingredients_selectionnes {
   //border-right: solid 1px;
@@ -594,9 +596,13 @@
   &.red {
     background-color: rgb(255, 148, 148) !important;
   }
+  &.yellow {
+    background-color: rgb(255, 216, 41) !important;
+  }
 }
 .alert_poids {
   height: 0;
+  width: 0;
   visibility: hidden;
   &.visible {
   display: flex;
@@ -606,8 +612,8 @@
   color: red;
   height: auto;
   visibility: visible;
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  //margin: auto;
   }
 }
 
@@ -638,4 +644,12 @@
 .blocked {
   background-color: lightgray !important;
   color: lightgray !important;
+}
+.tableaux {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0fr 1fr 1fr !important;
+}
+
+#proprietes_savon {
+  input {width: 7em !important;}
 }
