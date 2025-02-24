@@ -254,32 +254,35 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
           <thead>
             <tr>
               <th></th>
-              <th class="tableau_ingredient_name ">Ingrédient</th>
+              <th class="tableau_ingredient_name left">Ingrédient</th>
               <th>%</th>
-              <th>g</th>
+              <th><span>g</span><i class="fa-regular fa-circle-question information"></i></th>
             </tr>
           </thead>
           <tbody data-saponification-target="ingredientTable" data-ingredients=[]>
 
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
-            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td>
+            <tr class="pre_input_ingredient"><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="change->saponification#changePoids" data-saponification-target="ingPoids" value="0"></td><td><input value="0"><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
 
           </tbody>
           <div>
-            <tr>
+            <tr class="total_recipe_ingredients">
               <td></td>
-              <td>Totaux</td>
+              <td class="left">Totaux</td>
               <td data-saponification-target="pourcentagePoidsTotal">0%</td>
-              <td data-saponification-target="sommePoids">0</td>
+              <td><span data-saponification-target="sommePoids">0</span><i class="fa-regular fa-circle-question information"></i></td>
             </tr>
           </div>
         </table>
       </div>
-
+      <div data-saponification-target="alertPoids" class="alert_poids">
+        <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
+        <p>Attention ! Il est recommandé d'avoir au moins 500g dans votre recette</p>
+      </div>
       <hr>
       <div class="naoh_koh_results" data-saponification-target="resultsNaohKoh">
         <div class="select_choice_savon_method naoh solide">
@@ -503,6 +506,25 @@ L’INS d’un savon est la somme des INS de chacune de ses huiles pondérées p
     <div class="online-chart" data-controller="apexcharts" data-apexcharts-labels-value="<%= @labels%>" data-apexcharts-series-value="<%= @series %>" data-apexcharts-target="chartParent">
       <div data-apexcharts-target="chart"></div>
 
+    </div>
+  </div>
+  <div class="proprietes_ingredients_selectionnes" data-saponification-target="syntheseProprietes">
+    <h2 class="titre_tool">Proprietes ingredients</h2>
+    <div>
+      <table>
+        <thead>
+          <th>Nom de l'ingrédient</th>
+          <th>Dureté</th>
+          <th>Pouvoir lavant</th>
+          <th>Douceur</th>
+          <th>Pouvoir moussant</th>
+          <th>Onctuosité</th>
+          <th>Indice Iodine</th>
+          <th>Vitesse de traçage</th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
   </div>
 </div> <!-- Fin controller JS -->

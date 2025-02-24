@@ -8,6 +8,7 @@
   "type type"
   "tete tete"
   "tableau tableau"
+  "proprietes proprietes"
   ;
   .soudes {
     grid-area: tete;
@@ -33,6 +34,10 @@
   }
   .types_savon {
     grid-area: type;
+  }
+  .proprietes_ingredients_selectionnes {
+    border: solid 1px;
+    grid-area: proprietes;
   }
   //gap: 10px;
 }
@@ -83,9 +88,16 @@
   table {
     thead {
       display: flex;
-      th {width: 2.5rem; text-align: center;}
+      tr {display: grid;
+        grid-template-columns: 20px 140px 60px 80px;
+        gap: 5px;
+      }
+      th {width: 100%; text-align: center; justify-content: center;display: flex;
+        i {visibility: hidden;}
+      }
+      th.left {justify-content: flex-start;}
       th.tableau_ingredient_name {
-        width: 7rem;
+        //width: 7rem;
       }
       th:first-of-type {width: 1rem;}
       //th:first-child {width: 7rem;}
@@ -94,13 +106,28 @@
       tr {
         display: flex;
         align-items: center;
+        display: grid;
+        grid-template-columns: 20px 140px 60px 80px;
+        gap: 5px;
+        td:first-of-type > input {border: none;}
         td{
-          input {width: 2.5rem; text-align: center;}
+          display: flex;
+          width: 100%;
+          input {display:flex;width:100%; text-align: center;}
         }
+        td.left {justify-content: flex-start;}
 
-        .table_ingredients_input {width: 7rem; text-align: left;}
+        .table_ingredients_input {display:flex;width:100%; text-align: left;}
       }
     }
+  }
+  .total_recipe_ingredients {
+    td {display: flex; justify-content: center;}
+    span {display: flex; width: 100%;justify-content: center;}
+    i {visibility: hidden;}
+  }
+  .ing_to_get {
+    td input {border: solid 1px !important;}
   }
 }
 #caracteristiques, #tableau_ingredients_selectionnes {
@@ -254,12 +281,16 @@
 .types_savon {
   gap: 2em;
   padding: 0.5em 0;
-  display: flex;
-  flex-wrap: wrap;
+  //display: flex;
+  //flex-wrap: wrap;
+
+  display: grid;
+  grid-template-columns: 20% 65% 10%;
+
   .savons_type_select {display: flex; gap:3px}
   .message_alert_alcali {
     position: relative;
-    max-width: 30%;
+    max-width: 80%;
     width: 100%;
     background-color: white;
     .message_alert_alcali_type {
@@ -394,6 +425,9 @@
       border: 1px solid grey;
       padding: 8px 10px;
     }
+    tr {position: relative;
+      & > td:first-of-type {background-color: white; position: sticky; left: 0;}
+    }
 }
 .ing_head {
   display: flex;
@@ -444,7 +478,7 @@
   font-weight: 400;
 }
 .pre_input_ingredient {
-  margin-left: 16px;
+  //margin-left: 16px;
 }
 
 .list_recipes_soap {
@@ -563,10 +597,37 @@
     background-color: rgb(255, 148, 148) !important;
   }
 }
+.alert_poids {
+  height: 0;
+  visibility: hidden;
+  &.visible {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
+  gap: 15px;
+  color: red;
+  height: auto;
+  visibility: visible;
+  width: 80%;
+  margin: auto;
+  }
+}
 
 .tableFixHead { overflow: auto; max-height: 70vh; }
 .tableFixHead thead {
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: white;}
 //.tableFixHead thead th { position: sticky; top: 0; z-index: 1; background-color: white; }
+
+.proprietes_ingredients_selectionnes {
+  height: 8em;
+  div {
+    height: 5em;
+    overflow-y: auto;
+  }
+  table,tr,td,th {
+    border:1px solid black;border-collapse:collapse;
+  }
+}

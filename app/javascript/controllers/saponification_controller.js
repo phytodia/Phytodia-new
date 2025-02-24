@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -77,7 +77,7 @@ export default class extends Controller {
       }
     }
     event.currentTarget.classList.add("ingredient_add_to_recipe")
-
+    this.synthesePropertiesIngredients(event.currentTarget.value)
   }
   clickInput(event){
     event.currentTarget.value = ""
@@ -100,17 +100,20 @@ export default class extends Controller {
     this.modifPourcentagesIngs()
     //
     this.proprietesSavon()
+    this.checkPoids()
     //rajout des appels à fonctions suivantes
     this.changeSoude()
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
-    //this.checkPoids()
 
   }
   checkPoids(){
-    //if(parseFloat(this.sommePoidsTarget.innerText) < 500){
-
-    //}
+    if(parseFloat(this.sommePoidsTarget.innerText) < 500){
+      this.alertPoidsTarget.classList.add("visible")
+    }
+    else {
+      this.alertPoidsTarget.classList.remove("visible")
+    }
   }
   changePourcentageIng(){
   }
@@ -151,6 +154,13 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
     return naoh;
+  }
+  synthesePropertiesIngredients(event){
+    let ingdtEng = event;
+    let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
+    let ingdt = ingredients[event]
+    let insertHtml = `<tr><td>${ingdt["French_name"]}</td><td>${ingdt["Hardness"]}</td><td>${ingdt["Cleansing"]}</td><td>${ingdt["Condition"]}</td><td>${ingdt["Bubbly"]}</td><td>${ingdt["Creamy"]}</td><td>${ingdt["Iodine"]}</td><td>${ingdt["Vitesse_tracage"]}</td></tr>`;
+    this.syntheseProprietesTarget.querySelector("tbody").insertAdjacentHTML("beforeend", insertHtml);
   }
 
 
