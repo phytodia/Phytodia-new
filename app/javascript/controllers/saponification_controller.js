@@ -281,6 +281,9 @@ export default class extends Controller {
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.add("visible")
     }
+    if (this.choiceSavonTargets.find((elt)=>elt.classList.contains("checked")).dataset.typeSavon === "solide" && this.qtyWaterTarget.classList.contains("blocked")) {
+      this.selectSoudeTarget.value = "lessive";
+    }
 
   }
 
