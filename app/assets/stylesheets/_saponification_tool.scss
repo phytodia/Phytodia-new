@@ -333,7 +333,7 @@
   display: flex;
   gap: 8px;
   margin-top: 0.5em;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 .select_choice_savon_method {
   border: solid 2px transparent;
@@ -350,10 +350,8 @@
   &.naoh {}
   &.koh {}
   &.selected {
-    border: solid 2px #358E8E;
-    border-radius: 3px;
-    //background-color:#358E8E;
-    //color: white;
+    //border: solid 2px #358E8E;
+    //border-radius: 3px;
   }
   &.not_selected {
     opacity: 0.3;
@@ -633,4 +631,7 @@
   th {padding: 0px 10px;}
   td {text-align: center;}
   td:first-child {text-align: left;}
+}
+.online-chart {
+  width: 450px;
 }
