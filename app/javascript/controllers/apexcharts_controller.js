@@ -49,7 +49,7 @@ export default class extends Controller {
         stepSize: 20
       },
       xaxis: {
-        categories: ['Hardness', 'Cleansing', 'Condition', 'Bubbly', 'Creamy', 'Iodine']
+        categories: ['Dureté', 'Pouvoir lavant', 'Douceur', 'Pouvoir moussant', 'Onctuosité', 'Indice Iodine']
       },
       dataLabels: {
         enabled: true}
