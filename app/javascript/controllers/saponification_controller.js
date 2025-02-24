@@ -317,14 +317,13 @@ export default class extends Controller {
       this.pourcentageEauTarget.classList.remove("blocked")
 
       this.qtyWaterTargets.forEach((element)=>{
-        element.classList.add("blocked")
-        element.disabled = true
+        element.classList.remove("blocked")
+        element.disabled = false
       })
 
-
       this.qtySoudeTargets.forEach((element)=>{
-        element.classList.add("blocked")
-        element.disabled = true
+        element.classList.remove("blocked")
+        element.disabled = false
       })
     }
   }
