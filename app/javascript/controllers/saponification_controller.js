@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -601,6 +601,47 @@ export default class extends Controller {
     let chartFirstPropsElements = Object.fromEntries(Object.entries(chartProps).slice(0,6))
 
     this.updateSeries(indexTab,JSON.stringify(Object.values(chartFirstPropsElements)))
+  }
+
+  addAjout(){
+    let newTr = `
+    <tr class="parfum_argile_add" data-saponification-target="ingdtAjoute">
+          <td>
+            <select name="" id="">
+              <option value="parfum">Parfum/Huile essentielle</option>
+              <option value="argile">Argile</option>
+              <option value="colorant">Colorant</option>
+            </select><span data-action="click->saponification#addAjout"><i class="fa-solid fa-circle-plus"></i></span>
+          </td>
+          <td><input type="text" placeholder="nom de votre parfum/huile"></td>
+          <td><input type="number" placeholder="%"></td>
+          <td><input type="number" placeholder="g" data-action="change->saponification#totalAjout" value="0"></td>
+    </tr>
+    `;
+    this.ajoutIngredientsTarget.querySelector('tbody').insertAdjacentHTML('beforeend',newTr)
+  }
+  totalAjout(){
+    let parfums = 0
+    let argiles = 0
+    let colorants = 0
+    this.ingdtAjouteTargets.forEach((element)=>{
+      if (element.querySelector("select").value === "parfum") {
+        parfums += parseFloat(element.children[3].querySelector("input").value)
+        return parfums
+      }
+      else if(element.querySelector("select").value === "argile"){
+        argiles += parseFloat(element.children[3].querySelector("input").value)
+        return argiles
+      }
+      else if(element.querySelector("select").value === "colorant"){
+        colorants += parseFloat(element.children[3].querySelector("input").value)
+        return colorants
+      }
+    })
+    debugger;
+    console.log(parfums)
+    console.log(argiles)
+    console.log(colorants)
   }
 
   updateSeries(index,serie){

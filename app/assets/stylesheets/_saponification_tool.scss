@@ -9,6 +9,7 @@
   "tete tete"
   "tableau tableau"
   "proprietes proprietes"
+  "recap recap"
   ;
   .soudes {
     grid-area: tete;
@@ -665,5 +666,14 @@
       align-items: center;
       gap: 5px;
     }
+  }
+}
+#block_ajouts_and_recap_recette{
+  grid-area: recap;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  #ajouts_savon {
+  }
+  #recap_recette {
   }
 }
