@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute","poidsgraissesRecette","poidsParfums","poidsArgiles","poidsColorants"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -95,6 +95,8 @@ export default class extends Controller {
 
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
+    debugger;
+    this.poidsgraissesRecetteTarget.value = somme
     this.sommeNaoh()
     this.sommeKoh()
 
@@ -638,10 +640,12 @@ export default class extends Controller {
         return colorants
       }
     })
-    debugger;
     console.log(parfums)
+    this.poidsParfumsTarget.value = parfums
     console.log(argiles)
+    this.poidsArgilesTarget.value = argiles
     console.log(colorants)
+    this.poidsColorantsTarget.value = colorants
   }
 
   updateSeries(index,serie){
