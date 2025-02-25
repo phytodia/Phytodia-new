@@ -95,7 +95,6 @@ export default class extends Controller {
 
     console.log(`somme : ${somme}`)
     this.sommePoidsTarget.innerText = somme
-    debugger;
     this.poidsgraissesRecetteTarget.value = somme
     this.sommeNaoh()
     this.sommeKoh()
@@ -646,6 +645,11 @@ export default class extends Controller {
     this.poidsArgilesTarget.value = argiles
     console.log(colorants)
     this.poidsColorantsTarget.value = colorants
+    debugger;
+  }
+
+  poidsFinal(){
+    debugger;
   }
 
   updateSeries(index,serie){
