@@ -312,7 +312,7 @@ export default class extends Controller {
     if(this.selectSoudeTarget.value==="lessive"){
       this.typeAlcaliTarget.value = "Lessive"
       this.concentrationLessiveTarget.classList.add("visible")
-      this.qtyLessiveSoudeTarget.classList.add("visible")
+      this.qtyLessiveSoudeTargets.forEach((element)=>{element.classList.add("visible")})
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.remove("visible")
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.lessive").classList.add("visible")
@@ -335,7 +335,7 @@ export default class extends Controller {
     else {
       this.typeAlcaliTarget.value = "KOH"
       this.concentrationLessiveTarget.classList.remove("visible")
-      this.qtyLessiveSoudeTarget.classList.remove("visible")
+      this.qtyLessiveSoudeTargets.forEach((element)=>{element.classList.remove("visible")})
 
       this.pourcentageEauTarget.disabled = false
       this.pourcentageEauTarget.classList.remove("blocked")
@@ -355,7 +355,9 @@ export default class extends Controller {
   getConcentrationLessive(){
     let concentrationLessive = parseFloat(this.concentrationLessiveTarget.value);
     let qtyLessiveFinal = parseFloat(this.qtySoudeTarget.value) / (concentrationLessive/100)
-    this.qtyLessiveSoudeTarget.value = qtyLessiveFinal.toFixed(2);
+    this.qtyLessiveSoudeTargets.forEach((element)=>{element.value = qtyLessiveFinal.toFixed(2)})
+
+    this.poidsFinal();
   }
 
   addIngButton(){
@@ -678,7 +680,17 @@ export default class extends Controller {
     let parfums = parseFloat(this.poidsParfumsTarget.value);
     let argiles = parseFloat(this.poidsArgilesTarget.value);
     let colorants = parseFloat(this.poidsColorantsTarget.value);
-    let total = poidsGraisses + qtyWater + soude + parfums + argiles + colorants
+
+    let qtyLessive = parseFloat(this.qtyLessiveSoudeTarget.value);
+
+    if (this.selectSoudeTarget.value === "lessive") {
+      qtyWater = 0;
+      soude = 0;
+    }
+    else {
+      qtyLessive = 0;
+    }
+    let total = poidsGraisses + qtyWater + soude + parfums + argiles + colorants + qtyLessive;
     this.poidstotalRecetteTarget.value = total
   }
 
