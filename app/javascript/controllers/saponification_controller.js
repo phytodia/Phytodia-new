@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute","poidsgraissesRecette","poidsParfums","poidsArgiles","poidsColorants","poidstotalRecette"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute","poidsgraissesRecette","poidsParfums","poidsArgiles","poidsColorants","poidstotalRecette","recapRecipe"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -11,6 +11,14 @@ export default class extends Controller {
     console.log("JSON.parse(document.getElementById('JSON').dataset['ingredients'])")
     console.log(this.apexchartsOutlets)
   }
+  //recapRecipeTargetConnected(){
+  //  let inputsRecipe = Array.from(this.recapRecipeTarget.querySelectorAll("input.check_changes"))
+  //  inputsRecipe.forEach((element)=>{
+  //    element.addEventListener('input', function (event) {
+  //      console.log("Thomas")
+  //    })
+  //  })
+  //}
   createTr(event){
     const ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let newTd = '<i class="fa-regular fa-circle-xmark" data-action="click->saponification#removeIngredientOption"></i><td><input type="text" class="table_ingredients_input" data-saponification-target="ingredientTd"></td><td><input type="number" data-action="change->saponification#changePourcentageIng" data-saponification-target="ingPourcentage" value="0" disabled></td><td><input type="number" data-action="click->saponification#clickInput change->saponification#changePoids" data-saponification-target="ingPoids" value="0"><i class="fa-regular fa-circle-question information" data-action="click->saponification#infoIngredient"></i></td>'
@@ -101,7 +109,7 @@ export default class extends Controller {
 
     //rajout pourcentages
     this.modifPourcentagesIngs()
-    //
+
     this.proprietesSavon()
     this.checkPoids()
     //rajout des appels à fonctions suivantes
@@ -117,7 +125,7 @@ export default class extends Controller {
     else {
       this.alertPoidsTarget.classList.remove("visible")
     }
-    //this.poidsFinal()
+    this.poidsFinal()
   }
   changePourcentageIng(){
   }
@@ -152,6 +160,7 @@ export default class extends Controller {
       this.sommeNaohTarget.value = newNaoh.toFixed(2)
       this.qtySoudeTargets.forEach((element=>{element.value = newNaoh.toFixed(2) }))
     }
+    this.poidsFinal();
   }
 
   getNaoh(){
@@ -188,6 +197,8 @@ export default class extends Controller {
       this.qtySoudeTargets.forEach((element=>{element.value = naoh.toFixed(2) }))
     }
 
+    this.poidsFinal();
+
   }
 
   sommeKoh() {
@@ -203,6 +214,7 @@ export default class extends Controller {
       if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide") {
         this.insertKoh(koh);
       }
+      this.poidsFinal();
   }
 
   insertKoh(eleonore) {
@@ -226,7 +238,7 @@ export default class extends Controller {
 
     this.qtyWaterTargets.forEach((element)=>{element.value = poidsEau.toFixed(2)})
     //quand la concentration de lessive change...
-
+    this.poidsFinal();
     this.getQtyLessiveSoude()
 
     //new
@@ -654,12 +666,14 @@ export default class extends Controller {
     console.log(colorants)
     this.poidsColorantsTarget.value = colorants
 
+    this.poidsFinal();
+
     //this.poidsFinal()
   }
 
   poidsFinal(){
     let poidsGraisses = parseFloat(this.poidsgraissesRecetteTarget.value);
-    let qtyWater = parseFloat(this.qtyWaterTarget.value);
+    let qtyWater = parseFloat(this.recapRecipeTarget.querySelector("input.check_changes.qty_water").value) ? parseFloat(this.recapRecipeTarget.querySelector("input.check_changes.qty_water").value) : 0
     let soude = parseFloat(this.qtySoudeTarget.value);
     let parfums = parseFloat(this.poidsParfumsTarget.value);
     let argiles = parseFloat(this.poidsArgilesTarget.value);
