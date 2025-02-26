@@ -9,6 +9,7 @@
   "tete tete"
   "tableau tableau"
   "proprietes proprietes"
+  "recap recap"
   ;
   .soudes {
     grid-area: tete;
@@ -373,7 +374,7 @@
 
 #tabs_faq_saponification {
   display: flex;
-  margin-top: 6em;
+  margin-top: 20em;
   //gap:2px;
   border-bottom: 1px solid lightgray;
   .tab_faq_saponification {
@@ -652,4 +653,33 @@
 
 #proprietes_savon {
   input {width: 7em !important;}
+}
+
+#ajouts_savon {
+  .parfum_argile_add,thead >tr {
+    display: grid;
+    grid-template-columns: 200px 200px 40px 40px;
+    gap: 10px;
+    input,select {width: 100%;}
+    td:first-child {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+#block_ajouts_and_recap_recette{
+  grid-area: recap;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  #ajouts_savon {
+  }
+  #recap_recette {
+    div {
+      display: grid;
+      grid-template-columns: 200px 70px 200px 70px;
+      column-gap: 10px;
+      row-gap: 5px;
+    }
+  }
 }

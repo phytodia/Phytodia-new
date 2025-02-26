@@ -557,5 +557,69 @@
       </table>
     </div>
   </div>
+  <div id="block_ajouts_and_recap_recette">
+    <div id="ajouts_savon">
+    <h2 class="titre_tool">6. Choisissez vos ajouts</h2>
+      <table data-saponification-target="ajoutIngredients">
+        <thead>
+          <th>Type d'ajout</th>
+          <th>nom du parfum/huile</th>
+          <th>%</th>
+          <th>g</th>
+        </thead>
+        <tbody>
+          <tr class="parfum_argile_add" data-saponification-target="ingdtAjoute">
+            <td>
+              <select name="" id="">
+                <option value="parfum">Parfum/Huile essentielle</option>
+                <option value="argile">Argile</option>
+                <option value="colorant">Colorant</option>
+              </select><span data-action="click->saponification#addAjout"><i class="fa-solid fa-circle-plus"></i></span>
+            </td>
+            <td><input type="text" placeholder="nom de votre parfum/huile"></td>
+            <td><input type="number" placeholder="%"></td>
+            <td><input type="number" placeholder="g" data-action="change->saponification#totalAjout" value="0"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="recap_recette" data-saponification-target="recapRecipe">
+      <h2 class="titre_tool">7. Votre recette</h2>
+      <div>
+        <label for="">
+          Poids total
+        </label>
+        <input type="number" data-saponification-target="poidstotalRecette" value="0">
+        <label for="">
+          Poids total des graisses
+        </label>
+        <input type="number" data-saponification-target="poidsgraissesRecette" class="check_changes" value="0">
+        <label for="">
+          Poids des parfums/HE
+        </label>
+        <input type="number" data-saponification-target="poidsParfums" class="check_changes" value="0">
+        <label for="">
+          Quantité d'eau
+        </label>
+        <input type="number" data-saponification-target="qtyWater" class="check_changes qty_water" value="0">
+        <label for="">
+          Poids des argiles
+        </label>
+        <input type="number" data-saponification-target="poidsArgiles" class="check_changes" value="0">
+        <label for="">
+          Quantité d'alcali
+        </label>
+        <input type="number" data-saponification-target="qtySoude" class="check_changes" value="0">
+        <label for="">
+          Quantité de lessive
+        </label>
+        <input type="number" data-saponification-target="qtyLessiveSoude" class="check_changes input_lessive_concentration" value="0">
+        <label for="">
+          Poids des colorants
+        </label>
+        <input type="number" data-saponification-target="poidsColorants" class="check_changes" value="0">
+      </div>
+    </div>
+  </div>
 </div> <!-- Fin controller JS -->
 </div><!--fin recipe -->
