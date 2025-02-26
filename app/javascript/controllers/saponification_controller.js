@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="saponification"
 export default class extends Controller {
 
-  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute","poidsgraissesRecette","poidsParfums","poidsArgiles","poidsColorants"]
+  static targets = ["ingredient","ingredientsJson","caracteristiquesIngredient","ingredientTable","ingredientItem","ingredientTd","ingPoids","sommePoids","sommeNaoh","pourcentageSurgraissage","savonProprietes","sommeKoh","finalSavonChoice","choiceSavon","resultsNaohKoh","qtyWater","pourcentageEau","sommeGraissesINS","qtySoude","selectSoude","concentrationLessive","qtyLessiveSoude","ingPourcentage","pourcentagePoidsTotal","addIngBtn","listIngredients","saveSavon","typeAlcali","ingSelectionneProprietes","closeInfo","alcaliAlertMessage","alertPoids","syntheseProprietes","ajoutIngredients","ingdtAjoute","poidsgraissesRecette","poidsParfums","poidsArgiles","poidsColorants","poidstotalRecette"]
   static outlets = [ "apexcharts" ]
 
   connect() {
@@ -117,6 +117,7 @@ export default class extends Controller {
     else {
       this.alertPoidsTarget.classList.remove("visible")
     }
+    //this.poidsFinal()
   }
   changePourcentageIng(){
   }
@@ -147,6 +148,10 @@ export default class extends Controller {
 
     //ajout surgraissage au formulaire SavonSave
     this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
+    if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
+      this.sommeNaohTarget.value = newNaoh.toFixed(2)
+      this.qtySoudeTargets.forEach((element=>{element.value = newNaoh.toFixed(2) }))
+    }
   }
 
   getNaoh(){
@@ -223,6 +228,9 @@ export default class extends Controller {
     //quand la concentration de lessive change...
 
     this.getQtyLessiveSoude()
+
+    //new
+    //this.poidsFinal()
   }
   getQtyLessiveSoude(){
     let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
@@ -645,11 +653,19 @@ export default class extends Controller {
     this.poidsArgilesTarget.value = argiles
     console.log(colorants)
     this.poidsColorantsTarget.value = colorants
-    debugger;
+
+    //this.poidsFinal()
   }
 
   poidsFinal(){
-    debugger;
+    let poidsGraisses = parseFloat(this.poidsgraissesRecetteTarget.value);
+    let qtyWater = parseFloat(this.qtyWaterTarget.value);
+    let soude = parseFloat(this.qtySoudeTarget.value);
+    let parfums = parseFloat(this.poidsParfumsTarget.value);
+    let argiles = parseFloat(this.poidsArgilesTarget.value);
+    let colorants = parseFloat(this.poidsColorantsTarget.value);
+    let total = poidsGraisses + qtyWater + soude + parfums + argiles + colorants
+    this.poidstotalRecetteTarget.value = total
   }
 
   updateSeries(index,serie){
