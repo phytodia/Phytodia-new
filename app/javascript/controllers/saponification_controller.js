@@ -151,14 +151,31 @@ export default class extends Controller {
 
   changeSurgraissage(event) {
     let naohBase = this.getNaoh() //Appelle une autre fonction
-    let newNaoh = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
-    this.sommeNaohTarget.value = newNaoh.toFixed(2);
+    //let alcali = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
+    this.sommeNaohTarget.value = naohBase.toFixed(2);
+
+    let alcali = 0
+    if (this.pourcentageSurgraissageTarget.value === '' || this.pourcentageSurgraissageTarget.value === '0') {
+      alcali = parseFloat(naohBase)
+    }
+    else {
+      alcali = parseFloat(naohBase) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
+    }
 
     //ajout surgraissage au formulaire SavonSave
-    this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
+
+    if (this.pourcentageSurgraissageTarget.value === '' || this.pourcentageSurgraissageTarget.value === '0') {
+      this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = 0
+    }
+    else {
+      this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
+    }
+
+    //this.saveSavonTarget.querySelector(".recipe_soap_surgraissage_taux").value = this.pourcentageSurgraissageTarget.value
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
-      this.sommeNaohTarget.value = newNaoh.toFixed(2)
-      this.qtySoudeTargets.forEach((element=>{element.value = newNaoh.toFixed(2) }))
+      this.sommeNaohTarget.value = naohBase.toFixed(2)
+      this.qtySoudeTargets.forEach((element=>{element.value = alcali.toFixed(2) }))
+      //alert(`naoh:${naohBase} | alcali: ${alcali}`)
     }
     this.poidsFinal();
   }
@@ -192,9 +209,17 @@ export default class extends Controller {
       naoh += JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)[ingredient]["NaOH SAP"] * qty
     })
 
+    let alcali = 0
+    if (this.pourcentageSurgraissageTarget.value === '' || this.pourcentageSurgraissageTarget.value === '0') {
+      alcali = parseFloat(naoh)
+    }
+    else {
+      alcali = parseFloat(naoh) * (1 - (parseFloat(this.pourcentageSurgraissageTarget.value)/100))
+    }
+
     if (this.finalSavonChoiceTarget.dataset.finalSavonChoice === "solide") {
       this.sommeNaohTarget.value = naoh.toFixed(2)
-      this.qtySoudeTargets.forEach((element=>{element.value = naoh.toFixed(2) }))
+      this.qtySoudeTargets.forEach((element=>{element.value = alcali.toFixed(2) }))
     }
 
     this.poidsFinal();
@@ -246,7 +271,15 @@ export default class extends Controller {
   }
   getQtyLessiveSoude(){
     let poidsSoude = parseFloat(this.resultsNaohKohTarget.querySelector(".selected input").value)
-    let qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
+
+    let qtySoude = 0
+    if (this.pourcentageSurgraissageTarget.value === '' || this.pourcentageSurgraissageTarget.value === '0') {
+      qtySoude = poidsSoude
+    }
+    else {
+      qtySoude = poidsSoude *(1- parseFloat(this.pourcentageSurgraissageTarget.value)/100)
+    }
+
     console.log(qtySoude)
 
     //this.qtySoudeTargets.forEach((element=>{element.value = qtySoude.toFixed(2) }))
