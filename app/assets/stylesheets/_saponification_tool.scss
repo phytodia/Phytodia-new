@@ -671,10 +671,14 @@
 #block_ajouts_and_recap_recette{
   grid-area: recap;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 1fr 1fr;
   #ajouts_savon {
+    padding: 1em;
   }
   #recap_recette {
+    background-color: #358E8E;
+    padding: 1em;
+    color: white;
     div {
       display: grid;
       grid-template-columns: 200px 70px 200px 70px;
