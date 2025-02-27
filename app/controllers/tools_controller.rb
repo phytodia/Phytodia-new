@@ -12,6 +12,8 @@ class ToolsController < ApplicationController
     @new_recipe = RecipeSoap.new
 
     @recipes = RecipeSoap.all
+
+    @ingredients = @ingredients.sort_by { |key, value| value["French_name"] }.to_h
   end
 
   def new_recipe_partial
