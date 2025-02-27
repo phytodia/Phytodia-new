@@ -193,7 +193,7 @@ export default class extends Controller {
     let ingdtEng = event;
     let ingredients = JSON.parse(this.ingredientsJsonTarget.dataset.ingredients)
     let ingdt = ingredients[event]
-    let insertHtml = `<tr><td>${ingdt["French_name"]}</td><td>${ingdt["Hardness"]}</td><td>${ingdt["Cleansing"]}</td><td>${ingdt["Condition"]}</td><td>${ingdt["Bubbly"]}</td><td>${ingdt["Creamy"]}</td><td>${ingdt["Iodine"]}</td><td>${ingdt["Vitesse_tracage"]}</td></tr>`;
+    let insertHtml = `<tr><td>${ingdt["French_name"]}</td><td>${ingdt["Hardness"]}</td><td>${ingdt["Cleansing"]}</td><td>${ingdt["Condition"]}</td><td>${ingdt["Bubbly"]}</td><td>${ingdt["Creamy"]}</td><td>${ingdt["Iodine"]}</td><td>${ingdt["Vitesse_tracage"].toFixed(2)}</td></tr>`;
     this.syntheseProprietesTarget.querySelector("tbody").insertAdjacentHTML("beforeend", insertHtml);
   }
   deleteIngdtTable(index){
@@ -724,7 +724,7 @@ export default class extends Controller {
       qtyLessive = 0;
     }
     let total = poidsGraisses + qtyWater + soude + parfums + argiles + colorants + qtyLessive;
-    this.poidstotalRecetteTarget.value = total
+    this.poidstotalRecetteTarget.value = total.toFixed(2)
   }
 
   updateSeries(index,serie){
