@@ -95,7 +95,7 @@
       <div>
         <div>
           <label for="" class="green_label">Pourcentage d'eau désiré <i class="fa-regular fa-circle-question information"><span><p>Le pourcentage d’eau qui est généralement recommandé est de 30%. Il peut varier de 25 à 40 % selon la vitesse de traçage souhaité les graisses choisies.</p></span></i></label>
-          <input type="number" placeholder="%" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
+          <input type="number" min="0" max="100" placeholder="%" data-action="change->saponification#changeSoude" data-saponification-target="pourcentageEau">
         </div>
         <div>
           <label for="" class="green_label">Pourcentage d'ajout/additifs(Faire JS) <i class="fa-regular fa-circle-question information"><span><p>L’ajout total d’additifs ne doit pas dépasser 10 % du poids total des huiles. Les fragrances ne doivent généralement pas dépasser 3% du poids des huiles (environ 30g pour 1kg d’huile), de même que pour les argiles, colorants et autres additifs (miel, sucre). Attention certaines huiles essentielles (cannelle, girofle, menthe) ou autres additifs accélèrent particulièrement la trace et augmente fortement la température du mélange. Il est important de vérifier les recommandations données par le fournisseur.</p></span></i></label>
@@ -317,7 +317,7 @@
       <hr>
       <div class="naoh_koh_results" data-saponification-target="resultsNaohKoh">
         <div class="select_choice_savon_method naoh solide">
-          <p>Quantité de soude (g)</p>
+          <p>Quantité de soude(g)</p>
           <div>
             <input type="number" name="somme" value="0" data-saponification-target="sommeNaoh">
             <i class="fa-regular fa-circle-question information"><span><p>Quantité de soude caustique à utiliser pour saponifier à 100% le poids total des ingrédients en savon.</p></span></i>
@@ -325,7 +325,7 @@
         </div>
 
         <div class="select_choice_savon_method koh liquide">
-          <p>Quantité de potasse (g)</p>
+          <p>Quantité de potasse(g) (KOH à 90%)</p>
           <div>
             <input type="number" name="somme" value="0" data-saponification-target="sommeKoh" class="resutl_koh">
             <i class="fa-regular fa-circle-question information"><span><p>???</p></span></i>
