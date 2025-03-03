@@ -112,8 +112,14 @@ export default class extends Controller {
 
     this.proprietesSavon()
     this.checkPoids()
-    //rajout des appels à fonctions suivantes
+
+    if(this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide"){
+      this.qtyeauSavonliquide()
+    }
+    else{}
+
     this.changeSoude()
+    //rajout des appels à fonctions suivantes
     this.getQtyLessiveSoude()
     this.getConcentrationLessive()
 
@@ -257,11 +263,16 @@ export default class extends Controller {
 
   }
   changeSoude(){
-    let poidsEau = parseFloat(this.sommePoidsTarget.innerText) * (parseFloat(this.pourcentageEauTarget.value)/100)
-    console.log("ChangeEau")
-    console.log(poidsEau)
+    if(this.finalSavonChoiceTarget.dataset.finalSavonChoice === "liquide"){
+      this.qtyeauSavonliquide()
+    }
+    else{
+      let poidsEau = parseFloat(this.sommePoidsTarget.innerText) * (parseFloat(this.pourcentageEauTarget.value)/100)
+      console.log("ChangeEau")
+      console.log(poidsEau)
 
-    this.qtyWaterTargets.forEach((element)=>{element.value = poidsEau.toFixed(2)})
+      this.qtyWaterTargets.forEach((element)=>{element.value = poidsEau.toFixed(2)})
+    }
     //quand la concentration de lessive change...
     this.poidsFinal();
     this.getQtyLessiveSoude()
@@ -289,6 +300,15 @@ export default class extends Controller {
     // get poids de la soude = poids du gras * concentration de la lessive désirée
     // qty soude = Poids de la soude * (1 - taux de surgraissage)
     // qty lessive de soude = qty soude + concentration de la lessive
+  }
+
+  qtyeauSavonliquide(){
+    let poidsTotal = this.sommePoidsTarget.innerText;
+    let coefEau = this.pourcentageEauTarget.value;
+    let qtyEau = poidsTotal * coefEau;
+    this.qtyWaterTargets.forEach((element)=>{
+      element.value = qtyEau;
+    })
   }
 
   selectSavon(event){
@@ -323,6 +343,12 @@ export default class extends Controller {
       this.typeAlcaliTarget.value = "NaOH"
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.naoh").classList.add("visible")
+
+      this.pourcentageEauTarget.parentElement.querySelector("label").innerText = "Pourcentage d'eau désiré"
+      this.pourcentageEauTarget.min = "0"
+      this.pourcentageEauTarget.max = "100"
+      this.pourcentageEauTarget.step = "1"
+      this.pourcentageEauTarget.value = ""
     }
     else if (typeSavon === "liquide") {
       Array.from(this.selectSoudeTarget.querySelectorAll(".liquide")).forEach((element)=>{element.style.display = ""})
@@ -334,6 +360,13 @@ export default class extends Controller {
       this.typeAlcaliTarget.value = "KOH"
 
       this.alcaliAlertMessageTarget.querySelector(".message_alert_alcali_type.koh").classList.add("visible")
+
+
+      this.pourcentageEauTarget.parentElement.querySelector("label").innerText = "Quantité d'eau"
+      this.pourcentageEauTarget.min = "1.2"
+      this.pourcentageEauTarget.max = "1.7"
+      this.pourcentageEauTarget.step = "0.1"
+      this.pourcentageEauTarget.value = "1.2"
     }
     if (this.choiceSavonTargets.find((elt)=>elt.classList.contains("checked")).dataset.typeSavon === "solide" && this.qtyWaterTarget.classList.contains("blocked")) {
       this.selectSoudeTarget.value = "lessive";
