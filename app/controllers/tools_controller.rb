@@ -28,6 +28,9 @@ class ToolsController < ApplicationController
       ingredients_list = Hash[ingredients_list].transform_keys(&:downcase)
 
       @recipe_soap = RecipeSoap.new(soap_params)
+      if @recipe_soap.type_soude == "KOH"
+        @recipe_soap.surgraissage_taux = 0
+      end
       @recipe_soap.save
 
       ingredients = params[:recipe_soap][:ingredients]
